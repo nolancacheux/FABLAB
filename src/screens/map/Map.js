@@ -248,9 +248,7 @@ class Map extends React.Component {
                 <div className="mp-day"></div>
                 </Link>
                 <section  className="mp-maps" style={{ height: "auto",  position: "relative", width: "100%",  maxHeight: "calc(100vh - 10vh)", display: "flex",  flexWrap: "wrap",  }}>  
-                    <div className="mp-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20246.980587340433!2d3.0394145999999997!3d50.629483949999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d57e621f9ced%3A0xd27c4853215a4e22!2sZoo%20de%20Lille!5e0!3m2!1sfr!2sfr!4v1684249924874!5m2!1sfr!2sfr" width="600" height="450" style={{ border: "0" }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    
                     <button className="mp-btn mp-right">
                         <ion-icon name="locate-outline"></ion-icon>
                     </button>
@@ -260,18 +258,10 @@ class Map extends React.Component {
                     <div className="mp-slider">
                         <button className="mp-btn mp-close-slider"></button>
                         <div className="mp-menubar">
-                            <h1>Hop Pseudo !🍻</h1>
                             <div className="mp-search_wrap">
                                 <button  onClick={this.handleClick3}><ion-icon name="search-outline"></ion-icon></button>
                                 <input  type="text" className="mp-input" id="inputBiereMap" placeholder= {this.state.placeholdersearch} onKeyUp={this.handleInputChange}/>
                             </div>
-                            <ul className="cont_beers">
-                              {this.state.data.slice(0, this.state.nbBiereAffiche).map((beer, index) => (
-                                <div className="click" onClick={this.handleClicke}>
-                                  <BeerRech beer={beer} key={index} />
-                                </div>
-                              ))}
-                            </ul>
                             <div className="mp-filter">
                                 <ul className="mp-tabs-box">
                                     <button onClick={this.handleClickRecherche}><li className="mp-tab-recherchetype">{this.state.recherchetype}</li></button>
@@ -280,18 +270,7 @@ class Map extends React.Component {
                                     <button onClick={this.handleClickM3}><li className="mp-tab">🚗 1km</li></button>
                                 </ul>
                             </div>
-                            <div id="mp-container">
-                            {this.state.tabbar.map((item, index) => (
-                              <Item
-                                key={index}
-                                image={Bar}
-                                text={"Bar fréquenté"}
-                                nom={item}
-                                //adresse={"123 Main St, Anytown, USA"}
-                                prix={`🍺 ${this.state.price[index]} €`}
-                              />
-                            ))}
-                          </div>
+                            
                         </div>
                     </div>
                     <div className="mp-overlay"></div>
