@@ -1,0 +1,82 @@
+.co-user{
+    padding-top: 4vh;
+    margin-left: 8vw;
+    max-width: 3vw;
+    
+    
+}
+.co-description_commentaire{
+    margin-top: 7vh;
+    margin-left: 2vw;
+    
+   
+    
+}
+.etoilecom{
+  margin-top: 1.6vh;
+  width: 8vw;
+  margin-left:8vw;
+  display: inline-flex;
+  padding-bottom: 1vh;
+  
+}
+.co-commentaire{
+    
+    width: 25vw;
+    
+    /* box-shadow: 0px 0px 10px rgb(191, 191, 191); */
+    border-radius: 2;
+    margin-bottom: 3vh;
+    margin-left: 4vw;
+    background-color: #F7F8FA;
+    
+}
+.co-img-com {
+    margin-top: 2vh;
+    border-radius: 50%;
+    margin-left: 2vw;
+    max-width: 5vw;
+    position: absolute;
+    
+    
+    
+}
+/************ Media Query ************/
+@media screen and (max-width: 780px) {
+
+    .co-commentaire{
+    
+        width: 55vw;
+        
+        /* box-shadow: 0px 0px 10px rgb(191, 191, 191); */
+        border-radius: 2;
+        margin-bottom: 3vh;
+        margin-left: 4vw;
+        background-color: #F7F8FA;
+        
+    }
+    .co-img-com {
+        margin-top: 2vh;
+        border-radius: 50%;
+        margin-left: 2vw;
+        max-width: 20vw;
+        position: absolute;
+        
+        
+        
+    }
+    .etoilecom{
+        margin-bottom: 0;
+        width: 25vw;
+        margin-left: 15vw;
+        display: inline-flex;
+        
+        
+      }
+    .co-user{
+    padding-top: 4vh;
+    margin-left: 26vw;
+    max-width: 3vw;
+    }
+    
+}

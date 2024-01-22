@@ -1,0 +1,243 @@
+/************ Fond ************/
+
+.yearJeton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--tertary);
+}
+
+/************ Jeton ************/
+
+/************ Header ************/
+
+.jt-header {
+    height: 10vh;
+    width: 100%;
+    padding: 0px 30px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.jt-header .jt-category {
+    transition: 0.2s;
+    border-radius: 25px;
+    padding: 12px 16px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 3px solid var(--secondary);
+}
+.jt-header .jt-category ion-icon {
+    margin-right: 6px;
+    font-size: 20px;
+}
+.jt-header .jt-category h1 {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+.jt-header button {
+    bottom: 0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    font-size: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--primary);
+    transition: 0.2s;
+}
+.jt-header button:active {
+    transform: scale(0.95);
+}
+
+/************ Main************/
+
+.hidden {
+    display: none;
+}
+.jt-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    perspective: 1000px;
+    justify-content: center;
+    width: 100%;
+}
+#jt-partie2 {
+    width: 38%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#jt-partie3 {
+    width: 38%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#jt-partie2 h1,
+#jt-partie3 h1 {
+    margin-top: 0;
+    font-size: 35px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.jt-card {
+    background-color: white;
+    border-radius: 10px;
+    width: 70%;
+    height: 50vh;
+    margin-top: 20px;
+    display: flex;
+    margin-left: 5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#jt-partie3 .jt-card h2 {
+    font-size: 130px;
+    margin: 120px 0px 10px;
+}
+#jt-partie3 .jt-card p {
+    font-size: 15px;
+    margin: 10px 0px 0px;
+}
+.jt-card img {
+    width: 80%;
+    height: 35vh;
+    border-radius: 5px;
+    margin-right: 10px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+}
+.jt-card .jt-important {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+.jt-card .jt-icon {
+    font-size: 24px;
+    margin-top: -5px;
+    margin-right: 10px;
+}
+.jt-card .jt-text {
+    font-size: 20px;
+}
+.jt-designBtn {
+    border: none;
+    color: var(--primary);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1em;
+    padding: 15px 50px;
+    margin-left: 9rem;
+}
+#reponseBtn {
+    margin-left: 9.5rem;
+}
+.jt-actions #rejouerBtn {
+    margin-top: 110px;
+    margin-left: 15px;
+}
+.jt-container button {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 40px;
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.jt-container button:active {
+    transform: scale(0.95);
+}
+.jt-designBtn span {
+    position: relative;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 1;
+}
+.jt-designBtn .liquid {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: var(--important);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+}
+.jt-designBtn .liquid::after,
+.jt-designBtn .liquid::before {
+    content: "";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
+    background: #fff;
+}
+.jt-designBtn .liquid::before {
+    border-radius: 45%;
+    background: rgba(20, 20, 20, 1);
+    animation: animate 5s linear infinite;
+}
+.jt-designBtn .liquid::after {
+    border-radius: 40%;
+    background: rgba(20, 20, 20, 0.5);
+    animation: animate 10s linear infinite;
+}
+.jt-container button:hover .liquid {
+    top: -120px;
+}
+.jt-actions {
+    display: flex;
+}
+@keyframes animate {
+    0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -75%) rotate(360deg);
+    }
+}
+@keyframes fadeAnimation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fade-in {
+    animation: fadeAnimation 1s ease-in-out forwards;
+  }
+  
+  .fade-out {
+    animation: fadeAnimation 1s ease-in-out reverse forwards;
+  }
+  

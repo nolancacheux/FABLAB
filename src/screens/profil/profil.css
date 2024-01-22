@@ -1,0 +1,271 @@
+/************ Profile ************/
+.prf-card {
+    background:var(--primary);
+    border: none;
+    width: 33%;
+    margin-right: 20px;
+}
+.prf-right-block {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.prf-top-right {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: var(--secondary);
+}
+.prf-bottom-right {
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    background-color: var(--secondary);
+}
+.prf-card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    padding: relative;
+    transform-style: preserve-3d;
+}
+.prf-front,.prf-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: absolute;
+    backface-visibility: hidden;
+}
+.prf-front {
+    background: url(../../assets/images/user.png);
+    padding: 60px 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--primary);
+}
+.prf-front h2 {
+    font-weight: 500;
+    color: var(--primary);
+}
+.prf-front p {
+    font-size: 13px;
+    margin-top: 5px;
+    color: var(--primary);
+}
+.prf-back {
+    padding: 15px 40px;
+    transform: rotateY(180deg);
+    color: var(--primary);
+    background: var(--secondary);
+}
+.prf-back h1 {
+    font-size: 50px;
+    line-height: 55px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+.prf-back h2{
+    color: var(--primary);
+}
+.prf-back p {
+    font-size: 14px;
+}
+.prf-back img {
+    width: 120px;
+}
+.prf-row {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+.prf-col {
+    flex: 1;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    color: var(--primary);
+}
+.prf-col h2 {
+    font-size: 20px;
+}
+.prf-col::after {
+    content: "";
+    width: 1.5px;
+    height: 20px;
+    top: 5px;
+    right: 0;
+    position: absolute;
+    background: var(--important);
+}
+.prf-col:last-child::after {
+    display: none;
+}
+.prf-col p {
+    margin-top: 5px;
+}
+.prf-card:hover .prf-card-inner {
+    transform: rotateY(180deg);
+}
+.prf-button-container {
+    display: flex;
+    margin-top: 15px;
+}
+.prf-custom-button {
+    padding: 8px;
+    border-radius: 25px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid var(--primary);
+}
+.prf-custom-button ion-icon {
+    margin-right: 8px;
+    color: var(--primary);
+}
+.prf-custom-button span {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--primary);
+}
+.prf-block {
+    width: 20%;
+    height: 100%;
+    border-radius: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--tertary);
+}
+.prf-block ion-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+    animation: shake 2s infinite;
+}
+.prf-block h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.prf-block p {
+    font-size: 14px;
+}
+.prf-contact,.prf-confidence {
+    padding: 22px 30px;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    display: flex;
+    color: var(--primary);
+}
+.prf-bottom-right h3 {
+    color: var(--tertary);
+}
+.prf-bottom-right a {
+    margin-top: 20px;
+    transition: 0.3s;
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    position: relative;
+    color: var(--primary);
+}
+.prf-bottom-right a ion-icon:nth-child(1) {
+    margin-right: 15px;
+    color: var(--important);
+}
+.prf-bottom-right a ion-icon:nth-child(3) {
+    right: 0;
+    position: absolute;
+}
+.prf-phone-only{
+    display: none;
+}
+
+/************ Effet ************/
+
+.prf-bottom-right a:hover {
+    transform: translateX(10px);
+    color: var(--important);
+}
+.prf-block:hover {
+    transform: translateY(5px);
+}
+
+/************ Animation Icone Statistique ************/
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+    75% {
+        transform: translateX(5px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/************ Media Query ************/
+
+@media screen and (max-width: 780px) {
+    .prf-top-right {
+        padding: 15px;
+        height: 35%;
+    }
+    .prf-card {
+        display: none;
+    }
+    .prf-block h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .prf-block p {
+        font-size: 10px;
+    }
+    .prf-bottom-right a ion-icon{
+        display: none;
+    }
+    .prf-phone-only{
+        background: url(../../assets/images/user.png);
+        height: 20%;
+        border-radius: 10px;
+        width: 100%;
+        padding: 10px 0px 0px 10px;
+        margin-bottom: 20px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: block;
+        color: var(--primary);
+    }
+    .prf-phone-only p{
+        margin-top: 10px;
+    }
+    .prf-phone-only button{
+        margin-bottom: 20px;
+    }
+}

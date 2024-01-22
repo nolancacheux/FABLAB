@@ -1,0 +1,109 @@
+.bo-boxbiere{
+    display: inline-flex;
+    height: 10vh;
+    width: 49vw;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 1vh;
+    transition: 0.2s;
+}   
+.bo-boxbiere:active{
+    transform:scale(0.95);
+}
+.bo-biere{
+    margin-top: 0.5vh;
+    max-height: 9vh;
+    margin-left: 6vw ;
+    position: absolute;
+
+}
+.bo-name{
+    
+    
+    margin-top: 3.5vh;
+    margin-left: 10vw;
+    width: 18vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: start;
+    
+    font-family: 'Averta-ExtraBold', sans-serif;
+    position: absolute;
+    font-size: 3vh;
+    text-overflow: ellipsis;
+    overflow: hidden;
+   
+    white-space: nowrap;
+
+}
+.bo-pourcentage{
+    
+    
+    font-size: 3vh;
+    margin-left: 30vw;
+    font-family: 'Averta-ExtraBold', sans-serif;
+    
+    margin-top: 3.5vh;
+    color: #acacac;
+    position: absolute;
+    
+}
+.bo-num{
+    
+    margin-top: 3.5vh;
+    margin-left: 2vw;
+    position: absolute;
+    font-size: 3vh;
+    
+
+   
+    font-family: 'Averta-ExtraBold', ;
+
+}
+.bo-boxbiere .Et-etoile{
+    width: 20%;
+    position: absolute;
+    display: inline-flex;
+    margin-top: 3vh;
+    margin-left: 38vw;
+    
+ 
+   
+}
+
+@media screen and (max-width: 780px) {
+    .bo-boxbiere{
+
+        height: 10vh;
+        width: 92vw;
+        
+
+        
+    }
+    .bo-name{
+        margin-left: 17vw;
+        margin-top: 1vh;
+        width: 58vw;
+        height: 4vh;
+    }
+    .bo-boxbiere .Et-etoile{
+        width: 25%;
+
+        margin-top: 5vh;
+        margin-left: 18vw;
+        
+     
+       
+    }
+    .bo-pourcentage{
+        margin-left:80vw;
+    }
+    .bo-biere{
+
+        margin-left: 8vw ;
+       
+    
+    }
+
+}

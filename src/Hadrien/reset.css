@@ -1,0 +1,88 @@
+/************ Police d'Ecriture ************/
+
+@import url("https://fonts.cdnfonts.com/css/averta-standard");
+@import url(//db.onlinewebfonts.com/c/c36a75c5ada59665e225bbf5e38efd34?family=Averta-Bold);
+
+/************ Reset ************/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Averta Standard", sans-serif;
+}
+body {
+  overflow-x: hidden;
+  position: relative;
+  background: var(--primary);
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+p,
+a,
+li,
+button,
+ul {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  list-style: none;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+button {
+  border: 0;
+  background-color: transparent;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/************ Couleur ************/
+
+:root {
+  --primary: #f7f8fa; /* gris clair */
+  --secondary: #1d1e22; /* gris foncé */
+  --tertary: #ffde59; /* jaune */
+  --gray-light: #f0f0f0; /* gris clair */
+  --gray: #acacac; /* gris */
+  --important: #5b34cb; /* violet */
+}
+
+/************ Scroll Bar ************/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Site officiel HOPBEER® - La bière à portée de clic</title>
+        <link rel="apple-touch-icon" href="images/Logo.png" />
+        <link rel="icon" href="images/Logo.png" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+        ></script>
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="header.css" />
+        <link rel="stylesheet" href="footer.css" />
+        <link rel="stylesheet" href="jeton.css" />
+        <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    </head>
+    <body>
+
+        <!-- ! Search Map -->
+        <section class="jeton">
+            <canvas class="yearJeton" id="bubblesJeton"></canvas>
+    <div class="jt-header">
+        <button> <ion-icon name="arrow-back"></ion-icon></button>
+        <div class="jt-category">
+            <ion-icon name="game-controller-outline"></ion-icon>
+            <h1>HopBeer</h1>
+        </div>
+    </div>
+    <div class="jt-container">
+        <div id="jt-partie2">
+          <h1>Quel est le degré de la bière ?</h1>
+          <div class="jt-card">
+            <img src="images/Map.jpg" alt="">
+            <div class="jt-important">
+              <ion-icon class="jt-icon" name="Beer"></ion-icon>
+              <span class="jt-text">Tripel Karmeliet</span>
+            </div>
+          </div>
+          <button id="reponseBtn" class="jt-designBtn">
+            <span>Réponse 💡</span>
+            <div class="liquid"></div>
+          </button>
+        </div>
+        <div id="jt-partie3" class="hidden">
+          <h1>Réponse</h1>
+          <div class="jt-card">
+            <h2>8 %</h2>
+            <div class="jt-important">
+              <ion-icon class="jt-icon" name="Beer"></ion-icon>
+              <span class="jt-text">Tripel Karmeliet</span>
+            </div>
+            <div class="jt-actions">
+              <button id="rejouerBtn" class="jt-designBtn">
+                <span>Rejouer🔄</span>
+                <div class="liquid"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+            </section>
+        <script src="script.js"></script>
+        <script src="jeton.js"></script>
+    </body>
+</html>

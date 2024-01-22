@@ -1,0 +1,276 @@
+/************ Map ************/
+
+.mp-day {
+  font-size: 14px;
+  transition: 0.2s;
+  border-radius: 25px;
+  padding: 4px 10px;
+  margin-top: 10px;
+  left: 50%;
+  transform: translatex(-50%);
+  position: absolute;
+  z-index: 1;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 5px solid var(--secondary);
+}
+.mp-map {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+.mp-map iframe {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+  background-position: center right;
+  background-size: cover;
+  align-items: center;
+  z-index: -1;
+  display: grid;
+  background: var(--light_gray);
+}
+.mp-btn {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  transition: 0.2s;
+  margin: 0px 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+.mp-right {
+  right: 0;
+}
+.mp-btn ion-icon {
+  font-size: 35px;
+}
+.mp-slider {
+  top: 0;
+  z-index: 0;
+  left: 0;
+  height: 100vh;
+  width: 33%;
+  max-width: 33vw;
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+  position: fixed;
+  background-color: var(--secondary);
+  transform: translateX(-100%);
+}
+.mp-close-slider {
+  position: absolute;
+  top: 33%;
+  right: 0;
+  margin-right: 5px;
+  z-index: 10;
+  height: 200px;
+  width: 1px;
+  border-radius: 50px;
+  transform: scale(0.2) !important;
+  transform: translateY(-50%);
+  background-color: var(--gray);
+}
+.mp-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1;
+}
+.mp-nom {
+  display: flex;
+  justify-content: space-between;
+}
+.mp-nom p {
+  margin-top: 25px;
+  color: var(--primary);
+}
+.mp-menubar {
+  margin: 10px 30px;
+}
+.mp-menubar h1 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+.mp-search_wrap {
+  border-radius: 50px;
+  max-width: 400px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+}
+.mp-search_wrap ion-icon {
+  font-size: 18px;
+  margin-left: 5px;
+  color: var(--gray);
+}
+.mp-search_wrap input {
+  flex: 1;
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 18px;
+  max-width: 400px;
+  border: none;
+  background: none;
+  color: var(--primary);
+}
+.mp-filter {
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+.mp-filter .mp-tabs-box {
+  gap: 12px;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.mp-filter .mp-tabs-box::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+.mp-tabs-box .mp-tab {
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--tertary);
+}
+
+.mp-tabs-box .mp-tab-recherchetype{
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--tertary);
+}
+
+.mp-tabs-box .mp-tab.active {
+  border-color: transparent;
+  color: var(--primary);
+  background: var(--important);
+}
+.mp-item {
+  margin-bottom: 25px;
+}
+.mp-item img {
+  width: 100%;
+  height: 25vh;
+  border-radius: 5px;
+  margin-right: 10px;
+  object-fit: cover;
+  display: block;
+  position: relative;
+}
+.mp-item h1 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+  font-weight: bold;
+  color: var(--primary);
+}
+.mp-item span {
+  color: var(--gray);
+  font-size: 12px;
+}
+.mp-bar {
+  position: relative;
+}
+.mp-important {
+  top: 10px;
+  left: 10px;
+  display: flex;
+  padding: 5px 8px;
+  border-radius: 5px;
+  position: absolute;
+  align-items: center;
+  text-align: center;
+  background-color: var(--important);
+}
+.mp-important .mp-icon {
+  font-size: 10px;
+  margin-right: 6px;
+  color: var(--primary);
+}
+.mp-important .mp-text {
+  color: var(--primary);
+}
+#mp-container {
+  height: 100%;
+  margin-top: 8px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#mp-container::-webkit-scrollbar {
+  display: none;
+}
+
+/************ Effet ************/
+
+.mp-day::before {
+  content: " JOUER 🎲";
+}
+
+.mp-btn:active {
+  transform: scale(0.95);
+}
+
+/************ Media Query ************/
+
+@media screen and (max-width: 780px) {
+  .mp-day::before {
+    content: "JOUER 🎲";
+  }
+
+  .mp-slider {
+    width: 100%;
+    margin-top: 15vh;
+    height: 85vh;
+    border-radius: 10px 10px 0px 0px;
+    max-width: 100vw;
+  }
+  .mp-menubar h1 {
+    margin-top: 30px;
+  }
+  .mp-close-slider {
+    top: 0;
+    left: 15%;
+    transform: translateX(-50%);
+    height: 1px;
+    width: 200px;
+    position: absolute;
+  }
+  .mp-item img {
+    height: 15vh;
+  }
+  .mp-item h1 {
+    margin-top: 5px;
+  }
+  .mp-nom p {
+    margin-top: 20px;
+  }
+}

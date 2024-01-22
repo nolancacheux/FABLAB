@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+
+.pb-main_pagebiere{
+    background: linear-gradient(90deg, #f0f0f0 66%, #ffde59 34%);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+}
+.pb-biere {
+    width: 12%;
+    height: auto;
+    
+    position: absolute;
+    top: 50%;
+    left: 66%;
+    transform: translate(-50%, -50%);
+  }
+.pb-description{
+    width: 30vw;
+    height: 19.5vh;
+    
+    display: flex;
+    
+    margin-top: 5vh;
+    margin-left: 5.5vw;
+    font-size: 1.2vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: wrap;
+}
+.pb-nom{
+    
+    margin-top: 18vh;
+    display: flex;
+    max-width: 40%;
+    
+    font-size: 4.5vw;
+    font-weight: 700;
+    
+    
+    margin-left: 5vw;
+}
+.pb-tarif{
+    max-width: 40%;
+    
+    font-size: 3vw;
+    font-weight: 1vw;
+    position: absolute;
+    margin-top: 31vh;
+    margin-left: 23vw;
+}
+.pb-container_picto{
+    top: 70vh;
+    margin-left: 5.5vw;
+    max-width: 50vw;
+    
+    display: flex;
+    
+    position: absolute;
+}
+.pb-container_biere{
+    
+    max-width: 5vw;
+    text-align: center;
+
+}
+.pb-container_picto p {
+    font-size: 1.5vw;
+}
+.pb-type{
+    max-width: 5vw;
+    
+}
+
+.pb-container_pourcentage{
+    
+    max-width: 5vw;
+    text-align: center;
+    margin-left: 5vw;
+}
+.pb-pourcentage{
+    max-width: 5vw;
+    
+}
+
+.pb-container_pays{
+    margin-left: 5vw;
+    max-width: 5vw;
+    text-align: center;
+}
+.pb-pays{
+    max-width: 5vw;
+    
+}
+.pb-container_usine{
+    margin-left: 5vw;
+    max-width: 5vw;
+    text-align: center;
+}
+.pb-usine{
+    max-width: 5vw;
+    
+}
+.Et-etoile{
+    
+    height: 8%;
+    max-width: 15%;
+    display: inline-flex;
+    
+   
+    margin-left: 5vw;
+}
+.pb-deuxiemeP{
+    
+    height: 100vh;
+    width: 100vw;
+    margin-top: 100vh;
+    position: absolute;
+    background-color: #f0f0f0;
+}
+.pb-coeur-res{
+    position: absolute;
+    margin-left: 90vw;
+    top: 80vh;
+    max-width: 8vw;
+    transition: 0.2s;
+    cursor: pointer; 
+    z-index: 20;
+}
+.pb-coeur-res:active{ 
+    transform: scale(0.95);
+   }
+.pb-all_commentaire{
+    margin-top: 7vh;
+    max-width: 60vw;
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+}
+.pb-titre-avis{
+    margin-top: 3vh;
+    text-align: center;
+}
+.pb-notecom{
+    
+    margin-top: 8vh;
+    max-width: 14vw;
+    position: absolute;
+    
+    
+}
+.pb-box-commentaire{
+    margin-left: 65vw;
+    margin-top: 7vh;
+
+
+}
+.pb-inputcom{
+    width:25vw;
+    height: 20vh;
+    position: absolute;
+    background-color: white;
+    border: none;
+    margin-top: 15vh;
+}
+.pb-button-back {
+
+    
+    border-radius: 50%;    
+    width: 50px;    
+    height: 50px;    
+    position: absolute;    
+    font-size: 30px;    
+    text-align: center;    
+    display: flex;    
+    align-items: center;    
+    justify-content: center;    
+    border: none;   
+    cursor: pointer;   
+    background-color: var(--secondary);    
+    margin-left: 2vw;
+    margin-top: 2vh;
+    transition: 0.2s;
+    }
+    
+    .pb-button-back:active{ 
+     transform: scale(0.95);
+    }
+    .pb-envoyer{
+        border-radius: 50px;
+        background-color: var(--secondary);  
+        color:var(--gray-light);
+        transition: 0.2s;
+        padding: 1vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        position: absolute;
+        margin-top: 36.5vh;
+    }
+    .pb-envoyer:active{ 
+        transform: scale(0.95);
+       }
+/************ Media Query ************/
+@media screen and (max-width: 780px) {
+    .pb-main_pagebiere{
+        background: linear-gradient(180deg, #ffde59 66%,  #f0f0f0 34%);
+        height: 100vh;
+        width: 120%;
+        position: absolute;
+        
+    }
+    .pb-biere {
+        width: 35vw;
+        height: auto;
+        position: absolute;
+        justify-content: center;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    .Et-etoile{
+    
+        height: 10%;
+        max-width: 50vw;
+        display: inline-flex;
+        position: absolute;
+        margin-top: 2vh;
+        left: 25%;
+        
+
+
+    }
+
+    .pb-nom{
+        margin-top: 12vh;
+        font-size: 10vw;
+        margin-left: 0;
+    }
+    .pb-title-container{
+        position: relative;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+    }
+    .pb-deuxiemeP{
+        
+        height: 100vh;
+        width: 120vw;
+        margin-top: 190vh;
+        position: absolute;
+        
+    }
+    .pb-tarif{
+        max-width: 40%;
+        font-size: 8vw;
+        font-weight: 5vw;
+        position: absolute;
+       
+        margin-left: 80vw;
+    }
+    .pb-downtel{
+        margin-top: 60vh;
+            
+    }
+    .pb-container_biere{
+    
+        max-width: 25%;
+        margin-left: 6vw;
+    
+    }
+    .pb-type{
+        max-width: 230%;
+        margin: auto;
+    }
+    
+    .pb-container_pourcentage{
+        
+        max-width: 25%;
+        text-align: center;
+        margin-left: 45vw;
+    }
+    .pb-pourcentage{
+        max-width: 34vw;
+        margin: auto;
+        height: 10vh;
+        font-size: 40vw;
+        
+        
+    }
+    
+    .pb-container_pays{
+
+        max-width: 25%;
+        text-align: center;
+    }
+    .pb-pays{
+        max-width: 25vw;
+        margin: auto;
+    }
+    .pb-container_usine{
+        margin-left: 45vw;
+        max-width: 25%;
+        text-align: center;
+    }
+    .pb-usine{
+        max-width: 25vw;
+        margin: auto;
+        font-size: 10vw;
+        
+    }
+    .pb-description{
+        width: 90%;
+        max-height: 30%;
+
+        position: absolute;
+        margin-top: 20vh;
+        margin-left: 6vw;
+        text-align: center;
+        font-size: 5vw;
+    }
+    .pb-coeur-res{
+        position: absolute;
+        top: 3%;
+        max-width: 17vw;
+        margin-left: 100vw;
+        
+        
+    }
+    .pb-container_picto{
+        margin-top: 70vh;
+        max-width: 100%;
+        
+        display: flex;
+        height: 40vh;
+        margin-left: 1vw;
+        flex-flow: row wrap;
+        position: absolute;
+        
+    }
+    .pb-button-back {
+        z-index: 2;
+        margin-left: 5vw;
+    }
+/*com---------------------------------------------------*/
+
+    .pb-all_commentaire{
+        margin-top: 55vh;
+        max-width: 120vw;
+        display: flex;
+        flex-flow: row wrap;
+        position: absolute;
+    }
+    .pb-titre-avis{
+        margin-top: 45vh;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+    }
+    .pb-notecom{
+        
+        margin-top: 5vh;
+        max-width: 14vw;
+        position: absolute;
+        
+        
+    }
+    .pb-box-commentaire{
+        margin-left: 5vw;
+        margin-top: 0vh;
+        width:99vw;
+    
+    
+    }
+    .pb-titrecom{
+        margin-top: 5vh;
+    }
+    .pb-inputcom{
+        width:110vw;
+        height: 20vh;
+        position: absolute;
+        background-color: white;
+        border: none;
+        margin-top: 8vh;
+    }
+    .pb-envoyer{
+        border-radius: 50px;
+        background-color: var(--secondary);  
+        color:var(--gray-light);
+        
+        padding: 3vw;
+        padding-left: 4vw;
+        padding-right: 4vw;
+        
+        margin-top: 30vh;
+    }
+   
+}
