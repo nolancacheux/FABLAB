@@ -71,8 +71,8 @@ class Library extends React.Component {
       return (
         <div>
           <Header
-            icon={"library-outline"}
-            title={"Bibliothèque"}
+            icon={"cash-outline"}
+            title={"Stockage"}
             position={false}
           ></Header>
           <section>
@@ -97,8 +97,8 @@ class Library extends React.Component {
       return (
         <div>
           <Header
-            icon={"library-outline"}
-            title={"Bibliothèque"}
+            icon={"cash-outline"}
+            title={"Stockage"}
             position={false}
           ></Header>
           <section>
