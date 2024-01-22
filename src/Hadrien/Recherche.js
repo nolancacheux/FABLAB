@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import BeerRech from "./BeerRech";
 
-const Recherche = () => {
+const IAssistant = () => {
   const [data, setData] = useState([]);
   const nbBiereAffiche = 6;
 
@@ -42,4 +42,4 @@ const Recherche = () => {
   );
 };
 
-export default Recherche;
+export default IAssistant;

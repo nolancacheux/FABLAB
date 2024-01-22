@@ -152,7 +152,7 @@ function Pagebiere({
   return (
     <>
       <div className="pb-main_pagebiere">
-        <Link to="/Recherche">
+        <Link to="/IAssistant">
           <button>
             {" "}
             <ArrowBackOutline color={"#f7f8fa"} className="pb-button-back" />

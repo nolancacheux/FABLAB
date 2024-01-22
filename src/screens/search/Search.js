@@ -3,8 +3,8 @@ import "./../../components/navigation/navigation.css";
 import "./../../components/header/header.css";
 import "../../screens/search/search.css";
 import "../../Hadrien/reset.css";
-import Header from "./../../components/header/Header";
-import Navigation from "./../../components/navigation/Navigation";
+import Header from "../../components/header/Header";
+import Navigation from "../../components/navigation/Navigation";
 
 import SearchBeer from "../../components/SearchCompo/Beer";
 import axios from "axios";
@@ -18,11 +18,11 @@ const Search =()=>{
    <div>
      <Header
        icon={"search-outline"}
-       title={"Recherche"}
+       title={"IAssistant"}
        position={true}
      ></Header>
      <div>
-     <section className="recherche" style={{ height: "auto", width: "100%", maxHeight: `calc(100vh - 10vh)`, display: "flex", flexWrap: "wrap" }}>
+     <section className="IAssistant" style={{ height: "auto", width: "100%", maxHeight: `calc(100vh - 10vh)`, display: "flex", flexWrap: "wrap" }}>
          <div className="search">
            <h1>Bière parfaite en temps record</h1>
            <span>
@@ -36,7 +36,7 @@ const Search =()=>{
                <input
                  type="text"
                  id="search-input"
-                 placeholder="Recherche une bière ou une boisson"
+                 placeholder="IAssistant une bière ou une boisson"
                  onKeyUp={(e) => {
                   let inputValue = e.target.value;
                   if (inputValue.length > 3) {

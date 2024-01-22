@@ -243,10 +243,61 @@ class Map extends React.Component {
     render() {
         return (
             <div>
-                <Header icon={"map-outline"} title={"Carte"} position={true} ></Header>
-                <Link to="/Jeu" >
-                <div className="mp-day"></div>
-                </Link>
+                <Header icon={"map-outline"} title={"Accueil"} position={true} ></Header>
+                <div id="home-pagetype">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <p style={{ textAlign: "justify" }}>
+              Fablab Lille est un lieu de fabrication ouvert à tous permettant à toute personne ayant un projet de trouver les moyens de le réaliser grâce aux nombreuses machines numériques mises à disposition. Impression 3D, découpe laser, personnalisation d'objets, électronique, sont quelques unes des possibilités offertes. C'est un lieu d'échange qui prône le Do It Yourself et où des "makers" d'horizons différents peuvent concrétiser leurs idées.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Other content blocks omitted for brevity */}
+
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div className="carousel slide" id="fourcolumn-carousel">
+                      <div className="carousel-inner">
+                        <div className="item active">
+                          <div className="col-sm-3 col-md-3">
+                            <h3>
+                              <a className="img-bgcover" href="https://www.fablablille.fr/equipement/decoupeuse-laser" style={{ height: '150px', background: 'url(/application/files/8814/9907/8608/Sans_titre-3.jpg) no-repeat center center', WebkitBackgroundSize: 'cover', MozBackgroundSize: 'cover', OBackgroundSize: 'cover', backgroundSize: 'cover' }}>
+                                &nbsp;
+                              </a>
+                            </h3>
+                            <h3><a href="https://www.fablablille.fr/equipement/decoupeuse-laser">Découpeuse laser</a></h3>
+                            <p>Pour découper et graver presque tout type de matière rapidement et précisément</p>
+                          </div>
+                        </div>
+
+                        {/* Other carousel items omitted for brevity */}
+
+                      </div>
+                      <a className="left carousel-control" href="#fourcolumn-carousel" data-slide="prev">
+                        <i className="fa-chevron-circle-left"></i>
+                      </a>
+                      <a className="right carousel-control" href="#fourcolumn-carousel" data-slide="next">
+                        <i className="fa-chevron-circle-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Rest of the components */}
+    </div>
                 <section  className="mp-maps" style={{ height: "auto",  position: "relative", width: "100%",  maxHeight: "calc(100vh - 10vh)", display: "flex",  flexWrap: "wrap",  }}>  
                     
                     <button className="mp-btn mp-right">
@@ -258,10 +309,18 @@ class Map extends React.Component {
                     <div className="mp-slider">
                         <button className="mp-btn mp-close-slider"></button>
                         <div className="mp-menubar">
+                            <h1>Hop Pseudo !🍻</h1>
                             <div className="mp-search_wrap">
                                 <button  onClick={this.handleClick3}><ion-icon name="search-outline"></ion-icon></button>
                                 <input  type="text" className="mp-input" id="inputBiereMap" placeholder= {this.state.placeholdersearch} onKeyUp={this.handleInputChange}/>
                             </div>
+                            <ul className="cont_beers">
+                              {this.state.data.slice(0, this.state.nbBiereAffiche).map((beer, index) => (
+                                <div className="click" onClick={this.handleClicke}>
+                                  <BeerRech beer={beer} key={index} />
+                                </div>
+                              ))}
+                            </ul>
                             <div className="mp-filter">
                                 <ul className="mp-tabs-box">
                                     <button onClick={this.handleClickRecherche}><li className="mp-tab-recherchetype">{this.state.recherchetype}</li></button>
@@ -270,7 +329,18 @@ class Map extends React.Component {
                                     <button onClick={this.handleClickM3}><li className="mp-tab">🚗 1km</li></button>
                                 </ul>
                             </div>
-                            
+                            <div id="mp-container">
+                            {this.state.tabbar.map((item, index) => (
+                              <Item
+                                key={index}
+                                image={Bar}
+                                text={"Bar fréquenté"}
+                                nom={item}
+                                //adresse={"123 Main St, Anytown, USA"}
+                                prix={`🍺 ${this.state.price[index]} €`}
+                              />
+                            ))}
+                          </div>
                         </div>
                     </div>
                     <div className="mp-overlay"></div>

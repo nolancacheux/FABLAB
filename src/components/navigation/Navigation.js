@@ -22,8 +22,8 @@ function Navigation({ library, search, map, profil, setting, position }) {
         <span className="nav-credit">© 2024 FabLab, Inc.</span>
         <ul>
           <NavigationItem icon="library-outline" text="Bibliothèque" active={library} />
-          <NavigationItem icon="search-outline" text="Recherche" active={search} />
-          <NavigationItem icon="map-outline" text="Carte" active={map} />
+          <NavigationItem icon="search-outline" text="IAssistant" active={search} />
+          <NavigationItem icon="map-outline" text="Accueil" active={map} />
           <NavigationItem icon="happy-outline" text="Profil" active={profil} />
           <NavigationItem icon="construct-outline" text="Paramètre" active={setting} />
           <div className="nav-animation"></div>
