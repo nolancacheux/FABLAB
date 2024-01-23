@@ -1,14 +1,14 @@
 import React from "react";
 import "./../../components/navigation/navigation.css";
 import "./../../components/header/header.css";
-import "./library.css";
+import "./reserv.css";
 import "../../Hadrien/reset.css";
-import Header from "./../../components/header/Header";
-import Navigation from "./../../components/navigation/Navigation";
+import Header from "../../components/header/Header";
+import Navigation from "../../components/navigation/Navigation";
 import BoxFav from "../../components/Boxfavoris/boxfav";
 import PB from "../../assets/images/PB.PNG";
 
-class Library extends React.Component {
+class Reserv extends React.Component {
   //! Back-End pour afficher les données de l'utilisateur //
 
   constructor(props) {
@@ -56,21 +56,21 @@ class Library extends React.Component {
       return (
         <div>
           <Header
-            icon={"cash-outline"}
-            title={"Stockage"}
+            icon={"print-outline"}
+            title={"Réservation"}
             position={false}
           ></Header>
           <section>
             <div className="pf-lst-coeur"></div>
             <div className="pf-gauche">
               <img src={PB} className="pf-imgjaune"></img>
-              <h1 className="pf-nom">Favoris</h1>
+              <h1 className="pf-nom">Réservation</h1>
               <p className="pf-nbfav">{"0"} Bières</p>
             </div>
           </section>
           <Navigation
-            reserv={false}
-            library={true}
+            reserv={true}
+            library={flase}
             search={false}
             map={false}
             profil={false}
@@ -83,8 +83,8 @@ class Library extends React.Component {
       return (
         <div>
           <Header
-            icon={"cash-outline"}
-            title={"Stockage"}
+            icon={"print-outline"}
+            title={"Réservation"}
             position={false}
           ></Header>
           <section>
@@ -95,13 +95,13 @@ class Library extends React.Component {
             </div>
             <div className="pf-gauche">
               <img src={PB} className="pf-imgjaune"></img>
-              <h1 className="pf-nom">Favoris</h1>
+              <h1 className="pf-nom">Réservation</h1>
               <p className="pf-nbfav">{this.state.data.length} Bières</p>
             </div>
           </section>
           <Navigation
-            reserv={false}
-            library={true}
+            reserv={true}
+            library={false}
             search={false}
             map={false}
             profil={false}
@@ -114,4 +114,4 @@ class Library extends React.Component {
   }
 }
 
-export default Library;
+export default Reserv;

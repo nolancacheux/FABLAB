@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./Hadrien/reportWebVitals";
 import Connexion from "./Hadrien/connexion";
 import Map from "./screens/map/Map";
+import Reserv from "./screens/reserv/reserv";
 import Profil from "./screens/profil/Profil";
 import Login from "./screens/login/Login";
 import Setting from "./screens/setting/Setting";
@@ -27,6 +28,7 @@ root.render(
                 <Route path="/Biere" element={<ResultatBiere />}/>
                 <Route path="/Paramètre" element={<Setting />} />
                 <Route path="/connexion" element={<Connexion />} />
+                <Route path="/Réservation" element={<Reserv />} />
                 
             </Routes>
         </Router>

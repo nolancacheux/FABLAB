@@ -61,6 +61,7 @@ const Search =()=>{
        </section>
      </div>
      <Navigation
+       reserv={false}
        library={false}
        search={true}
        map={false}

@@ -216,7 +216,7 @@ class Profil extends React.Component {
                         </div>
                     </div>
                 </section>
-                <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false}/>;
+                <Navigation reserv={false} library={false} search={false} map={false} profil={true} setting={false} position={false}/>;
             </div>
         );
     }

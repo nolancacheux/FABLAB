@@ -983,6 +983,7 @@ class Setting extends React.Component {
           </form>
         </section>
         <Navigation
+          reserv={false}
           library={false}
           search={false}
           map={false}
