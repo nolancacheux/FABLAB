@@ -30,14 +30,59 @@
 .slider input {
   display: none;
 }
+.tableau-container {
+  margin-left: 50px;
+  text-align: left; /* Alignement à droite */
+}
+
+.titre-horaires {
+  font-size: 24px;
+  font-weight: bold;
+  color: #d35400; /* Couleur personnalisée pour le titre */
+  margin-bottom: 10px;
+  display: inline-block; /* Pour aligner le titre avec le tableau */
+}
+
+.tableau-horaires {
+  border-collapse: collapse;
+  width: auto; /* Largeur adaptée au contenu */
+}
+
+.tableau-horaires th {
+  background-color: #ff6347; /* Rouge atténué pour les en-têtes */
+  color: white;
+  padding: 8px;
+}
+
+.tableau-horaires td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.tableau-horaires tr:nth-child(even){background-color: #f2f2f2;}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.youtube-container {
+  flex-shrink: 0; /* Empêche le conteneur de rétrécir */
+  width: 640px; /* Largeur du conteneur */
+  height: 269px; /* Hauteur du conteneur */
+}
+
+/* Styles existants pour .tableau-horaires et autres */
+
+
 .testimonials {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  min-height: 375px;
-  perspective: 300px;
-  margin-top: 5rem;
+  min-height: 300px;
+  perspective: 350px;
   overflow: hidden;
 }
 .testimonials .item {
@@ -69,14 +114,15 @@
   font-size: 14px;
 }
 .dots {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
+
 .dots label {
   display: block;
-  height: 5px;
-  width: 5px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
   cursor: pointer;
   background-color: #413b52;
