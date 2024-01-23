@@ -59,7 +59,7 @@ select:focus {
 :root {
   --primary: #f7f8fa; /* gris clair */
   --secondary: #1d1e22; /* gris foncé */
-  --tertary: #ffde59; /* jaune */
+  --tertary: #00ADE7; /* jaune */
   --gray-light: #f0f0f0; /* gris clair */
   --gray: #acacac; /* gris */
   --important: #5b34cb; /* violet */
