@@ -19,7 +19,7 @@ root.render(
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
-                <Route path="/Bibliothèque" element={<Library />} />
+                <Route path="/Stockage" element={<Library />} />
                 <Route path="/IAssistant" element={<Search />} />
                 <Route path="/Accueil" element={<Map />} />
                 <Route path="/Jeu" element={<Jeu />} />
