@@ -1,4 +1,4 @@
-/* ProductCard.css */
+/*library.css*/
 
 .product-container {
     display: flex;
@@ -14,6 +14,7 @@
     border-radius: 15px;
     position: relative;
     overflow: hidden;
+    width: calc(20% - 20px); /* Ajoutez cette ligne pour assurer une largeur fixe sur tous les écrans */
 }
 
 .product-card::before {
@@ -41,12 +42,12 @@
 
 .product-name {
     position: absolute;
-    top: 10px; /* Ajustez la position verticale en conséquence */
+    top: 10px;
     width: 100%;
     text-align: center;
     transform: translateX(-50%);
     color: black;
-    font-size: 18px;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
@@ -65,15 +66,9 @@
     background-color: white;
     border-radius: 15px;
     padding: 8px;
-    width: 70%; /* Utilisation d'une unité relative plutôt qu'une unité fixe */
-    font-size: 16px;
+    width: 70%;
+    font-size: 12px;
     font-weight: bold;
-}
-
-@media screen and (max-width: 780px) {
-    .product-quantity {
-        width: 80%; /* Ajustement de la largeur pour les écrans plus petits */
-    }
 }
 
 .popup-overlay {
@@ -193,10 +188,38 @@
        
     }
     .pf-imgjaune{
-   
-        
         margin-top: 15%;
+    }
+}
 
-    
+@media screen and (max-width: 1200px) {
+    .product-card {
+        flex: 0 0 calc(25% - 20px); /* Quatre cartes par ligne pour des écrans de taille moyenne */
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .product-card {
+        flex: 0 0 calc(33.333% - 20px); /* Trois cartes par ligne pour des écrans plus petits */
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .product-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .product-quantity {
+        width: 80%; /* Ajustement de la largeur pour les écrans plus petits */
+    }
+
+    .product-quantity::before {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 450px) {
+    .product-quantity{
+        font-size: 1em;
     }
 }
