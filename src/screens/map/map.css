@@ -99,6 +99,7 @@
   text-align: center;
   transition: transform 0.4s;
   -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   user-select: none;
   cursor: pointer;
@@ -114,18 +115,18 @@
   font-size: 14px;
 }
 .dots {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .dots label {
   display: block;
-  height: 10px;
-  width: 10px;
+  height: 7px;
+  width: 7px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #413b52;
+  background-color: grey;
   margin: 7px;
   transition: transform 0.2s, color 0.2s;
 }
@@ -133,7 +134,7 @@
 /* First */
 #t-1:checked ~ .dots label[for="t-1"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-1:checked ~ .dots label[for="t-2"] {
   transform: scale(1.5);
@@ -176,7 +177,7 @@
 }
 #t-2:checked ~ .dots label[for="t-2"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-2:checked ~ .dots label[for="t-3"] {
   transform: scale(1.5);
@@ -218,7 +219,7 @@
 }
 #t-3:checked ~ .dots label[for="t-3"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-3:checked ~ .dots label[for="t-4"] {
   transform: scale(1.5);
@@ -259,7 +260,7 @@
 }
 #t-4:checked ~ .dots label[for="t-4"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-4:checked ~ .dots label[for="t-5"] {
   transform: scale(1.5);
@@ -300,7 +301,7 @@
 }
 #t-5:checked ~ .dots label[for="t-5"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-5:checked ~ .testimonials label[for="t-1"] {
   transform: translateX(-1200px) translateZ(-360px) translateY(-60px);
@@ -339,7 +340,7 @@
 }
 #t-6:checked ~ .dots label[for="t-6"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-6:checked ~ .testimonials label[for="t-1"] {
   transform: translateX(-1500px) translateZ(-450px) translateY(-75px);
@@ -378,7 +379,7 @@
 }
 #t-7:checked ~ .dots label[for="t-7"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-7:checked ~ .testimonials label[for="t-1"] {
   transform: translateX(-1800px) translateZ(-540px) translateY(-90px);
@@ -417,7 +418,7 @@
 }
 #t-8:checked ~ .dots label[for="t-8"] {
   transform: scale(2);
-  background-color: #fff;
+  background-color: black;
 }
 #t-8:checked ~ .testimonials label[for="t-1"] {
   transform: translateX(-2100px) translateZ(-630px) translateY(-105px);
