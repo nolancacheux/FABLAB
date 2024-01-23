@@ -42,154 +42,20 @@ const Machine = () => {
 
   return (
       <div>
-          <Header icon={"cash-outline"} 
-          title={"Stockage"} 
-          position={false}>
-          destination = '/Machine'
-          </Header>
+          <Header icon={"print-outline"} 
+          title={"Machine"} 
+          position={false}
+          destination = '/Stockage'
+          ></Header>
           <section>
               <div className="product-container">
                   <ProductCard
                       product={{
-                          name: 'LED Rouge 4V',
-                          quantity: 12,
+                          name: 'LED Bleu 4V',
+                          quantity: 600,
                           image: ImageBackground,
                       }}
                   />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-
                   <ProductCard
                       product={{
                           name: 'LED Bleu 4V',
