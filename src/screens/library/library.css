@@ -1,4 +1,4 @@
-/* ProductCard.css */
+/* Combined CSS */
 
 .product-container {
     display: flex;
@@ -6,51 +6,51 @@
     margin: 23px;
     justify-content: space-around;
     align-items: flex-start;
-}
-
-.product-card {
+  }
+  
+  .product-card {
     flex: 0 0 calc(20% - 20px);
     margin: 10px;
     border-radius: 15px;
     position: relative;
     overflow: hidden;
-}
-
-.product-card::before {
+  }
+  
+  .product-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, #00ADE7 30%, #ffffff 50% );
+    background: linear-gradient(to top, #00ADE7 30%, #ffffff 50%);
     border-radius: 15px;
-}
-
-.product-image img{
+  }
+  
+  .product-image img {
     height: auto;
     width: 100%;
-}
-
-.product-image {
+  }
+  
+  .product-image {
     position: relative;
     width: 100%;
     overflow: hidden;
     border-radius: 20px;
-}
-
-.product-name {
+  }
+  
+  .product-name {
     position: absolute;
-    top: 10px; /* Ajustez la position verticale en conséquence */
+    top: 10px;
     width: 100%;
     text-align: center;
     transform: translateX(-50%);
     color: black;
     font-size: 18px;
     font-weight: bold;
-}
-
-.quantity-overlay {
+  }
+  
+  .quantity-overlay {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -58,25 +58,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.product-quantity {
+  }
+  
+  .product-quantity {
     text-align: center;
     background-color: white;
     border-radius: 15px;
     padding: 8px;
-    width: 70%; /* Utilisation d'une unité relative plutôt qu'une unité fixe */
+    width: 70%;
     font-size: 16px;
     font-weight: bold;
-}
-
-@media screen and (max-width: 780px) {
+  }
+  
+  @media screen and (max-width: 780px) {
     .product-quantity {
-        width: 80%; /* Ajustement de la largeur pour les écrans plus petits */
+      width: 80%;
     }
-}
-
-.popup-overlay {
+  }
+  
+  .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -86,10 +86,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Valeur élevée pour s'assurer que le popup est au-dessus des autres éléments */
-}
-
-.popup {
+    z-index: 1000;
+  }
+  
+  .popup,
+  .popup1 {
     background: #fff;
     padding: 6%;
     top: -9%;
@@ -97,16 +98,16 @@
     max-width: 600px;
     position: relative;
     z-index: 1001;
-}
-
-.close-container {
+  }
+  
+  .close-container {
     position: absolute;
-    top: 5px; /* Ajustez la position verticale en conséquence */
-    right: 5px; /* Ajustez la position horizontale en conséquence */
+    top: 5px;
+    right: 5px;
     cursor: pointer;
-}
-
-.close {
+  }
+  
+  .close {
     font-size: 24px;
     color: #fff;
     display: flex;
@@ -116,11 +117,73 @@
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    margin-left: -25%; /* Ajustez la marge pour décaler légèrement la croix du cercle */
+    margin-left: -25%;
     margin-top: -11%;
-}
-
-.container {
+  }
+  
+  #adminput,
+  #newProductName,
+  #newProductImage {
+    margin: 2% 0;
+    padding: 1%;
+    border: 1px solid #ccc;
+    border-radius: 2%;
+    font-size: 1.6vw;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  #adminput:focus,
+  #newProductName:focus,
+  #newProductImage:focus {
+    outline: none;
+    border-color: dodgerblue;
+  }
+  
+  #adminbnt {
+    padding: 2% 3%;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 2%;
+    cursor: pointer;
+    font-size: 1.8vw;
+    transition: background-color 0.3s ease;
+  }
+  
+  #adminbnt:hover {
+    background-color: darkgreen;
+  }
+  
+  #qrc {
+    width: 35%;
+  }
+  
+  .popup1-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup1 {
+    background: #fff;
+    padding: 3%;
+    top: 0;
+    border-radius: 8px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -130,7 +193,6 @@
     text-align: center;
     border: black 2px solid;
   }
-  
   
   .image-container,
   .nom-container,
@@ -156,105 +218,42 @@
     font-weight: bold;
   }
   
-  #adminput {
-    margin: 2% 0;
-    padding: 1%;
-    border: 1px solid #ccc;
-    border-radius: 2%;
-    font-size: 1.6vw; 
-    width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
+  .pf-lst-coeur {
+    border-radius: 10px;
+    position: absolute;
+    margin-top: 38vh;
+    margin-left: 2.5vw;
+    width: 95vw;
+    height: 46vh;
   }
   
-  #adminput:focus {
-    outline: none;
-    border-color: dodgerblue;
+  .pf-gauche {
+    width: 95vw;
+    height: 30vh;
+    margin-left: 2.5vw;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
   }
   
-  #adminbnt {
-    padding: 2% 3%;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 2%;
-    cursor: pointer;
-    font-size: 1.8vw; /* Using viewport width for font size */
-    transition: background-color 0.3s ease;
+  .pf-nom {
+    font-size: 8vw;
+    margin-top: 11vh;
+    margin-left: 50vw;
   }
   
-  #adminbnt:hover {
-    background-color: darkgreen;
+  .pf-nbfav {
+    padding-top: 0.5vh;
+    text-align: center;
+    font-size: 4vw;
   }
-
-  #qrc{
-    width: 35%;
+  
+  .pf-nbfav {
+    padding-top: 0.5vh;
+    margin-left: 50vw;
   }
-
-  .popup1-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popup1 {
-  background: #fff;
-  padding: 3%;
-  top: 0; /* Adjusted from -9% to 0 */
-  border-radius: 8px;
-  max-width: 600px;
-  position: relative;
-  z-index: 1001;
-}
   
+  .pf-imgjaune {
+    margin-top: 15%;
+  }
   
-
-@media screen and (max-width: 780px) {
-    .pf-lst-coeur{
-        border-radius: 10px;
-        position: absolute;
-        margin-top: 38vh;
-        margin-left: 2.5vw;
-        width: 95vw;
-        height:46vh;
-       
-
-    }
-    .pf-gauche{
-        width: 95vw;
-        height: 30vh;
-        margin-left: 2.5vw;
-        position: absolute;
-        background-color: white;
-        border-radius: 10px;
-    }
-    .pf-nom{
-        font-size: 8vw;
-        margin-top: 11vh;
-        margin-left: 50vw;
-    }
-    .pf-nbfav{
-        padding-top: 0.5vh;
-        text-align: center;
-        font-size: 4vw;
-    }
-    .pf-nbfav{
-        padding-top: 0.5vh;
-        margin-left: 50vw;
-       
-    }
-    .pf-imgjaune{
-   
-        
-        margin-top: 15%;
-
-    
-    }
-}
