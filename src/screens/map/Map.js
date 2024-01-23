@@ -10,6 +10,15 @@ import Item from "./ItemMap";
 import axios from 'axios';
 import BeerRech from "./BeerRech";
 import { Link } from "react-router-dom";
+import DecoupeuseLaserImage from '../../equipements/decoupeuselaser.jpeg';
+import Imprimante3DImage from '../../equipements/imprimante3D.jpg';
+import PosteElectroniqueImage from '../../equipements/posteelectronique.jpg';
+import AtelierClassiqueImage from '../../equipements/atelierclassique.png';
+import PlotteurDecoupeImage from '../../equipements/plotteurdecoupe.jpg';
+import FraiseuseCNCImage from '../../equipements/fraiseusecnc.png';
+import SublimationImage from '../../equipements/sublimation.png';
+import Scanner3DImage from '../../equipements/scanner3D.jpg';
+
 
 class Map extends React.Component {
     constructor(props) {
@@ -242,103 +251,105 @@ class Map extends React.Component {
 
     render() {
         return (
+          
             <div>
-                <Header icon={"map-outline"} title={"Accueil"} position={true} ></Header>
-                <div class="slider">
-        <input type="radio" name="testimonial" id="t-1" />
-        <input type="radio" name="testimonial" id="t-2" />
-        <input type="radio" name="testimonial" id="t-3" />
-        <input type="radio" name="testimonial" id="t-4" />
-        <input type="radio" name="testimonial" id="t-5" checked/>
-        <input type="radio" name="testimonial" id="t-6" />
-        <input type="radio" name="testimonial" id="t-7" />
-        <input type="radio" name="testimonial" id="t-8" />
-    
-        <div class="testimonials mb-8">
-            <label class="item" for="t-1">
-                <div class="mycard">
-                    <p class="cardtitle">Découpeuse laser</p>
-                    <div>
-                        <img src="../../equipements/decoupeuselaser.jpeg" alt="Découpeuse laser" class="cardimg" />
-                    </div>
-                    <div>
+              <Header icon={"map-outline"} title={"Accueil"} position={true} ></Header>
+              <div class="slider">
+                <h1 style={{ textAlign: "center" }}>Nos équipements</h1>
+                <input type="radio" name="testimonial" id="t-1" />
+                <input type="radio" name="testimonial" id="t-2" />
+                <input type="radio" name="testimonial" id="t-3" />
+                <input type="radio" name="testimonial" id="t-4" />
+                <input type="radio" name="testimonial" id="t-5" checked/>
+                <input type="radio" name="testimonial" id="t-6" />
+                <input type="radio" name="testimonial" id="t-7" />
+                <input type="radio" name="testimonial" id="t-8" />
+        
+                <div class="testimonials mb-8">
+                  <label class="item" for="t-1">
+                    <div class="mycard">
+                      <p class="cardtitle">Découpeuse laser</p>
+                      <div>
+                        <img src={DecoupeuseLaserImage} alt="Découpeuse laser" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour découper et graver presque tout type de matière rapidement et précisément.</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-2">
-                <div class="mycard">
-                    <p class="cardtitle">Imprimante 3D</p>
-                    <div>
-                        <img src="imprimante3D.jpg" alt="Imprimante 3D" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-2">
+                    <div class="mycard">
+                      <p class="cardtitle">Imprimante 3D</p>
+                      <div>
+                        <img src={Imprimante3DImage} alt="Imprimante 3D" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour créer des objets 3d en plastique (pièces de machines, figurines, petits objets...).</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-3">
-                <div class="mycard">
-                    <p class="cardtitle">Poste d'électronique</p>
-                    <div>
-                        <img src="../../equipements/posteelectronique.jpg" alt="Poste d'électronique" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-3">
+                    <div class="mycard">
+                      <p class="cardtitle">Poste d'électronique</p>
+                      <div>
+                        <img src={PosteElectroniqueImage} alt="Poste d'électronique" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour tester des circuits, souder, expérimenter avec Arduino, des moteurs, des capteurs, ...</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-4">
-                <div class="mycard">
-                    <p class="cardtitle">Atelier classique</p>
-                    <div>
-                        <img src="../../equipements/atelierclassique.png" alt="Atelier classique" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-4">
+                    <div class="mycard">
+                      <p class="cardtitle">Atelier classique</p>
+                      <div>
+                        <img src={AtelierClassiqueImage} alt="Atelier classique" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour scier, percer, coller, assembler, etc... travailler le bois, les métaux et les plastiques.</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-5">
-                <div class="mycard">
-                    <p class="cardtitle">Plotter de découpe</p>
-                    <div>
-                        <img src="../../equipements/plotteurdecoupe.jpg" alt="Plotter de découpe" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-5">
+                    <div class="mycard">
+                      <p class="cardtitle">Plotter de découpe</p>
+                      <div>
+                        <img src={PlotteurDecoupeImage} alt="Plotter de découpe" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour découper des stickers dans du vinyle ainsi que d'autres matériaux en feuille ou rouleau.</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-6">
-                <div class="mycard">
-                    <p class="cardtitle">Fraiseuse CNC</p>
-                    <div>
-                        <img src="../../equipements/fraiseusecnc.png" alt="Fraiseuse CNC" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-6">
+                    <div class="mycard">
+                      <p class="cardtitle">Fraiseuse CNC</p>
+                      <div>
+                        <img src={FraiseuseCNCImage} alt="Fraiseuse CNC" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour usiner du bois ou du plastique...</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-7">
-                <div class="mycard">
-                    <p class="cardtitle">Sublimation</p>
-                    <div>
-                        <img src="../../equipements/sublimation.png" alt="Sublimation" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-7">
+                    <div class="mycard">
+                      <p class="cardtitle">Sublimation</p>
+                      <div>
+                        <img src={SublimationImage} alt="Sublimation" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour personnaliser des objets avec des images.</p>
+                      </div>
                     </div>
-                </div>
-            </label>
-            <label class="item" for="t-8">
-                <div class="mycard">
-                    <p class="cardtitle">Scanner 3D</p>
-                    <div>
-                        <img src="../../equipements/scanner3D.jpg" alt="Scanner 3D" class="cardimg" />
-                    </div>
-                    <div>
+                  </label>
+                  <label class="item" for="t-8">
+                    <div class="mycard">
+                      <p class="cardtitle">Scanner 3D</p>
+                      <div>
+                        <img src={Scanner3DImage} alt="Scanner 3D" class="cardimg" />
+                      </div>
+                      <div>
                         <p class="carddescription">Pour obtenir le modèle 3d d'un objet physique.</p>
                     </div>
                 </div>
@@ -358,7 +369,7 @@ class Map extends React.Component {
     </div>
                 <section  className="mp-maps" style={{ height: "auto",  position: "relative", width: "100%",  maxHeight: "calc(100vh - 10vh)", display: "flex",  flexWrap: "wrap",  }}>  
                     
-                    <button className="mp-btn mp-right">
+                    <button className="mp-btn mp-right" >
                         <ion-icon name="locate-outline"></ion-icon>
                     </button>
                     <button className="mp-btn mp-open-slider">

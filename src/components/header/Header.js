@@ -5,6 +5,7 @@ import Logo from "../../assets/images/Logo.png";
 function Header({ icon, title, position }) {
     const headerStyle = {
         position: position ? 'absolute' : 'relative',
+        
     };
 
     return (
