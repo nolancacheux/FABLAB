@@ -11,7 +11,7 @@ import Search from "./screens/search/Search";
 import Library from "./screens/library/Library";
 import Jeu from './screens/jeu/jeu';
 import ResultatBiere from "./screens/search/resultatbiere";
-
+import Scanner from "./screens/Scanner/scanner";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,6 +27,7 @@ root.render(
                 <Route path="/Biere" element={<ResultatBiere />}/>
                 <Route path="/Paramètre" element={<Setting />} />
                 <Route path="/connexion" element={<Connexion />} />
+                <Route path="/Scanner" element={<Scanner />} />
                 
             </Routes>
         </Router>
