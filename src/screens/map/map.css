@@ -69,7 +69,7 @@
 
 .youtube-container {
   flex-shrink: 0; /* Empêche le conteneur de rétrécir */
-  width: 640px; /* Largeur du conteneur */
+  width: 570px; /* Largeur du conteneur */
   height: 269px; /* Hauteur du conteneur */
 }
 
@@ -100,7 +100,7 @@
   transition: transform 0.4s;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(101, 101, 101, 0.527);
   user-select: none;
   cursor: pointer;
 }
