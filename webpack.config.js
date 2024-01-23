@@ -7,6 +7,9 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
+  devServer: {
+    https: true
+  },
   module: {
     rules: [
       {

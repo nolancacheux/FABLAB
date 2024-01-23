@@ -4,10 +4,14 @@ import "../../Hadrien/reset.css";
 import PreLoader from "../../screens/preloader/PreLoader";
 import { Navigate } from "react-router";
 import image from "../../assets/images/arduino.png";
-import Logo from "../../assets/images/LogoNB.png";
+import Logo from "../../assets/images/LogoPreloader2.png";
 import Cookies from "js-cookie";
 import emailjs from "@emailjs/browser";
 import bcrypt from 'bcryptjs';
+import axios from 'axios';
+
+
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 class Login extends React.Component {
     constructor(props) {
@@ -498,21 +502,18 @@ class Login extends React.Component {
   .then(hash => {
     this.setState({ mdp: hash }, () => {
       // Suite de votre code ici après la mise à jour de l'état
-      const baseURL = "http://192.168.184.122:1234/users/register";
-      const data = JSON.stringify(this.state);
-      console.log(data);
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: data,
-        redirect: "follow",
-      };
-      fetch(baseURL, requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
+      
+       const baseURL = `https://192.168.184.122:1234/users/register`;
+       const data = JSON.stringify(this.state);
+       console.log(data);
+       const headers = {
+         'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
+         'Access-Control-Allow-Origin':'*',
+       };
+       axios.post(baseURL,data,{ headers })
+         .then(res => {
+             const persons = res.data;
+         })
       this.setState({
         nom: "",
         prenom: "",
@@ -747,8 +748,8 @@ class Login extends React.Component {
                         {/* Panneau Droite : Se Connecter */}
                         <div className="lg-panneau lg-panneau-droit">
                             <div className="lg-contenu">
-                                <h3>Un de nous ?</h3>
-                                <p>HopBeer est l'application gratuite qui permet à vous de découvrir les meilleurs bars autour de vous selon votre budget 🎉{" "}</p>
+                                <h3></h3>
+                                <p>{" "}</p>
                                 <button className="lg-bouton lg-transparent" id="lg-bouton-connexion" >S'inscrire</button>
                             </div>
                             <img src={Logo} className="lg-image" alt="Beer" />
