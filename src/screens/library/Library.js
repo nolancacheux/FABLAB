@@ -236,7 +236,7 @@ const ProductCard = ({ product, userData }) => {
               <span className="close" onClick={closePopup}>
                 &times;
               </span>
-              <QRCode value="1234567" />
+              <QRCode id="qrc" value="1234567" />
             </div>
           </div>
         )}

@@ -117,7 +117,7 @@
     background-color: black;
     border-radius: 50%;
     width: 12%;
-    margin-left: -14%;
+    margin-left: -21%;
     margin-top: -11%;
   }
   
@@ -157,7 +157,7 @@
   }
   
   #qrc {
-    width: 35%;
+    width: 100%;
   }
   
   .popup1-overlay {
