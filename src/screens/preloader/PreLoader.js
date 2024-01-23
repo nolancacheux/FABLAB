@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import "../../screens/preloader/preloader.css";
 import "../../Hadrien/reset.css";
-import Logo from "../../assets/images/LogoPreloader.png";
+import Logo from "../../assets/images/LogoPreloader2.png";
 
 const tl = gsap.timeline();
 
@@ -46,9 +46,9 @@ const PreLoader = () => {
         <div className="preloader">
             <div className="pl-texts-container">
                 <img src={Logo} alt="Loading Logo"></img>
-                <span>La bière</span>
-                <span>à portée</span>
-                <span>de clic</span>
+                <span> </span>
+                <span> </span>
+                <span> </span>
             </div>
         </div>
     );
