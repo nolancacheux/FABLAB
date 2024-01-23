@@ -582,7 +582,7 @@ class Login extends React.Component {
             this.state.creation ||
             (this.state.validEmail && this.state.validMdp)
         ) {
-            return <Navigate to="/Carte" />;
+            return <Navigate to="/Accueil" />;
         }
 
         // ! ---------- Front-End de la page Login ----------//
@@ -742,7 +742,7 @@ class Login extends React.Component {
                                 <p>Buvez et dégustez en toute tranquillité. Rejoignez la HopBeer communauté © <br /> La bière à portée de clic 🍻</p>
                                 <button className="lg-bouton lg-transparent" id="lg-bouton-inscription" >S'inscrire</button>
                             </div>
-                            <img src={image} className="lg-image" alt="Carte" />
+                            <img src={image} className="lg-image" alt="Accueil" />
                         </div>
                         {/* Panneau Droite : Se Connecter */}
                         <div className="lg-panneau lg-panneau-droit">
