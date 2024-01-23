@@ -9,8 +9,22 @@
 }
 
 .product-card {
-    flex: 0 0 calc(20% - 20px); /* Utilisez flex-basis pour définir la largeur de chaque carte */
+    flex: 0 0 calc(20% - 20px);
     margin: 10px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #00ADE7 30%, #ffffff 50% );
+    border-radius: 15px;
 }
 
 .product-image img{
@@ -28,9 +42,10 @@
 .product-name {
     position: absolute;
     top: 10px; /* Ajustez la position verticale en conséquence */
-    left: 50%;
+    width: 100%;
+    text-align: center;
     transform: translateX(-50%);
-    color: white;
+    color: black;
     font-size: 18px;
     font-weight: bold;
 }
@@ -50,9 +65,15 @@
     background-color: white;
     border-radius: 15px;
     padding: 8px;
-    width: 60%;
+    width: 70%; /* Utilisation d'une unité relative plutôt qu'une unité fixe */
     font-size: 16px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 780px) {
+    .product-quantity {
+        width: 80%; /* Ajustement de la largeur pour les écrans plus petits */
+    }
 }
 
 .popup-overlay {
@@ -102,7 +123,7 @@
 .container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Ajustement ici */
+    justify-content: space-between;
     border-radius: 20px;
     overflow: hidden;
     width: 50%;

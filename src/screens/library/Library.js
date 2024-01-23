@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
-import ImageBackground from "../../assets/images/PB.PNG";
+import ImageBackground from "./Images Compo/interrupteur+en+t.png";
+import ImageBackground2 from "./Images Compo/ampli+lc+2,3-18+v.png";
+import ImageBackground3 from "./Images Compo/amplificateur+af+18v.png";
+import ImageBackground4 from "./Images Compo/condensateur+chimique+bizarre.png";
+import ImageBackground5 from "./Images Compo/condensateur+chimique+bleu.png";
 import "./library.css"
 
 const Library = () => {
@@ -60,28 +64,28 @@ const Library = () => {
                       product={{
                           name: 'LED Verte 4V',
                           quantity: 15,
-                          image: ImageBackground,
+                          image: ImageBackground2,
                       }}
                   />
                   <ProductCard
                       product={{
                           name: 'LED Verte 4V',
                           quantity: 15,
-                          image: ImageBackground,
+                          image: ImageBackground3,
                       }}
                   />
                   <ProductCard
                       product={{
                           name: 'LED Verte 4V',
                           quantity: 15,
-                          image: ImageBackground,
+                          image: ImageBackground4,
                       }}
                   />
                   <ProductCard
                       product={{
                           name: 'LED Verte 4V',
                           quantity: 15,
-                          image: ImageBackground,
+                          image: ImageBackground5,
                       }}
                   />
                   <ProductCard
