@@ -24,7 +24,7 @@ const Library = () => {
       var requestOptions = {
           method: "GET",
           redirect: "follow",
-      };
+      };    
 
       fetch("http://51.254.38.150:3000/connexion/" + email, requestOptions)
           .then((response) => response.json())
@@ -54,149 +54,58 @@ const Library = () => {
                           name: 'LED Rouge 4V',
                           quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-
-                  <ProductCard
-                      product={{
-                          name: 'LED Bleu 4V',
-                          quantity: 600,
-                          image: ImageBackground,
-                      }}
-                  />
+                  
               </div>
           </section>
           <Navigation
@@ -212,40 +121,76 @@ const Library = () => {
 };
 
 
-const ProductCard = ({ product }) => {
-  const [showPopup, setShowPopup] = useState(false);
+const ProductCard = ({ product, userData }) => {
+    const [showPopup, setShowPopup] = useState(false);
+    const [showPopup1, setShowPopup1] = useState(false);
 
-  const handleImageClick = () => {
-      setShowPopup(true);
+
+    const handleImageClick = () => {
+        // Afficher le popup si administrateur
+        if (userData && userData.admin) {
+            setShowPopup(true);
+        }else setShowPopup1(true);
+    };
+
+    const onValidate = () => {
+        // Do something with the input value (in this case, log it to the console)
+        console.log('Input value:', inputValue);
+    
+        // Close the popup
+        setShowPopup1(false);
+    };
+  
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+    const closePopup1 = () => {
+        setShowPopup1(false);
+    };
+
+
+  
+    return (
+        <div className="product-card">
+            <div className="product-image" onClick={handleImageClick}>
+
+                <div className="quantity-overlay">
+                    <div className="product-quantity"> Quantité disponible : {product.quantity}</div>
+                </div>
+                <img src={product.image} alt={product.name} />
+                <div className="product-name">{product.name}</div>
+            </div>
+      
+            {/* Popup */}
+            {showPopup && (
+                <div className="popup-overlay">
+                    <div className="popup" style={{ width: 'auto', height: 'auto' }}>
+                        <span className="close" onClick={closePopup}>
+                            &times;
+                        </span>
+                        <QRCode value="1234567" />
+                    </div>
+                </div>
+            )}
+            {/* Popup */}
+            {showPopup1 && (
+                <div className="popup1-overlay">
+                    <div className="popup1" style={{ width: 'auto', height: 'auto' }}>
+                        <span className="close" onClick={closePopup1}>
+                            &times;
+                        </span>
+                        <QRCode id="qrc" value="1234567" />
+
+                        <input id="adminput" type="text" placeholder="Enter something"/>
+
+                        <button id="adminbnt" onClick={onValidate}>
+                            Valider
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
   };
-
-  const closePopup = () => {
-      setShowPopup(false);
-  };
-
-  return (
-      <div className="product-card">
-          <div className="product-image" onClick={handleImageClick}>
-              <div className="quantity-overlay">
-                  <div className="product-quantity"> Quantité disponible : {product.quantity}</div>
-              </div>
-              <img src={product.image} alt={product.name} />
-              <div className="product-name">{product.name}</div>
-          </div>
-
-          {/* Popup */}
-          {showPopup && (
-              <div className="popup-overlay">
-                  <div className="popup" style={{ width: 'auto', height: 'auto' }}>
-                      <span className="close" onClick={closePopup}>
-                          &times;
-                      </span>
-                      <QRCode value="1234567" />
-                  </div>
-              </div>
-          )}
-      </div>
-  );
-};
 
 export default Library;
