@@ -112,7 +112,7 @@
     width: 30px;
     height: 30px;
     margin-left: -25%; /* Ajustez la marge pour décaler légèrement la croix du cercle */
-    margin-top: -25%;
+    margin-top: -11%;
 }
 
 .container {
@@ -151,7 +151,65 @@
     font-weight: bold;
   }
   
+  #adminput {
+    margin: 2% 0;
+    padding: 1%;
+    border: 1px solid #ccc;
+    border-radius: 2%;
+    font-size: 1.6vw; 
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  #adminput:focus {
+    outline: none;
+    border-color: dodgerblue;
+  }
+  
+  #adminbnt {
+    padding: 2% 3%;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 2%;
+    cursor: pointer;
+    font-size: 1.8vw; /* Using viewport width for font size */
+    transition: background-color 0.3s ease;
+  }
+  
+  #adminbnt:hover {
+    background-color: darkgreen;
+  }
 
+  #qrc{
+    width: 35%;
+  }
+
+  .popup1-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup1 {
+  background: #fff;
+  padding: 3%;
+  top: 0; /* Adjusted from -9% to 0 */
+  border-radius: 8px;
+  max-width: 600px;
+  position: relative;
+  z-index: 1001;
+}
+  
+  
 
 @media screen and (max-width: 780px) {
     .pf-lst-coeur{

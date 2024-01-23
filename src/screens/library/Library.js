@@ -58,6 +58,7 @@ const Library = () => {
                           name: 'LED Rouge 4V',
                           quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
@@ -65,13 +66,14 @@ const Library = () => {
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground2,
+                          setUserData
                       }}
                   />
                   <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
+                      product={{                          name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground3,
+                          setUserData
                       }}
                   />
                   <ProductCard
@@ -79,6 +81,7 @@ const Library = () => {
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground4,
+                          setUserData
                       }}
                   />
                   <ProductCard
@@ -132,75 +135,21 @@ const Library = () => {
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
+                          setUserData
                       }}
                   />
                   <ProductCard
                       product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
                           image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
+                          setUserData
                       }}
                   />
 
-                  <ProductCard
-                      product={{
-                          name: 'LED Bleu 4V',
-                          quantity: 600,
-                          image: ImageBackground,
-                      }}
-                  />
               </div>
           </section>
           <Navigation
@@ -216,16 +165,32 @@ const Library = () => {
 };
 
 
-const ProductCard = ({ product }) => {
-  const [showPopup, setShowPopup] = useState(false);
+const ProductCard = ({ product, userData }) => {
+    const [showPopup, setShowPopup] = useState(false);
+    const [showPopup1, setShowPopup1] = useState(false);
 
-  const handleImageClick = () => {
-      setShowPopup(true);
-  };
 
-  const closePopup = () => {
-      setShowPopup(false);
-  };
+    const handleImageClick = () => {
+        // Afficher le popup si administrateur
+        if (userData && userData.admin) {
+            setShowPopup(true);
+        }else setShowPopup1(true);
+    };
+
+    const onValidate = () => {
+        // Do something with the input value (in this case, log it to the console)
+        console.log('Input value:', inputValue);
+
+        // Close the popup
+        setShowPopup1(false);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+    const closePopup1 = () => {
+        setShowPopup1(false);
+    };
 
   return (
       <div className="product-card">
@@ -245,6 +210,23 @@ const ProductCard = ({ product }) => {
                           &times;
                       </span>
                       <QRCode value="1234567" />
+                  </div>
+              </div>
+          )}
+          {/* Popup */}
+          {showPopup1 && (
+              <div className="popup1-overlay">
+                  <div className="popup1" style={{ width: 'auto', height: 'auto' }}>
+                        <span className="close" onClick={closePopup1}>
+                            &times;
+                        </span>
+                      <QRCode id="qrc" value="1234567" />
+
+                      <input id="adminput" type="text" placeholder="Enter something"/>
+
+                      <button id="adminbnt" onClick={onValidate}>
+                          Valider
+                      </button>
                   </div>
               </div>
           )}
