@@ -3,7 +3,7 @@ import "../../screens/login/login.css";
 import "../../Hadrien/reset.css";
 import PreLoader from "../../screens/preloader/PreLoader";
 import { Navigate } from "react-router";
-import image from "../../assets/images/beer.png";
+import image from "../../assets/images/arduino.png";
 import Logo from "../../assets/images/LogoNB.png";
 import Cookies from "js-cookie";
 import emailjs from "@emailjs/browser";
@@ -498,7 +498,7 @@ class Login extends React.Component {
   .then(hash => {
     this.setState({ mdp: hash }, () => {
       // Suite de votre code ici après la mise à jour de l'état
-      const baseURL = "http://51.254.38.150:3000/connexion";
+      const baseURL = "http://192.168.184.122:1234/users/register";
       const data = JSON.stringify(this.state);
       console.log(data);
       var myHeaders = new Headers();
@@ -739,7 +739,7 @@ class Login extends React.Component {
                         <div className="lg-panneau lg-panneau-gauche">
                             <div className="lg-contenu">
                                 <h3>Nouveau ici ?</h3>
-                                <p>Buvez et dégustez en toute tranquillité. Rejoignez la HopBeer communauté © <br /> La bière à portée de clic 🍻</p>
+                                <p>Accèdez à votre espace FABLAB en ligne 💻</p>
                                 <button className="lg-bouton lg-transparent" id="lg-bouton-inscription" >S'inscrire</button>
                             </div>
                             <img src={image} className="lg-image" alt="Accueil" />
