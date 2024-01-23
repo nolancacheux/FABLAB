@@ -6,6 +6,7 @@ import Connexion from "./Hadrien/connexion";
 import Map from "./screens/map/Map";
 import Profil from "./screens/profil/Profil";
 import Login from "./screens/login/Login";
+import Machine from "./screens/machine/Machine";
 import Setting from "./screens/setting/Setting";
 import Search from "./screens/search/Search";
 import Library from "./screens/library/Library";
@@ -26,7 +27,8 @@ root.render(
                 <Route path="/Profil" element={<Profil />} />
                 <Route path="/Biere" element={<ResultatBiere />}/>
                 <Route path="/Paramètre" element={<Setting />} />
-                <Route path="/connexion" element={<Connexion />} />                
+                <Route path="/connexion" element={<Connexion />} />       
+                <Route path="/Machine" element={<Machine />} />                         
             </Routes>
         </Router>
     </React.StrictMode>

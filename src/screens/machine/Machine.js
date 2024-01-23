@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
-import Header from "./../../components/header/Header";
-import Navigation from "./../../components/navigation/Navigation";
+import Header from "../../components/header/Header";
+import Navigation from "../../components/navigation/Navigation";
 import ImageBackground from "../../assets/images/PB.PNG";
-import "./library.css"
+import "./machine.css"
 
-const Library = () => {
+const Machine = () => {
   const [userData, setUserData] = useState({
       id: "",
       prenom: "",
@@ -44,9 +44,9 @@ const Library = () => {
       <div>
           <Header icon={"cash-outline"} 
           title={"Stockage"} 
-          position={false}
+          position={false}>
           destination = '/Machine'
-          ></Header>
+          </Header>
           <section>
               <div className="product-container">
                   <ProductCard
@@ -248,4 +248,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default Library;
+export default Machine;
