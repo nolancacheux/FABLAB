@@ -8,7 +8,8 @@ if (process.env.REACT_APP_NOWARNINGS === 'true') {
   }
 const scanner = () => {
   const videoRef = useRef();
-  const [setScanned] = useState(false);
+  const [scanned, setScanned] = useState(false);
+
   useEffect(() => {
     
     const scanner = new QrScanner(videoRef.current, (result) => {

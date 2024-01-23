@@ -5,6 +5,7 @@
   .qr-code-video {
     width: 100%;
     max-width: 100%; /* Pour s'assurer que la vidéo ne dépasse pas la largeur de l'écran */
+    height: auto;
   }
   
   .qr-code-overlay {
@@ -42,5 +43,11 @@
       height: 30%;
       border-radius: 10px;
     }
+    .qr-code-video {
+        width: 100%;
+        max-width: 100%; /* Pour s'assurer que la vidéo ne dépasse pas la largeur de l'écran */
+        height: auto; 
+        
+      }
   }
   

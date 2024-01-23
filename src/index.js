@@ -12,7 +12,7 @@ import Library from "./screens/library/Library";
 import Jeu from './screens/jeu/jeu';
 import ResultatBiere from "./screens/search/resultatbiere";
 import Scanner from "./screens/Scanner/scanner";
-
+import Reservation from "./screens/reservation/reservation"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
@@ -28,6 +28,7 @@ root.render(
                 <Route path="/Paramètre" element={<Setting />} />
                 <Route path="/connexion" element={<Connexion />} />
                 <Route path="/Scanner" element={<Scanner />} />
+                <Route path="/Reservation" element={<Reservation />} />
                 
             </Routes>
         </Router>
