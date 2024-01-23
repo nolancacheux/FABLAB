@@ -179,3 +179,35 @@
     
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .product-card {
+        flex: 0 0 calc(25% - 20px); /* Quatre cartes par ligne pour des écrans de taille moyenne */
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .product-card {
+        flex: 0 0 calc(33.333% - 20px); /* Trois cartes par ligne pour des écrans plus petits */
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .product-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .product-quantity {
+        width: 80%; /* Ajustement de la largeur pour les écrans plus petits */
+    }
+
+    .product-quantity::before {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 450px) {
+    .product-quantity{
+        font-size: 1em;
+    }
+}

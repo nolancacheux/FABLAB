@@ -28,7 +28,7 @@ const Library = () => {
       var requestOptions = {
           method: "GET",
           redirect: "follow",
-      };    
+      };
 
       fetch("http://51.254.38.150:3000/connexion/" + email, requestOptions)
           .then((response) => response.json())
@@ -78,7 +78,7 @@ const Library = () => {
                       }}
                   />
                   <ProductCard
-                      product={{                        
+                      product={{
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground4,
@@ -90,27 +90,67 @@ const Library = () => {
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground5,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Verte 4V',
+                          quantity: 15,
+                          image: ImageBackground,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Verte 4V',
+                          quantity: 15,
+                          image: ImageBackground,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Verte 4V',
+                          quantity: 15,
+                          image: ImageBackground,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Verte 4V',
+                          quantity: 15,
+                          image: ImageBackground,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Verte 4V',
+                          quantity: 15,
+                          image: ImageBackground,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Verte 4V',
+                          quantity: 15,
+                          image: ImageBackground,
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
+                          image: ImageBackground,
                           setUserData
+                      }}
+                  />
+                  <ProductCard
+                      product={{
+                          name: 'LED Rouge 4V',
+                          quantity: 12,
+                          image: ImageBackground,
+                          setUserData
+                      }}
+                  />
 
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Rouge 4V',
-                          quantity: 12,
-                          image: ImageBackground,
-                          setUserData
-                      }}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Rouge 4V',
-                          quantity: 12,
-                          image: ImageBackground,
-                          setUserData
-                      }}
-                  />
-                  
               </div>
           </section>
           <Navigation
@@ -151,7 +191,7 @@ const ProductCard = ({ product, userData }) => {
         alert('Valeur Fausse Entrer un Nombre');
       }
     };
-  
+
     const closePopup = () => {
       setShowPopup(false);
     };
@@ -249,4 +289,3 @@ const ProductCard = ({ product, userData }) => {
   };
   
   export default Library;
-  
