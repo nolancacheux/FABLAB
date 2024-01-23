@@ -244,59 +244,117 @@ class Map extends React.Component {
         return (
             <div>
                 <Header icon={"map-outline"} title={"Accueil"} position={true} ></Header>
-                <div id="home-pagetype">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12">
-            <p style={{ textAlign: "justify" }}>
-              Fablab Lille est un lieu de fabrication ouvert à tous permettant à toute personne ayant un projet de trouver les moyens de le réaliser grâce aux nombreuses machines numériques mises à disposition. Impression 3D, découpe laser, personnalisation d'objets, électronique, sont quelques unes des possibilités offertes. C'est un lieu d'échange qui prône le Do It Yourself et où des "makers" d'horizons différents peuvent concrétiser leurs idées.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Other content blocks omitted for brevity */}
-
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="row">
-                  <div className="col-sm-12">
-                    <div className="carousel slide" id="fourcolumn-carousel">
-                      <div className="carousel-inner">
-                        <div className="item active">
-                          <div className="col-sm-3 col-md-3">
-                            <h3>
-                              <a className="img-bgcover" href="https://www.fablablille.fr/equipement/decoupeuse-laser" style={{ height: '150px', background: 'url(/application/files/8814/9907/8608/Sans_titre-3.jpg) no-repeat center center', WebkitBackgroundSize: 'cover', MozBackgroundSize: 'cover', OBackgroundSize: 'cover', backgroundSize: 'cover' }}>
-                                &nbsp;
-                              </a>
-                            </h3>
-                            <h3><a href="https://www.fablablille.fr/equipement/decoupeuse-laser">Découpeuse laser</a></h3>
-                            <p>Pour découper et graver presque tout type de matière rapidement et précisément</p>
-                          </div>
-                        </div>
-
-                        {/* Other carousel items omitted for brevity */}
-
-                      </div>
-                      <a className="left carousel-control" href="#fourcolumn-carousel" data-slide="prev">
-                        <i className="fa-chevron-circle-left"></i>
-                      </a>
-                      <a className="right carousel-control" href="#fourcolumn-carousel" data-slide="next">
-                        <i className="fa-chevron-circle-right"></i>
-                      </a>
+                <div class="slider">
+        <input type="radio" name="testimonial" id="t-1" />
+        <input type="radio" name="testimonial" id="t-2" />
+        <input type="radio" name="testimonial" id="t-3" />
+        <input type="radio" name="testimonial" id="t-4" />
+        <input type="radio" name="testimonial" id="t-5" checked/>
+        <input type="radio" name="testimonial" id="t-6" />
+        <input type="radio" name="testimonial" id="t-7" />
+        <input type="radio" name="testimonial" id="t-8" />
+    
+        <div class="testimonials mb-8">
+            <label class="item" for="t-1">
+                <div class="mycard">
+                    <p class="cardtitle">Découpeuse laser</p>
+                    <div>
+                        <img src="../../equipements/decoupeuselaser.jpeg" alt="Découpeuse laser" class="cardimg" />
                     </div>
-                  </div>
+                    <div>
+                        <p class="carddescription">Pour découper et graver presque tout type de matière rapidement et précisément.</p>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+            </label>
+            <label class="item" for="t-2">
+                <div class="mycard">
+                    <p class="cardtitle">Imprimante 3D</p>
+                    <div>
+                        <img src="imprimante3D.jpg" alt="Imprimante 3D" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour créer des objets 3d en plastique (pièces de machines, figurines, petits objets...).</p>
+                    </div>
+                </div>
+            </label>
+            <label class="item" for="t-3">
+                <div class="mycard">
+                    <p class="cardtitle">Poste d'électronique</p>
+                    <div>
+                        <img src="../../equipements/posteelectronique.jpg" alt="Poste d'électronique" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour tester des circuits, souder, expérimenter avec Arduino, des moteurs, des capteurs, ...</p>
+                    </div>
+                </div>
+            </label>
+            <label class="item" for="t-4">
+                <div class="mycard">
+                    <p class="cardtitle">Atelier classique</p>
+                    <div>
+                        <img src="../../equipements/atelierclassique.png" alt="Atelier classique" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour scier, percer, coller, assembler, etc... travailler le bois, les métaux et les plastiques.</p>
+                    </div>
+                </div>
+            </label>
+            <label class="item" for="t-5">
+                <div class="mycard">
+                    <p class="cardtitle">Plotter de découpe</p>
+                    <div>
+                        <img src="../../equipements/plotteurdecoupe.jpg" alt="Plotter de découpe" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour découper des stickers dans du vinyle ainsi que d'autres matériaux en feuille ou rouleau.</p>
+                    </div>
+                </div>
+            </label>
+            <label class="item" for="t-6">
+                <div class="mycard">
+                    <p class="cardtitle">Fraiseuse CNC</p>
+                    <div>
+                        <img src="../../equipements/fraiseusecnc.png" alt="Fraiseuse CNC" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour usiner du bois ou du plastique...</p>
+                    </div>
+                </div>
+            </label>
+            <label class="item" for="t-7">
+                <div class="mycard">
+                    <p class="cardtitle">Sublimation</p>
+                    <div>
+                        <img src="../../equipements/sublimation.png" alt="Sublimation" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour personnaliser des objets avec des images.</p>
+                    </div>
+                </div>
+            </label>
+            <label class="item" for="t-8">
+                <div class="mycard">
+                    <p class="cardtitle">Scanner 3D</p>
+                    <div>
+                        <img src="../../equipements/scanner3D.jpg" alt="Scanner 3D" class="cardimg" />
+                    </div>
+                    <div>
+                        <p class="carddescription">Pour obtenir le modèle 3d d'un objet physique.</p>
+                    </div>
+                </div>
+            </label>
         </div>
-      </div>
-
-      {/* Rest of the components */}
+    
+        <div class="dots">
+            <label for="t-1"></label>
+            <label for="t-2"></label>
+            <label for="t-3"></label>
+            <label for="t-4"></label>
+            <label for="t-5"></label>
+            <label for="t-6"></label>
+            <label for="t-7"></label>
+            <label for="t-8"></label>
+        </div>
     </div>
                 <section  className="mp-maps" style={{ height: "auto",  position: "relative", width: "100%",  maxHeight: "calc(100vh - 10vh)", display: "flex",  flexWrap: "wrap",  }}>  
                     
