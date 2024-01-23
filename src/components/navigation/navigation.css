@@ -89,7 +89,6 @@ footer {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    margin-left : -6px;
     z-index: 1;
     transition: 0.5s;
     position: absolute;
@@ -118,22 +117,19 @@ footer {
     box-shadow: -15px 18px var(--secondary);
 }
 .navigation ul li:nth-child(1).active ~ .nav-animation {
-    transform: translateX(calc(58px * 0));
+    transform: translateX(calc(70px * 0));
 }
 .navigation ul li:nth-child(2).active ~ .nav-animation {
-    transform: translateX(calc(58px * 1));
+    transform: translateX(calc(70px * 1));
 }
 .navigation ul li:nth-child(3).active ~ .nav-animation {
-    transform: translateX(calc(58px * 2));
+    transform: translateX(calc(70px * 2));
 }
 .navigation ul li:nth-child(4).active ~ .nav-animation {
-    transform: translateX(calc(58px * 3));
+    transform: translateX(calc(70px * 3));
 }
 .navigation ul li:nth-child(5).active ~ .nav-animation {
-    transform: translateX(calc(58px * 4));
-}
-.navigation ul li:nth-child(6).active ~ .nav-animation {
-    transform: translateX(calc(59px * 5));
+    transform: translateX(calc(70px * 4));
 }
 
 /************ Media Query ************/

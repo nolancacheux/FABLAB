@@ -345,7 +345,7 @@ class Map extends React.Component {
                     </div>
                     <div className="mp-overlay"></div>
                 </section>
-                <Navigation reserv={false} library={false}  search={false}  map={true} profil={false} setting={false} position={true}/>             
+                <Navigation library={false}  search={false}  map={true} profil={false} setting={false} position={true}/>             
             </div>
         );
     }

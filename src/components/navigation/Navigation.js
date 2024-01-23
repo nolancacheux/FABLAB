@@ -2,7 +2,7 @@ import React from 'react';
 import NavigationItem from './Router';
 import './navigation.css';
 
-function Navigation({ reserv, library, search, map, profil, setting, position }) {
+function Navigation({ library, search, map, profil, setting, position }) {
   const list = document.querySelectorAll('.list');
 
   function activeLink() {
@@ -21,7 +21,6 @@ function Navigation({ reserv, library, search, map, profil, setting, position })
       <div className="navigation">
         <span className="nav-credit">© 2024 FabLab, Inc.</span>
         <ul>
-        <NavigationItem icon="print-outline" text="Réservation" active={reserv} />
           <NavigationItem icon="cash-outline" text="Stockage" active={library} />
           <NavigationItem icon="search-outline" text="IAssistant" active={search} />
           <NavigationItem icon="storefront-outline" text="Accueil" active={map} />
