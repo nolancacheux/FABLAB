@@ -5,7 +5,6 @@ import "../../Hadrien/reset.css";
 import "../../screens/map/map.css";
 import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
-import Bar from "../../assets/images/Bar.jpg";
 import Item from "./ItemMap";
 import axios from 'axios';
 import BeerRech from "./BeerRech";
