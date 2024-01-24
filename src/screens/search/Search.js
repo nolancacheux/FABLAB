@@ -1,4 +1,5 @@
 
+// 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
 import "./../../components/navigation/navigation.css";
 import "./../../components/header/header.css";
 import "./search.css";
@@ -22,9 +23,16 @@ import Scanner3DImage from '../../equipements/scanner3D.jpg';
 const Search = () => {
   const [selectedEquipments, setSelectedEquipments] = useState([]);
   const [showError, setShowError] = useState(false);
+  const [isCopied, setIsCopied] = useState(false); // Nouvel état pour suivre la copie
+  const [loadingProgress, setLoadingProgress] = useState(0); // Nouvel état pour le chargement
   const [loading, setLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
   const [messageColor, setMessageColor] = useState("blue");
+  const [apiResponse, setApiResponse] = useState("");
+  const [showActionButtons, setShowActionButtons] = useState(false);
+  const [displayedResponse, setDisplayedResponse] = useState("");
+  const [isWriting, setIsWriting] = useState(false);
+  
 
   const equipments = [
     { id: 1, name: "  Découpeuse laser", description: "Pour découper et graver presque tout type de matière.", image: DecoupeuseLaserImage },
@@ -48,82 +56,207 @@ const Search = () => {
     });
   };
 
-  
-
-  useEffect(() => {
-    if (loading) {
-      const timeouts = [];
-      timeouts.push(setTimeout(() => {
-        setLoadingMessage("Notre assistant prépare la réponse");
-        setMessageColor("brown");
-      }, 3000));
-      timeouts.push(setTimeout(() => {
-        setLoadingMessage("Notre assistant a bientôt terminé");
-        setMessageColor("green");
-      }, 6000));
-      timeouts.push(setTimeout(() => {
-        setLoading(false);
-      }, 9000));
-
-      return () => timeouts.forEach(clearTimeout);
+  const stopWriting = () => {
+    setIsWriting(false);
+    setShowActionButtons(true);
+    console.log("displayedResponse after stopping writing:", displayedResponse);
+  };
+   // Simuler l'augmentation du chargement de 1%
+   useEffect(() => {
+    if (loading && loadingProgress < 100) {
+        const timer = setTimeout(() => {
+            setLoadingProgress(loadingProgress + 1); // Augmenter de 1% toutes les 100 millisecondes
+        }, 80);
+        return () => clearTimeout(timer);
     }
-  }, [loading]);
+}, [loading, loadingProgress]);
 
+  const retry = async () => {
+    setDisplayedResponse(""); // Réinitialiser la réponse affichée
+    setApiResponse(""); // Réinitialiser la réponse de l'API
+    setShowActionButtons(false); // Réinitialiser l'affichage des boutons d'action
+    setLoading(true);
+    setLoadingProgress(0); // Réinitialiser le pourcentage de chargement
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      if (selectedEquipments.length === 0) {
-        setShowError(true);
-      } else {
-        setLoading(true);
-        setLoadingMessage("Notre assistant traite votre requête");
-        setMessageColor("blue");
-        setShowError(false);
-      }
-    };
+    // Première étape (bleue)
+    setLoadingMessage("Envoi de la requête...");
+    setMessageColor("orange");
   
-    useEffect(() => {
-      let timer1, timer2, timer3;
-      if (loading) {
-        timer1 = setTimeout(() => {
-          setLoadingMessage("Notre assistant prépare la réponse");
-          setMessageColor("brown");
-        }, 3000);
-        timer2 = setTimeout(() => {
-          setLoadingMessage("Notre assistant a bientôt terminé");
+    setTimeout(async () => {
+      // Deuxième étape (blue)
+      setLoadingMessage("Traitement en cours...");
+      setMessageColor("blue");
+  
+      const equipmentNames = selectedEquipments.map(id => equipments.find(e => e.id === id).name);
+      const prompt = `Tu dois faire une réponse synthétique. Commence ta phrase par : Bonjour cher Fablaber ! ;) puis ensuite à la ligne propose un UNIQUE projet sous forme de réponse structurée (Projet : titre, Description : courte, Niveau difficulté: un mot) avec les équipements suivants : ${equipmentNames.join(", ")}`;
+  
+      try {
+        const response = await fetch("http://localhost:5000/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt })
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.message);
+  
+          // Troisième étape (verte)
+          setLoadingMessage("Récupération de la réponse...");
           setMessageColor("green");
-        }, 6000);
-        timer3 = setTimeout(() => {
-          setLoading(false);
-          // Ici, vous pouvez afficher le contenu final après le chargement
-        }, 9000);
+          
+          setTimeout(() => {
+            setApiResponse(data.message); // Stocker toute la réponse
+            setLoading(false);
+          }, 1000); // Vous pouvez ajuster la durée de la troisième étape selon vos préférences
+        } else {
+          throw new Error('Erreur lors de la récupération de la réponse de l\'API');
+        }
+      } catch (error) {
+        setApiResponse({ error: error.message }); // Stocker l'erreur
       }
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-      };
-    }, [loading]);
+    }, 1000); // Vous pouvez ajuster la durée de la deuxième étape selon vos préférences
+    setIsWriting(true); // Commencer l'affichage du texte
+  };
   
-    return (
-      <div>
-        <Header icon={"search-outline"} title={"IAssistant"} position={true} />
-        <div className="search-container">
-          <h1>IAssistant : des idées pour vos projets !</h1>
-          {loading ? (
-            <div className="loader-container">
-              <div className="loader" style={{ borderTopColor: messageColor }}></div>
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (selectedEquipments.length === 0) {
+      setShowError(true);
+    } else {
+      setLoading(true);
+  
+      // Première étape (bleue)
+      setLoadingMessage("Envoi de la requête...");
+      setMessageColor("orange");
+  
+      setTimeout(async () => {
+        // Deuxième étape (blue)
+        setLoadingMessage("Traitement en cours...");
+        setMessageColor("blue");
+  
+        const equipmentNames = selectedEquipments.map(id => equipments.find(e => e.id === id).name);
+        const prompt = `Tu dois faire une réponse synthétique. Commence ta phrase par : Bonjour cher Fablaber ! ;) puis ensuite à la ligne propose un UNIQUE projet sous forme de réponse structurée (Projet : titre, Description : courte, Niveau difficulté: un mot) avec les équipements suivants : ${equipmentNames.join(", ")}`;
+  
+        try {
+          const response = await fetch("http://localhost:5000/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({ prompt })
+          });
+  
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data.message);
+            // Troisième étape (verte)
+            setLoadingMessage("Récupération de la réponse...");
+            setMessageColor("green");
+  
+            setTimeout(() => {
+              setApiResponse(data.message);
+              setLoading(false);
+            }, 1000); // Vous pouvez ajuster la durée de la troisième étape selon vos préférences
+          } else {
+            throw new Error('Erreur lors de la récupération de la réponse de l\'API');
+          }
+        } catch (error) {
+          setApiResponse(error.message);
+        }
+      }, 100); // Vous pouvez ajuster la durée de la deuxième étape selon vos préférences
+    } 
+    setIsWriting(true); // Commencer l'affichage du texte
+  };
+  
+  
+  
+  
+  useEffect(() => {
+    let timer;
+    if (apiResponse && isWriting) {
+      let index = 0;
+      timer = setInterval(() => {
+        if (index < apiResponse.length) {
+          setDisplayedResponse(disp => disp + apiResponse.charAt(index-1));
+          index++;
+        } else {
+          clearInterval(timer);
+          setIsWriting(false); // Arrêter d'écrire
+          setShowActionButtons(true); // Montrer les boutons d'action automatiquement
+        }
+      }, 20);
+    }
+    return () => clearInterval(timer);
+  }, [apiResponse, isWriting]);
+  
 
-              <p style={{ color: messageColor }}>{loadingMessage}</p>
-            </div>
-          ) : (
-            <div className="content-row">
-              <div className="search-image">
-                <img src={Chatbot} alt="Intelligence Artificielle" />
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(displayedResponse)
+      .then(() => {
+        setIsCopied(true); // Mise à jour de l'état après la copie réussie
+        setTimeout(() => setIsCopied(false), 2000); // Réinitialisation après 2 secondes
+      })
+      .catch(err => {
+        console.error("Erreur lors de la copie : ", err);
+        alert("Erreur lors de la copie dans le presse-papiers.");
+      });
+  };
+  
+  
+
+  return (
+    <div>
+      <Header icon={"search-outline"} title={"IAssistant"} position={true} />
+      <div className="search-container">
+      {!loading && !displayedResponse && <h1 className="title">IAssistant : des idées pour vos projets !</h1>}
+        {loading ? (
+          <div className="loader-container">
+            <div className="loader" style={{ borderTopColor: messageColor }}></div>
+            <p className="loading-text">{loadingProgress}%</p>
+            <p style={{ color: messageColor }}>{loadingMessage}</p>
+          </div>
+        ) : displayedResponse ? (
+          <div className="response-container">
+             <div className="response-header">
+                <div className="header-left">
+                  <img src={Chatbot} alt="IASSISTANT" className="response-logo" />
+                  <span className="response-title">IASSISTANT</span>
+                </div>
+                {!isWriting && (isCopied ? (
+    <div className="copy-confirmation">&#10004;</div> // Croix de validation
+  ) : (
+    <button className="copy-button" onClick={copyToClipboard}>📋</button>)
+  )}
               </div>
-              <form onSubmit={handleSubmit} className="equipment-form">
-                <p className="form-heading">Sélectionnez les équipements que vous souhaitez pour votre projet :</p>
-                {showError && <p className="error-message">Veuillez sélectionner au moins un équipement.</p>}
+            <div className="response-message">
+              {apiResponse && displayedResponse}
+            </div>
+          
+            {!showActionButtons && (
+  <button className="stop-writing-button" onClick={stopWriting}>Arrêter d'écrire</button>
+)}
+          {showActionButtons && (
+            <div className="button-container">
+              <button className="action-button" onClick={retry}>Réessayer</button>
+              <button className="action-button" onClick={() => window.location.reload()}>Retour</button>
+            </div>
+          )}
+          </div>
+          
+        ) : (
+          
+          <div className="content-row">
+            <div className="search-image">
+              <img src={Chatbot} alt="Intelligence Artificielle" />
+            </div>
+            <form onSubmit={handleSubmit} className="equipment-form">
+              <p className="form-heading">Sélectionnez les équipements que vous souhaitez pour votre projet :</p>
+              {showError && <p className="error-message">Veuillez sélectionner au moins un équipement.</p>}
               {equipments.map((equipment) => (
                 <div key={equipment.id} className="equipment-item">
                   <label>
@@ -139,11 +272,12 @@ const Search = () => {
               <button type="submit" className="submit-btn">Envoyer</button>
             </form>
           </div>
-          )}
-        </div>
-        <Navigation library={false} search={true} map={false} profil={false} setting={false} position={false} />
+        )}
       </div>
-    );
+      <Navigation library={false} search={true} map={false} profil={false} setting={false} position={false} />
+    </div>
+  );
+
 };
 
 export default Search;

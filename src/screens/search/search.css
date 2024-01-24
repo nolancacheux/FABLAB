@@ -15,14 +15,114 @@
     margin-top: 40px;
 }
 
-.loader-container {
+  .search-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
   }
   
+  .title {
+    font-size: 2em;
+    font-weight: bold;
+    color: black; /* Exemple de couleur */
+  }
+  
+  
+  
+  .response-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .response-logo {
+    width: 30px;
+    margin-right: 10px;
+  }
+  
+  .copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .response-title {
+    font-weight: bold;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .stop-writing-button {
+    background-color: #f44336; /* Exemple de couleur */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+  }
+  
+  .stop-writing-button:hover {
+    background-color: #d32f2f; /* Couleur au survol */
+  }
+  
+  .action-button {
+    background-color: #4CAF50; /* Couleur du fond */
+    color: white; /* Couleur du texte */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .action-button:hover {
+    background-color: #45a049; /* Couleur au survol */
+  }
+  
+  
+  
+  .copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+  }
+  .copy-button:hover {
+    background-color: #4CAF50; /* Couleur de fond au survol */
+    color: white; /* Couleur du texte au survol */
+    /* Autres styles au survol... */
+  }
+  
+  .copy-button:active {
+    transform: scale(0.95); /* Réduire légèrement la taille du bouton lors du clic */
+    /* Autres styles au clic... */
+  }
+  /* Ajout dans votre fichier CSS */
+
+.copy-confirmation {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  font-size: 20px;
+}
+
   .loader {
     border: 10px solid transparent; /* Rend les autres côtés transparents */
     border-top-color: #3498db; /* Couleur initiale pour le haut */
@@ -144,3 +244,43 @@
     border-radius: 8px;
     background-color: #f0f0f0;
 }
+
+.response-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px; /* Augmenter l'espacement intérieur */
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .response-message {
+    white-space: pre-wrap;
+    max-height: 500px; /* Augmenter la hauteur maximale avant de faire défiler */
+    font-size: 1.3em; /* Augmenter la taille de la police */
+    text-align: center; /* Centrer le texte */
+    margin-top: 15px;
+    overflow-y: auto; /* Permettre le défilement si nécessaire */
+  }
+  
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* S'assurer que le loader est centré verticalement */
+  }
+  
+  .loading-text {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  /* Ajustements pour le bouton de copie */
+  .copy-button {
+    font-size: 25px; /* Augmenter la taille du bouton de copie */
+    margin-top: 10px; /* Espacement au-dessus du bouton de copie */
+  }
+  
