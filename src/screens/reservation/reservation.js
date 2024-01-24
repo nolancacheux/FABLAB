@@ -10,6 +10,9 @@ import { Navigate } from "react-router";
 import bcrypt from "bcryptjs";
 import { Link } from 'react-router-dom';
 import './reservation.css';
+import axios from "axios";
+
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 class Reservation extends React.Component {
   constructor(props) {
@@ -17,7 +20,8 @@ class Reservation extends React.Component {
     this.state = {
       type: 1,
       tmp_id: '',
-      tmp_id_user: ''
+      tmp_id_user: '',
+      name:''
     };
     this.componentDidMount();
     
@@ -35,16 +39,19 @@ componentDidMount() {
     const first = phrase.substring(0,phrase.search("/"))
     const second = phrase.substring(phrase.search("/")+1,phrase.length)
 
-    
-
+  
     this.state.tmp_id_user = second ;
     console.log(this.state.tmp_id_user);
-
     this.state.tmp_id = first;
-    
+
+    const baseURL = 'https://192.168.184.122:1234/users/040dc0351-e794-4c4c-b24d-5f89a6c3e510';
+
+        axios.get(baseURL).then(resp => {
+
+            console.log(resp.data);
+        });
+  
   }
-  
-  
   if (this.state.tmp_id.substring(0,1) === '1') {
     this.state.type= 1
     console.log(this.state.type)
@@ -100,7 +107,7 @@ componentDidMount() {
                       name="prenom"
                       placeholder="Prenom & Nom"
                      
-                      
+                      value= {this.state.name}
                       className="stg-input"
                       id="stg-names"
                       disabled
@@ -226,7 +233,7 @@ componentDidMount() {
                       name="prenom"
                       placeholder="Prenom & Nom"
                      
-                      
+                      value= {this.state.name}
                       className="stg-input"
                       id="stg-names"
                       disabled
@@ -282,7 +289,7 @@ componentDidMount() {
                
                 <h2>Nombre de jour :</h2>
                 <div className="stg-champ-de-saisie" id="stg-SaisieMotDePasse">
-                  <i className="fas fa-loc" id="stg-cadenas" />
+                  <i className="fa-solid fa-calendar" id="stg-cadenas" />
                   <div className="stg-div stg-mdp">
                     <input
                       type="number"
@@ -293,19 +300,9 @@ componentDidMount() {
                       id="stg-password"
                       
                     />
-                    <span className="stg-show-btn">
-                      <i className="fas fa-eye show_hide" />
-                    </span>
+                    
                   </div>
-                  <div className="stg-indicate">
-                    <div className="stg-icon-text">
-                      <i
-                        className="fas fa-exclamation-circle error_icon"
-                        id="stg-exclamation-circle-for-pass"
-                      />
-                      <h6 className="stg-text" />
-                    </div>
-                  </div>
+                  
                 </div> 
                 <button className="resa-valider" onClick={this.fonction_valider}>Valider</button>
               </div>
@@ -361,7 +358,7 @@ componentDidMount() {
                       name="prenom"
                       placeholder="Prenom & Nom"
                      
-                      
+                      value= {this.state.name}
                       className="stg-input"
                       id="stg-names"
                       disabled
