@@ -1,4 +1,12 @@
-import {useState} from 'react';
+
+import axios from 'axios';
+
+const initialState = {
+  name: '',
+  quantity: '',
+  imagePath: '',
+};
+
 export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
     console.log("dnejdnjiqzdiqdiqzd")
     // Afficher le popup si administrateur
@@ -10,71 +18,60 @@ export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
     }
 };
 
-export const onValidate = () => {
-    const numericValue = parseFloat(inputValue);
-    console.log(numericValue);
-    if (!isNaN(numericValue)) {
-        console.log('Nouveau Stock :', numericValue);
-        setShowPopup1(false);
-    } else {
-        alert('Valeur Fausse Entrer un Nombre');
-    }
-};
 
-export const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-};
-
-export const handleNameChange = (event) => {
-    setNewProductName(event.target.value);
-};
-
-export const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setNewProductImage(reader.result);
-        };
-        reader.readAsDataURL(file);
-    }
-};
-
-export const ImageUploader = () => {
-    const [selectedFile, setSelectedFile] = useState(null);
-  
-    const handleFileChange = (event) => {
-      setSelectedFile(event.target.files[0]);
+export const handleImageChange = (event, setSelectedFile) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectedFile(file);
     };
-  
-    const handleUpload = async () => {
-      if (!selectedFile) {
-        console.error('Veuillez sélectionner un fichier.');
-        return;
-      }
-  
+    reader.readAsDataURL(file);
+  }
+};
+
+export const onValidate = async (showPopup1) => {
+  try {
+    console.log(document.getElementById('newProductName').value);
+    if (document.getElementById('newProductName').value != null) {
       const formData = new FormData();
-      formData.append('image', selectedFile);
-  
-      try {
-        const response = await axios.post('https://192.168.184.122:1234/stock/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-  
-        console.log('Réponse du serveur:', response.data);
-      } catch (error) {
-        console.error('Erreur lors de l\'envoi de l\'image:', error.message);
+      formData.append('name', (document.getElementById('newProductName').value).toString); // Replace with the actual product name
+      formData.append('quantity', (document.getElementById('adminput').value).toString);
+      formData.append('image1', 'tfytfy');
+
+      const response = await axios.post('https://192.168.184.122:1234/stock/register1', formData);
+
+      if (response.status === 200) {
+        console.log('Ajout réussi!');
+      } else {
+        console.error('Erreur lors de l\'inscription.');
       }
-    };
-  
-    return (
-      <div>
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload}>Envoyer l'image</button>
-      </div>
-    );
+
+      ShowPopup1=false;
+    } else {
+      alert('Valeur Fausse Entrer un Nombre');
+    }
+  } catch (error) {
+    console.error('An unexpected error occurred:', error);
+  }
+  return showPopup1;
+};
+
+const ImageUploader = ({ setSelectedFile }) => {
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
   };
-  
-  export default ImageUploader;
+
+  const handleUpload = async () => {
+    // Your image upload logic here
+  };
+
+  return (
+    <div>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload}>Envoyer l'image</button>
+    </div>
+  );
+};
+
+export default ImageUploader;

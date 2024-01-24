@@ -28,9 +28,7 @@ const Add_Compo = ({admin}) => {
                         <input
                             id="newProductName"
                             type="text"
-                            placeholder="Nom du composant"
-                            onChange={handleNameChange}
-                        />
+                            placeholder="Nom du composant"/>
                     </div>
                     <div>
                         <label htmlFor="adminput">Nouvelle Quantité:</label>
@@ -38,7 +36,6 @@ const Add_Compo = ({admin}) => {
                             id="adminput"
                             type="text"
                             placeholder={String(0)}
-                            onChange={handleInputChange}
                         />
                     </div>
                     <div>
@@ -50,7 +47,7 @@ const Add_Compo = ({admin}) => {
                             onChange={handleImageChange}
                         />
                     </div>
-                    <button id="adminbnt" onClick={onValidate}>
+                    <button id="adminbnt" onClick={onValidate(showPopup1)}>
                             Valider
                     </button>
                 </div>

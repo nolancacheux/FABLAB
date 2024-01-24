@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { handleImageClick, handleInputChange, handleNameChange, onValidate } from "../Function";
+import { handleImageClick, handleInputChange, handleNameChange } from "../Function";
 import QRCode from "react-qr-code";
 
 const ImageUploader = () => {
@@ -39,6 +39,32 @@ const ImageUploader = () => {
     </div>
   );
 };
+const onValidate = async (showPopup1) => {
+    try {
+      console.log(document.getElementById('newProductName').value);
+      if (document.getElementById('newProductName').value != null) {
+        const formData = new FormData();
+        formData.append('name', (document.getElementById('newProductName').value).toString); // Replace with the actual product name
+        formData.append('quantity', (document.getElementById('adminput').value).toString);
+        formData.append('image1', 'tfytfy');
+  
+        const response = await axios.post('https://192.168.184.122:1234/stock/register1', formData);
+  
+        if (response.status === 200) {
+          console.log('Ajout réussi!');
+        } else {
+          console.error('Erreur lors de l\'inscription.');
+        }
+  
+        ShowPopup1=false;
+      } else {
+        alert('Valeur Fausse Entrer un Nombre');
+      }
+    } catch (error) {
+      console.error('An unexpected error occurred:', error);
+    }
+    return showPopup1;
+  };
 
 const ProductCard = ({ product, admin }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -82,12 +108,12 @@ const ProductCard = ({ product, admin }) => {
             </span>
             <div>
               <label htmlFor="newProductName">Nouveau Nom:</label>
-              <input id="newProductName" type="text" placeholder={newProductName} onChange={handleNameChange} />
+              <input id="newProductName" type="text" placeholder={newProductName} />
             </div>
 
             <div>
               <label htmlFor="adminput">Nouvelle Quantité:</label>
-              <input id="adminput" type="text" placeholder={inputValue} onChange={handleInputChange} />
+              <input id="adminput" type="text" placeholder={inputValue}/>
             </div>
 
             <div>
