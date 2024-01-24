@@ -11,21 +11,7 @@ import ProductCard from "./Component JS Stock/Product_Card";
 import Add_Compo from "./Component JS Stock/Add_Compo";
 import axios from "axios";
 const Library = () => {
-  const [userData, setUserData] = useState({
-      id: "",
-      prenom: "",
-      nom: "",
-      genre: "",
-      email: "",
-      mdp: "",
-      data: [],
-      image: null,
-      tab: [],
-  });
-
-
-
-  useEffect(() => {
+     
 
       /*const data = JSON.stringify({
           'nom':"Ampli lc 2,3-18V",
@@ -45,27 +31,13 @@ const Library = () => {
               console.log(res.data)
           })*/
 
+    const getconnexion = sessionStorage.getItem("email");
 
-      const email = sessionStorage.getItem("email");
-      var requestOptions = {
-          method: "GET",
-          redirect: "follow",
-      };
-
-      fetch("http://51.254.38.150:3000/connexion/" + email, requestOptions)
-          .then((response) => response.json())
-          .then((result) => {
-              const { id, prenom, nom, email, mdp } = result;
-              setUserData({ id, prenom, nom, email, mdp });
-          })
-          .catch((error) =>
-              console.log(
-                  "Erreur lors de la récupération des données de l'utilisateur:",
-                  error
-              )
-          );
-  }, []);
-  let admin=true;
+    if (getconnexion == undefined) {
+        window.location.href = "/";
+        alert("Vous n'êtes pas connecté");
+    }else;
+  let admin=false;
   return (
       <div>
           <Header icon={"print-outline"} 
@@ -80,7 +52,6 @@ const Library = () => {
                           name: 'LED Rouge 4V',
                           quantity: 12,
                           image: ImageBackground,
-                          setUserData
                       }}
                       admin={admin}
                   />
@@ -89,7 +60,6 @@ const Library = () => {
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground2,
-                          setUserData
                       }}
                       admin={admin}
                   />
@@ -98,7 +68,6 @@ const Library = () => {
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground3,
-                          setUserData
                       }}
                       admin={admin}
                   />
@@ -107,7 +76,6 @@ const Library = () => {
                           name: 'LED Verte 4V',
                           quantity: 15,
                           image: ImageBackground4,
-                          setUserData
                       }}
                       admin={admin}
                   />
@@ -172,7 +140,6 @@ const Library = () => {
                           name: 'LED Rouge 4V',
                           quantity: 12,
                           image: ImageBackground,
-                          setUserData
                       }}
                       admin={admin}
                   />
@@ -181,7 +148,6 @@ const Library = () => {
                           name: 'LED Rouge 4V',
                           quantity: 12,
                           image: ImageBackground,
-                          setUserData
                       }}
                       admin={admin}
                   />
