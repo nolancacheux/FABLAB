@@ -2,39 +2,37 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import "../../screens/preloader/preloader.css";
 import "../../Hadrien/reset.css";
-import Logo from "../../assets/images/logoalternate.png";
+import Logo from "../../assets/images/LogoPreloader2.png";
 
 const tl = gsap.timeline();
 
 const PreLoader = () => {
     useEffect(() => {
-    tl.to(
-            ".blue",
+        tl.to(".pl-texts-container", {
+            duration: 1.5,
+            opacity: 1,
+            y: 70,
+            skewY: 10,
+            stagger: 0.4,
+            ease: "Power3.easeOut",
+            })
+            .to(".pl-texts-container span", {
+            duration: 1,
+            y: 70,
+            skewY: -20,
+            stagger: 0.2,
+            ease: "Power3.easeOut",
+            })
+            .to(
+            ".preloader",
             {
                 duration: 1.5,
-                delay:0.5,
-                width: "20%",
-                ease: "power3.out",
+                height: "0vh",
+                ease: "Power3.easeOut",
             },
-        )
-        .to(".pl-texts-container span", {
-        duration: 1,
-        delay:1,
-        y: 70,
-        skewY: -20,
-        stagger: 0.2,
-        ease: "Power3.easeOut",
-        })
-        .to(
-        ".preloader",
-        {
-            duration: 1.5,
-            height: "0vh",
-            ease: "Power3.easeOut",
-        },
-        "-=2"
-        )
-    }, []);
+            "-=2"
+            )
+        }, []);
 
     
     //! Front-End de la page Preloader !//

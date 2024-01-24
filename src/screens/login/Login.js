@@ -5,9 +5,9 @@ import PreLoader from "../../screens/preloader/PreLoader";
 import { Navigate } from "react-router";
 import image from "../../assets/images/arduino.png";
 import Logo from "../../assets/images/LogoPreloader2.png";
-import emailjs from "@emailjs/browser";
-import bcrypt from 'bcryptjs';
+import config from "../../configip.js"
 import axios from 'axios';
+
 
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
@@ -340,7 +340,7 @@ class Login extends React.Component {
         
       // Suite de votre code ici après la mise à jour de l'état
       
-        const baseURL = `https://192.168.184.122:1234/users/register`;
+        const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/register`;
         const data = JSON.stringify(this.state);
         console.log(data);
         const headers = {
