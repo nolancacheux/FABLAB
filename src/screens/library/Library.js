@@ -8,6 +8,8 @@ import ImageBackground3 from "./Images Compo/amplificateur+af+18v.png";
 import ImageBackground4 from "./Images Compo/condensateur+chimique+bizarre.png";
 import ImageBackground5 from "./Images Compo/condensateur+chimique+bleu.png";
 import "./library.css"
+import axios from "axios";
+import "./Function.js"
 
 const Library = () => {
   const [userData, setUserData] = useState({
@@ -21,9 +23,30 @@ const Library = () => {
       image: null,
       tab: [],
   });
-  
+
+
 
   useEffect(() => {
+
+      /*const data = JSON.stringify({
+          'nom':"Ampli lc 2,3-18V",
+          'prenom':"Baum",
+          'email':"mattbaum288@gmail.com",
+          'mdp':"ampli+lc+2,3-18+v.png"
+      });
+
+      const baseURL = "https://192.168.184.122:1234/users/register";
+      console.log(data);
+      const headers = {
+          'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
+          'Access-Control-Allow-Origin':'*',
+      };
+      axios.post(baseURL,data,{ headers })
+          .then(res => {
+              console.log(res.data)
+          })*/
+
+
       const email = sessionStorage.getItem("email");
       var requestOptions = {
           method: "GET",
@@ -194,9 +217,6 @@ const ProductCard = ({ product, userData }) => {
 
     const closePopup = () => {
       setShowPopup(false);
-    };
-  
-    const closePopup1 = () => {
       setShowPopup1(false);
     };
   
@@ -244,7 +264,7 @@ const ProductCard = ({ product, userData }) => {
         {showPopup1 && (
             <div className="popup1-overlay">
                 <div className="popup1">
-                <span className="close" onClick={closePopup1}>
+                <span className="close" onClick={closePopup}>
                     &times;
                 </span>
                 <div>
