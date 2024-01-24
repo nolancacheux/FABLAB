@@ -1,9 +1,11 @@
-export const handleImageClick = (userData, setShowPopup, setShowPopup1) => {
+export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
+    console.log("dnejdnjiqzdiqdiqzd")
     // Afficher le popup si administrateur
-    if (userData && userData.admin) {
-        setShowPopup(true);
-    } else {
+    if (admin) {
+        console.log("dnejdnjiqzdiqdiqzd")
         setShowPopup1(true);
+    } else {
+        setShowPopup(true);
     }
 };
 

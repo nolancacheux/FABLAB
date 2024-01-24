@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {handleImageChange, handleImageClick, handleInputChange, handleNameChange, onValidate} from "../Function";
 import QRCode from "react-qr-code";
 
-export const ProductCard = ({ product, userData }) => {
+export const ProductCard = ({ product, admin }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [showPopup1, setShowPopup1] = useState(false);
     const [inputValue, setInputValue] = useState(product.quantity);
@@ -16,7 +16,7 @@ export const ProductCard = ({ product, userData }) => {
 
     return (
         <div className="product-card">
-            <div className="product-image" onClick={() => handleImageClick(userData, setShowPopup, setShowPopup1, onValidate, handleInputChange, handleNameChange, handleImageChange, closePopup)}>
+            <div className="product-image" onClick={() => handleImageClick(admin, setShowPopup, setShowPopup1)}>
                 <div className="quantity-overlay">
                     <div> Quantité : {product.quantity}</div>
                 </div>

@@ -82,6 +82,7 @@ const Library = () => {
                           image: ImageBackground,
                           setUserData
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -90,6 +91,7 @@ const Library = () => {
                           image: ImageBackground2,
                           setUserData
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -98,6 +100,7 @@ const Library = () => {
                           image: ImageBackground3,
                           setUserData
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -106,6 +109,7 @@ const Library = () => {
                           image: ImageBackground4,
                           setUserData
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -113,6 +117,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground5,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -120,6 +125,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -127,6 +133,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -134,6 +141,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -141,6 +149,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -148,6 +157,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -155,6 +165,7 @@ const Library = () => {
                           quantity: 15,
                           image: ImageBackground,
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -163,6 +174,7 @@ const Library = () => {
                           image: ImageBackground,
                           setUserData
                       }}
+                      admin={admin}
                   />
                   <ProductCard
                       product={{
@@ -171,9 +183,10 @@ const Library = () => {
                           image: ImageBackground,
                           setUserData
                       }}
+                      admin={admin}
                   />
                   {admin && (
-                  <Add_Compo/>
+                  <Add_Compo admin={admin}/>
                   )}
               </div>
           </section>

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {handleImageChange, handleImageClick, handleInputChange, handleNameChange, onValidate} from "../Function";
 import ImageAdd from "../Images Compo/addsymbole.png";
 
-const Add_Compo = ({userData}) => {
+const Add_Compo = ({admin}) => {
     const [showPopup, setShowPopup] = useState(false);
     const [showPopup1, setShowPopup1] = useState(false);
 
@@ -13,7 +13,7 @@ const Add_Compo = ({userData}) => {
 
     return (
         <div className="product-card">
-            <div className="product-image" onClick={() => handleImageClick(userData, setShowPopup, setShowPopup1, onValidate, handleInputChange, handleNameChange, handleImageChange, closePopup)}>
+            <div className="product-image" onClick={() => handleImageClick(admin, setShowPopup, setShowPopup1)}>
                 <img id="img" src={ImageAdd} alt="ADD_COMPO" />
                 <div className="product-name">Ajout composant</div>
             </div>
