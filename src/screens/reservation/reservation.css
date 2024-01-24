@@ -1,12 +1,14 @@
 /************ Partie de Gauche ************/
 
-.stg-left {
+.resa-left {
     width: 50%;
-    margin-left: 0;
+    margin-top: 5%;
+    margin-left: 28%;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     align-items: stretch;
+    
 }
 .stg-forms h2 {
     font-size: 15px;
@@ -303,14 +305,31 @@
 #stg-liste_resultatsPays li:hover, #stg-liste_resultatsLangue li:hover {
     background-color: #f4f4f4;
 }
-
+.resa-valider{
+    text-align: center;
+    background-color: var(--tertary);
+    width: 22%;
+    height: 10%;
+    border-radius: 25px;
+    margin-left: 32%;
+}
+.resa-valider:hover {
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+}
 /************ Media Query ************/
 @media (max-width: 1060px) {
      .setting section {
         display: block;
     }
-    .stg-left, .stg-right, .stg-champ-de-saisie {
+    .resa-left, .stg-right, .stg-champ-de-saisie {
         width: 100%;
+        left: 1%;
+        margin-left: 0%;
+        
+    }
+    .resa-left{
+        margin-top: 25%;
     }
     .stg-right {
         padding: 0px 0px 0px 0px;
@@ -331,5 +350,17 @@
     }
     .setting form {
         display: block;
+    }
+    .resa-valider {
+        width: 28%;
+        height: 40px;
+        margin-left: 35%;
+    }
+    header{
+        display: flex;
+        margin-left: 70%;
+        margin-top: 5%;
+        width: 20%;
+        height: 30px;
     }
 }

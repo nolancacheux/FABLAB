@@ -35,8 +35,11 @@ header img {
     font-size: 14px;
     text-transform: uppercase;
     color: var(--secondary);
+    
 }
-
+.link-head{
+    color: black;
+}
 /************ Effet ************/
 
 .head-nomination:active {
@@ -61,8 +64,12 @@ header img {
 /************ Media Query ************/
 
 @media screen and (max-width: 780px) {
-    header {
-        padding: 0px 10px;
+    header{
+        display: none ;
+
+    }
+    header img {
+        display: none;
     }
 }
 

@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import QrScanner from 'qr-scanner';
 import './scanner.css'; // Créez un fichier CSS séparé pour les styles
 import Navigation from "./../../components/navigation/Navigation";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './scanner.css';
 if (process.env.REACT_APP_NOWARNINGS === 'true') {
     console.warn = () => {}; // Désactive les avertissements console.warn
     console.error = () => {}; // Désactive les avertissements console.error
@@ -9,30 +11,32 @@ if (process.env.REACT_APP_NOWARNINGS === 'true') {
 const scanner = () => {
   const videoRef = useRef();
   const [scanned, setScanned] = useState(false);
-
+  const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
     
     const scanner = new QrScanner(videoRef.current, (result) => {
-      let apiurl = "http://192.168.184.122:1234/?c="+ result
-
-      fetch(apiurl)
-        .then(response => {
-          // Vérification de la réussite de la requête (status code 200 OK)
-          
-          // Conversion de la réponse JSON
-          return response.json();
-        })
       console.log(result);
       // Arrêter le scanner après un scan réussi
       setScanned(true);
+      
+      if(result.search('@') != -1){
+        sessionStorage.setItem("scan-login",result);
+        navigate('/');
+      }
+      else if (result.search('/') != -1 && result.search('-') != -1){
+        sessionStorage.setItem("scan", result);
+        navigate('/Reservation');
+      }
+      
       scanner.stop();
+      
       });
     scanner.start();
-
+    
     return () => {
       scanner.stop();
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div>

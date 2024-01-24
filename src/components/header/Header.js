@@ -12,13 +12,15 @@ function Header({ icon, title, position , destination}) {
         <header style={headerStyle}> 
         
             <img src={Logo} alt="Logo" />
-            <Link to= {destination}>
+           <div classname="link-head">
+            <Link to= {destination} >
             <div className="head-nomination">
                 <ion-icon name={icon} className ="ion-head"></ion-icon>
                
                 <h1>{title}</h1>
             </div>
             </Link>
+            </div>
         </header>
     );
 }
