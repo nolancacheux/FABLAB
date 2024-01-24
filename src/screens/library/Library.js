@@ -223,9 +223,9 @@ const ProductCard = ({ product, userData }) => {
       <div className="product-card">
         <div className="product-image" onClick={handleImageClick}>
           <div className="quantity-overlay">
-            <div className="product-quantity"> Quantité : {product.quantity}</div>
+            <div> Quantité : {product.quantity}</div>
           </div>
-          <img src={product.image} alt={product.name} />
+          <img id="img" src={product.image} alt={product.name} />
           <div className="product-name">{product.name}</div>
         </div>
   
