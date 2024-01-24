@@ -5,7 +5,6 @@ import PreLoader from "../../screens/preloader/PreLoader";
 import { Navigate } from "react-router";
 import image from "../../assets/images/arduino.png";
 import Logo from "../../assets/images/LogoPreloader2.png";
-import Cookies from "js-cookie";
 import emailjs from "@emailjs/browser";
 import bcrypt from 'bcryptjs';
 import axios from 'axios';
@@ -32,6 +31,7 @@ class Login extends React.Component {
             validEmail: false,
             validMdp: false,
             emailRecup: "",
+            logged:false,
             image: null,
         };
         this.handleChange = this.handleChange.bind(this);
@@ -39,44 +39,11 @@ class Login extends React.Component {
         this.passwordChange = this.passwordChange.bind(this);
         this.envoi = this.envoi.bind(this);
         this.envoi2 = this.envoi2.bind(this);
-        this.handlePhotoChange = this.handlePhotoChange.bind(this);
-        this.recup = this.recup.bind(this);
         this.isEmail = this.isEmail.bind(this);
         this.formulaireErreur = this.formulaireErreur.bind(this);
         this.checkCookieExists = this.checkCookieExists.bind(this);
         this.deleteCookie = this.deleteCookie.bind(this);
-        this.sendEmail = this.sendEmail.bind(this);
-        this.decryptageMdp = this.decryptageMdp.bind(this);
-        this.cryptageMdp = this.cryptageMdp.bind(this);
     }
-
-    // ! ---------- Envoyer un Email pour le mot de passe ----------//
-
-    sendEmail(e) {
-        e.preventDefault();
-        for (let mail of this.state.emails) {
-            if (mail === this.state.emailRecup) {
-                emailjs.sendForm(
-                    "service_249p0gv",
-                    "template_p1517tb",
-                    e.target,
-                    "K-C4ATlcxBiCNFNF9"
-                );
-                alert("Un lien vous a été envoyé sur votre boite mail");
-                this.setState({
-                    emailRecup: "",
-                });
-                return;
-            }
-        }
-        alert("Votre email n'existe pas. Veuillez créer votre compte HopBeer");
-        this.setState({
-            emailRecup: "",
-        });
-        return;
-    }
-
-    // ! ---------- Cookie ----------//
 
     checkCookieExists(cookieName) {
         var cookies = document.cookie.split(";");
@@ -96,33 +63,7 @@ class Login extends React.Component {
             cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
 
-    // ! ---------- Cryptage mot de passe ----------- //
-
-    async cryptageMdp(e){
-
-        try{
-            let salt = await bcrypt.genSalt(10)
-            let hash = await bcrypt.hash(e,salt)
-            console.log(hash)
-            return hash
-        }catch(error){
-            console.log(error.message)
-        }
-    }
-
-    async decryptageMdp(e){
-
-        try{
-            let compare = await bcrypt.compare(this.state.mdp, e)
-            if(compare === true){
-                return true
-            }else{
-                return false
-            }
-        }catch(error){
-            console.log(error.message)
-        }
-    }
+  
 
     // ! ---------- Animation changement de page ----------//
     
@@ -235,66 +176,7 @@ class Login extends React.Component {
             }
         });
 
-        // ! ---------- Pop-Up Mot de passe oublié ----------//
-
-        let popupsBtn = document.querySelectorAll("[data-popup-ref]");
-        popupsBtn.forEach((btn) => {
-            btn.addEventListener("click", activePopup);
-            function activePopup() {
-                let popupId = btn.getAttribute("data-popup-ref");
-                let popup = document.querySelector(
-                    `[data-popup-id='${popupId}']`
-                );
-                if (popup !== undefined && popup !== null) {
-                    let popupContent = popup.querySelector(".lg-popup-content");
-                    let closeBtns = popup.querySelectorAll(
-                        "[data-dismiss-popup]"
-                    );
-                    closeBtns.forEach((btn) => {
-                        btn.addEventListener("click", onPopupClose);
-                    });
-                    popup.addEventListener("click", onPopupClose);
-                    popupContent.addEventListener("click", (ev) => {
-                        ev.stopPropagation();
-                    });
-                    popup.classList.add("active");
-                    setTimeout(() => {
-                        popupContent.classList.add("active");
-                    }, 1);
-                    function onPopupClose() {
-                        setTimeout(() => {
-                            popup.classList.remove("active");
-                        }, 250);
-                        popupContent.classList.remove("active");
-                    }
-                }
-            }
-        });
-        
-        // ! ---------- Cookie ----------//
-
-        const Url = "http://51.254.38.150:3000/connexion/email";
-        var requestOptions = {
-            method: "GET",
-            redirect: "follow",
-        };
-        fetch(Url, requestOptions)
-            .then((response) => response.text())
-            .then((result) => {
-                const emails = JSON.parse(result);
-                this.setState({ emails });
-            })
-            .catch((error) => console.log("error", error));
-        this.recup();
-        if (this.checkCookieExists("email") && this.checkCookieExists("mdp")) {
-            const email = Cookies.get("email");
-            const mdp = Cookies.get("mdp");
-            this.setState({
-                email: email,
-                mdp: mdp,
-                stay: true,
-            });
-        }
+               
     }
 
     //! ---------- Vérification formulaire (message d'erreur) ----------//
@@ -419,17 +301,7 @@ class Login extends React.Component {
             [name]: value,
         });
     }
-    handlePhotoChange(e) {
-        e.preventDefault();
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        reader.onloadend = () => {
-            this.setState({
-                image: reader.result,
-            });
-        };
-        reader.readAsDataURL(file);
-    }
+
 
     mailChange(e) {
         const email = e.target.value; 
@@ -440,32 +312,7 @@ class Login extends React.Component {
             isValidEmail: isValidEmail,
         });
     }
-    recup() {
-        const Url = "http://51.254.38.150:3000/connexion/email";
-        const Url2 = "http://51.254.38.150:3000/connexion/pass";
-        var requestOptions = {
-            method: "GET",
-            redirect: "follow",
-        };
-        fetch(Url, requestOptions)
-            .then((response) => response.text())
-            .then((result) => {
-                const emails2 = JSON.parse(result);
-                this.setState({ emails2 });
-            })
-            .catch((error) => console.log("error", error));
-            var requestOptions2 = {
-                method: "GET",
-                redirect: "follow",
-            };
-        fetch(Url2, requestOptions2)
-            .then((response) => response.text())
-            .then((result) => {
-                const passwords = JSON.parse(result);
-                this.setState({ passwords });
-            })
-            .catch((error) => console.log("error", error));
-    }
+    
     passwordChange(e) {
         const pass = e.target.value; 
         const myRegex =
@@ -490,98 +337,90 @@ class Login extends React.Component {
             alert("Veuillez remplir tous les champs obligatoires");
             return;
         }
-        for (let mail of this.state.emails) {
-            if (this.state.email === mail) {
-                alert(
-                    "Votre addresse email est déjè dans notre base. Vueillez en saisir une nouvelle ou vous connecter"
-                );
-                return;
-            }
-        }
-        this.cryptageMdp(this.state.mdp)
-  .then(hash => {
-    this.setState({ mdp: hash }, () => {
+        
       // Suite de votre code ici après la mise à jour de l'état
       
-       const baseURL = `https://192.168.184.122:1234/users/register`;
-       const data = JSON.stringify(this.state);
-       console.log(data);
-       const headers = {
-         'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
-         'Access-Control-Allow-Origin':'*',
-       };
-       axios.post(baseURL,data,{ headers })
-         .then(res => {
-             const persons = res.data;
-         })
-      this.setState({
-        nom: "",
-        prenom: "",
-        abon: false,
-        genre: "",
-        email: "",
-        isValidEmail: false,
-        mdp: "",
-        afficher: false,
-        isValidPassword: false,
-        creation: true,
-        image: null,
-      });
-      sessionStorage.setItem("email", this.state.email);
-    });
-  })
-  .catch(error => {
-    console.log(error.message);
-  });
-}
+        const baseURL = `https://192.168.184.122:1234/users/register`;
+        const data = JSON.stringify(this.state);
+        console.log(data);
+        const headers = {
+            'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
+            'Access-Control-Allow-Origin':'*',
+        };
+        axios.post(baseURL,data,{ headers })
+            .then(res => {
+                console.log(res.data)
+                sessionStorage.setItem("email", res.data.user.email);
+                sessionStorage.setItem("admin", res.data.user.admin);
+                sessionStorage.setItem("id", res.data.user._id);
+                sessionStorage.setItem("firstName", res.data.user.firstName);
+                sessionStorage.setItem("historic", res.data.user.historic);
+                sessionStorage.setItem("lastName", res.data.user.lastName);
+                sessionStorage.setItem("numberId", res.data.user.numberId);
+            })
+            .catch( error => {
+                alert(JSON.parse(error.request.response).error)
+            })
+        this.setState({
+            nom: "",
+            prenom: "",
+            abon: false,
+            genre: "",
+            email: "",
+            isValidEmail: false,
+            mdp: "",
+            afficher: false,
+            isValidPassword: false,
+            creation: true,
+            image: null,
+        });
+ 
+    }
+   
+  
     async envoi2(e) {
         e.preventDefault();
-        if (this.state.email.trim() === "" || this.state.mdp.trim() === "") {
-            alert("Veuillez remplir tous les champs obligatoires.");
+        if (
+            this.state.email.trim() === "" ||
+            this.state.mdp.trim() === ""
+        ) {
+            alert("Veuillez remplir tous les champs obligatoires");
             return;
         }
-        let number = 0;
-        for (let mail of this.state.emails) {
-            if (this.state.email === mail) {
-                this.setState({
-                    validEmail: true,
-                });
-                break;
-            } else {
-                number += 1;
-            }
-        }
-        if (number >= this.state.emails.length) {
-            alert(
-                "Votre nom d'utilisateur ou votre mot de passe ne correspond pas"
-            );
-            return;
-        }
-        if (bcrypt.compareSync(this.state.mdp, this.state.passwords[number])) {
-            this.setState({
-              validMdp: true,
-            });
-        } else {
-            alert("Votre identifiant ou votre mot de passe ne correspond pas");
-            return;
-        }
-        sessionStorage.setItem("email", this.state.email);
-        if (this.state.stay) {
-            Cookies.set("email", this.state.email);
-            Cookies.set("mdp", this.state.mdp);
-        }
-        if (!this.state.stay) {
-            this.deleteCookie("email");
-            this.deleteCookie("msp");
-        }
+        const baseURL = `https://192.168.184.122:1234/users/connect`;
+        const data = JSON.stringify({
+            'email':this.state.email,
+            'password':this.state.mdp
+        });
+        console.log(data);
+        const headers = {
+            'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
+            'Access-Control-Allow-Origin':'*',
+        };
+        axios.post(baseURL,data,{ headers })
+            .then(res => {
+                console.log(res.data)
+                console.log(res.data.user.historic)
+                sessionStorage.setItem("email", res.data.user.email);
+                sessionStorage.setItem("admin", res.data.user.admin);
+                sessionStorage.setItem("id", res.data.user._id);
+                sessionStorage.setItem("firstName", res.data.user.firstName);
+                sessionStorage.setItem("historic", res.data.user.historic);
+                sessionStorage.setItem("lastName", res.data.user.lastName);
+                sessionStorage.setItem("numberId", res.data.user.numberId);
+                this.setState({logged:true})
+            })
+            .catch(error => {
+                alert(JSON.parse(error.request.response).error)
+            })
+        
     }
     render() {
         
         // ! ---------- Changement de Page ----------//
 
         if (
-            this.state.creation ||
-            (this.state.validEmail && this.state.validMdp)
+            this.state.creation || this.state.logged
         ) {
             return <Navigate to="/Carte" />;
         }
@@ -590,8 +429,9 @@ class Login extends React.Component {
 
         return (
             <div className="lg-menu">
-                <PreLoader></PreLoader>
-                <div className="lg-formulaire">
+                <PreLoader></PreLoader> 
+                
+                <div className="lg-formulaire"> 
                     <div className="lg-inscription-connexion">
                         {/* Formulaire : Se Connecter */}
                         <form className="lg-formulaire-connexion" id="lg-forms">
@@ -624,24 +464,9 @@ class Login extends React.Component {
                                     </div>
                                 </label>
                                 <div className="lg-espace"></div>
-                                <a data-popup-ref="lg-monPopup"> Oops, un trou de mémoire? </a>
                             </div>
                             <input type="submit" onClick={this.envoi2}  name="identifier" className="lg-bouton"  value="Se connecter" />
-                            <p>Ou se connecter avec un reseau social</p>
-                            <div className="lg-reseau-sociaux">
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-twitter"></i>
-                                </a>
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-google"></i>
-                                </a>
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-instagram"></i>
-                                </a>
-                            </div>
+                            
                         </form>
                         {/* Formulaire : S'inscrire */}
                         <form name="sign-up" className="lg-formulaire-inscription" id="lg-form" >
@@ -701,40 +526,11 @@ class Login extends React.Component {
                                 </div>
                             </div>
                             <input  type="submit" className="lg-bouton"  onClick={this.envoi}  name="inscrire"  value="S'inscrire" id="lg-btn" />
-                            <p>Ou se connecter avec un reseau social</p>
-                            <div className="lg-reseau-sociaux">
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-twitter"></i>
-                                </a>
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-google"></i>
-                                </a>
-                                <a href="/" className="lg-icone">
-                                    <i className="fab fa-instagram"></i>
-                                </a>
-                            </div>
+                    
                         </form>
                     </div>
                     {/* Pop-up Mot de Passe Oublié */}
-                    <div className="lg-popup" data-popup-id="lg-monPopup">
-                        <div className="lg-popup-content">
-                            <span  className="lg-btn-close"  data-dismiss-popup >&times;</span>
-                            <form onSubmit={this.sendEmail} className="lg-contact_form"  method="post" >
-                                <h2>Mot de passe oublié</h2>
-                                <p>Entrez votre adresse e-mail pour recevoir instructions sur la façon de réinitialiser votre mot de passe.</p>
-                                <div className="lg-champ-de-saisie">
-                                    <i className="fas fa-envelope"></i>
-                                    <div className="lg-div">
-                                        <input type="email" name="emailRecup" onChange={this.handleChange} value={this.state.emailRecup} placeholder="Email" id="lg-emails" className="lg-input"  />
-                                    </div>
-                                </div>
-                                <input type="submit" className="lg-bouton" name="inscrire"  value="Envoyer" />
-                            </form>
-                        </div>
-                    </div>
+                   
                     <div className="lg-panneaux">
                         {/* Panneau Gauche : S'inscrire */}
                         <div className="lg-panneau lg-panneau-gauche">
@@ -750,7 +546,7 @@ class Login extends React.Component {
                             <div className="lg-contenu">
                                 <h3></h3>
                                 <p>{" "}</p>
-                                <button className="lg-bouton lg-transparent" id="lg-bouton-connexion" >S'inscrire</button>
+                                <button className="lg-bouton lg-transparent" id="lg-bouton-connexion" >Se connecter</button>
                             </div>
                             <img src={Logo} className="lg-image" alt="Beer" />
                         </div>
