@@ -177,8 +177,8 @@ const ProductCard = ({ product, userData }) => {
     const handleImageClick = () => {
       // Afficher le popup si administrateur
       if (userData && userData.admin) {
-        setShowPopup1(true);
-      } else setShowPopup(true);
+        setShowPopup(true);
+      } else setShowPopup1(true);
     };
   
     const onValidate = () => {
@@ -242,7 +242,7 @@ const ProductCard = ({ product, userData }) => {
         )}
         {/* Popup */}
         {showPopup1 && (
-            <div className="popup1-overlay">
+            <div className="popup1-overlay" >
                 <div className="popup1">
                 <span className="close" onClick={closePopup1}>
                     &times;
@@ -252,8 +252,7 @@ const ProductCard = ({ product, userData }) => {
                     <input
                         id="newProductName"
                         type="text"
-                        placeholder="Enter new name"
-                        value={newProductName}
+                        placeholder={newProductName}
                         onChange={handleNameChange}
                     />
                 </div>
@@ -263,8 +262,7 @@ const ProductCard = ({ product, userData }) => {
                     <input
                         id="adminput"
                         type="text"
-                        placeholder="Enter new quantity"
-                        value={inputValue}
+                        placeholder={inputValue}
                         onChange={handleInputChange}
                     />
                 </div>

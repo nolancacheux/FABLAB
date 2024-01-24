@@ -4,6 +4,7 @@ body{
   background-color: white;
 }
 
+/*-----Carte-----*/
 .product-container {
     display: flex;
     flex-wrap: wrap;
@@ -18,7 +19,7 @@ body{
     border-radius: 15px;
     position: relative;
     overflow: hidden;
-    width: calc(20% - 20px); /* Ajoutez cette ligne pour assurer une largeur fixe sur tous les écrans */
+    width: calc(20% - 20px);
 }
 
 .product-card::before {
@@ -60,18 +61,18 @@ body{
   padding:10%;
 }
 
-  .quantity-overlay {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 130%;
-    font-weight: bold;
-    }
+.quantity-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 130%;
+  font-weight: bold;
+}
   
   @media screen and (max-width: 780px) {
     .product-quantity {
@@ -79,7 +80,10 @@ body{
     }
   }
   
-  .popup-overlay {
+
+  /*----Popup----*/
+
+  .popup-overlay, .popup1-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -92,10 +96,19 @@ body{
     z-index: 1000;
   }
   
-  .popup,
-  .popup1 {
+  .popup{
     background: #fff;
     padding: 6%;
+    top: -9%;
+    border-radius: 8px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .popup1 {
+    background: #fff;
+    padding: 3%;
     top: -9%;
     border-radius: 8px;
     max-width: 600px;
@@ -118,7 +131,7 @@ body{
     align-items: center;
     background-color: black;
     border-radius: 50%;
-    width: 12%;
+    width: 14%;
     margin-left: -21%;
     margin-top: -11%;
   }
@@ -129,11 +142,15 @@ body{
     margin: 2% 0;
     padding: 1%;
     border: 1px solid #ccc;
-    border-radius: 2%;
-    font-size: 1.6vw;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    background-color: var(--gray-light);
+    border: 3px solid var(--gray-light);
+    font-size: 120%;
     width: 100%;
-    box-sizing: border-box;
     transition: border-color 0.3s ease;
+    padding-left: 3%;
   }
   
   #adminput:focus,
@@ -144,45 +161,24 @@ body{
   }
   
   #adminbnt {
-    padding: 2% 3%;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 2%;
-    cursor: pointer;
-    font-size: 1.8vw;
+    text-align: center;
+    background-color: var(--tertary);
+    width: 35%;
+    height: 10%;
+    border-radius: 25px;
+    margin-left: 30%;
+    padding :3%;
     transition: background-color 0.3s ease;
+    margin-top:8%;
   }
   
   #adminbnt:hover {
-    background-color: darkgreen;
-  }
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+    }
   
   #qrc {
     width: 100%;
-  }
-  
-  .popup1-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .popup1 {
-    background: #fff;
-    padding: 3%;
-    top: 0;
-    border-radius: 8px;
-    max-width: 600px;
-    position: relative;
-    z-index: 1001;
   }
   
   .container {
@@ -220,80 +216,6 @@ body{
     font-weight: bold;
   }
   
-  .pf-lst-coeur {
-    border-radius: 10px;
-    position: absolute;
-    margin-top: 38vh;
-    margin-left: 2.5vw;
-    width: 95vw;
-    height: 46vh;
-  }
-  
-  .pf-gauche {
-    width: 95vw;
-    height: 30vh;
-    margin-left: 2.5vw;
-    position: absolute;
-    background-color: white;
-    border-radius: 10px;
-  }
-  
-  .pf-nom {
-    font-size: 8vw;
-    margin-top: 11vh;
-    margin-left: 50vw;
-  }
-  
-  .pf-nbfav {
-    padding-top: 0.5vh;
-    text-align: center;
-    font-size: 4vw;
-  }
-  
-  .pf-nbfav {
-    padding-top: 0.5vh;
-    margin-left: 50vw;
-  }
-  
-
-@media screen and (max-width: 780px) {
-    .pf-lst-coeur{
-        border-radius: 10px;
-        position: absolute;
-        margin-top: 38vh;
-        margin-left: 2.5vw;
-        width: 95vw;
-        height:46vh;
-       
-
-    }
-    .pf-gauche{
-        width: 95vw;
-        height: 30vh;
-        margin-left: 2.5vw;
-        position: absolute;
-        background-color: white;
-        border-radius: 10px;
-    }
-    .pf-nom{
-        font-size: 8vw;
-        margin-top: 11vh;
-        margin-left: 50vw;
-    }
-    .pf-nbfav{
-        padding-top: 0.5vh;
-        text-align: center;
-        font-size: 4vw;
-    }
-    .pf-nbfav{
-        padding-top: 0.5vh;
-        margin-left: 50vw;
-       
-    }
-    .pf-imgjaune{
-        margin-top: 15%;
-    }
-}
 
 @media screen and (max-width: 1200px) {
     .product-card {
