@@ -78,27 +78,6 @@
     z-index: 1001;
 }
 
-.close-container {
-    position: absolute;
-    top: 5px; /* Ajustez la position verticale en conséquence */
-    right: 5px; /* Ajustez la position horizontale en conséquence */
-    cursor: pointer;
-}
-
-.close {
-    font-size: 24px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    margin-left: -25%; /* Ajustez la marge pour décaler légèrement la croix du cercle */
-    margin-top: -25%;
-}
-
 .container {
     display: flex;
     align-items: center;

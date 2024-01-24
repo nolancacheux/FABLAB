@@ -95,48 +95,53 @@ body{
     align-items: center;
     z-index: 1000;
   }
-  
-  .popup{
-    background: #fff;
-    padding: 6%;
-    top: -9%;
-    border-radius: 8px;
-    max-width: 600px;
-    position: relative;
-    z-index: 1001;
-  }
 
-  .popup1 {
-    background: #fff;
-    padding: 3%;
-    top: -9%;
-    border-radius: 8px;
-    max-width: 600px;
-    position: relative;
-    z-index: 1001;
-  }
-  
-  .close-container {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-  }
-  
-  .close {
-    font-size: 24px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    border-radius: 50%;
-    width: 14%;
-    margin-left: -21%;
-    margin-top: -11%;
-  }
-  
-  #adminput,
+.popup {
+  background: #fff;
+  padding: 6%;
+  top: -9%;
+  border-radius: 8px;
+  max-width: 600px;
+  position: relative;
+  z-index: 1001; /* Vous pouvez augmenter cette valeur */
+}
+
+.popup1 {
+  background: #fff;
+  padding: 3%;
+  top: -9%;
+  border-radius: 8px;
+  max-width: 600px;
+  position: relative;
+  z-index: 1001; /* Vous pouvez augmenter cette valeur */
+}
+
+.close-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1002; /* Assurez-vous que c'est plus élevé que z-index de .popup et .popup1 */
+}
+
+.close {
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tertary);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+
+#adminput,
   #newProductName,
   #newProductImage {
     margin: 2% 0;
