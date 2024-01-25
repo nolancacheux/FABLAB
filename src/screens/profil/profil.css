@@ -2,9 +2,18 @@
 .prf-card {
     background:var(--primary);
     border: none;
-    width: 33%;
-    margin-right: 20px;
+    width: 30%;
+    margin-right: 10px;
 }
+
+.tableau {
+    background:var(--primary);
+    border: none;
+    width: 67%;
+    margin-right: 10px;
+    background-color: white;
+}
+
 .prf-right-block {
     width: 100%;
     flex: 1;
@@ -67,7 +76,6 @@
 }
 .prf-back {
     padding: 15px 40px;
-    transform: rotateY(180deg);
     color: var(--primary);
     background: var(--secondary);
 }
@@ -116,9 +124,6 @@
 .prf-col p {
     margin-top: 5px;
 }
-.prf-card:hover .prf-card-inner {
-    transform: rotateY(180deg);
-}
 .prf-button-container {
     display: flex;
     margin-top: 15px;
@@ -160,7 +165,7 @@
 .prf-block ion-icon {
     font-size: 40px;
     margin-bottom: 8px;
-    animation: shake 2s infinite;
+    animation: shake 10s infinite;
 }
 .prf-block h3 {
     font-size: 18px;
@@ -268,4 +273,76 @@
     .prf-phone-only button{
         margin-bottom: 20px;
     }
+}
+
+/* Ajoutez ces styles à votre feuille de style existante */
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+     /* Ajoutez cette ligne pour arrondir les bords du tableau */
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Ajustez la marge intérieure selon vos besoins */
+    text-align: left;
+    border-radius: 30px; /* Ajoutez cette ligne pour arrondir les bords des cellules */
+    text-align: center;
+}
+
+.custom-table th {
+    background-color: #f2f2f2;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+.object-photo {
+    max-width: 66px; /* Ajustez la largeur maximale de la photo selon vos besoins */
+    border-radius: 5px;
+    display: block; 
+    margin: auto;
+}
+
+.object{
+    text-align: center;
+
+}
+
+.qqq {
+    width: 75%;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 35%;
+    height: 29%;
+    margin-left: -6%;
+    border-radius: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.download-button {
+    background-color: var(--tertary);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
