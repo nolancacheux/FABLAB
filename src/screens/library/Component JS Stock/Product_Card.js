@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { handleImageClick, handleInputChange, handleNameChange, onValidate } from "../Function";
+import { handleImageClick, handleInputChange, handleNameChange, onModificate } from "../Function";
 import QRCode from "react-qr-code";
-
+var imageName = '';
 const ImageUploader = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -18,7 +18,7 @@ const ImageUploader = () => {
 
     const formData = new FormData();
     formData.append("image", selectedFile);
-
+    imageName = selectedFile.name;
     try {
       const response = await axios.post("https://192.168.184.122:1234/stock/upload", formData, {
         headers: {
@@ -33,10 +33,10 @@ const ImageUploader = () => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Envoyer l'image</button>
-    </div>
+      <div>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload}>Envoyer l'image</button>
+      </div>
   );
 };
 
@@ -53,54 +53,54 @@ const ProductCard = ({ product, admin }) => {
   };
 
   return (
-    <div className="product-card">
-      <div className="product-image" onClick={() => handleImageClick(admin, setShowPopup, setShowPopup1)}>
-        <div className="quantity-overlay">
-          <div> Quantité : {product.quantity}</div>
+      <div className="product-card">
+        <div className="product-image" onClick={() => handleImageClick(admin, setShowPopup, setShowPopup1)}>
+          <div className="quantity-overlay">
+            <div> Quantité : {product.quantity}</div>
+          </div>
+          <img id="img" src={product.image} alt={product.name} />
+          <div className="product-name">{product.name}</div>
         </div>
-        <img id="img" src={product.image} alt={product.name} />
-        <div className="product-name">{product.name}</div>
+
+        {/* Popup */}
+        {showPopup && (
+            <div className="popup-overlay">
+              <div className="popup">
+            <span className="close" onClick={closePopup}>
+              &times;
+            </span>
+                <QRCode id="qrc" value="1234567" />
+              </div>
+            </div>
+        )}
+        {/* Popup */}
+        {showPopup1 && (
+            <div className="popup1-overlay">
+              <div className="popup1">
+            <span className="close" onClick={closePopup}>
+              &times;
+            </span>
+                <div>
+                  <label htmlFor="newProductName">Nouveau Nom:</label>
+                  <input id="newProductName" type="text" placeholder={newProductName} />
+                </div>
+
+                <div>
+                  <label htmlFor="adminput">Nouvelle Quantité:</label>
+                  <input id="adminput" type="text" placeholder={inputValue}/>
+                </div>
+
+                <div>
+                  <label htmlFor="newProductImage">Nouvelle Image URL:</label>
+                  <ImageUploader />
+                </div>
+                <button id="adminbnt" onClick={onModificate(showPopup1,imageName)}>
+                  Valider
+                </button>
+              </div>
+            </div>
+        )}
       </div>
-
-      {/* Popup */}
-      {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup">
-            <span className="close" onClick={closePopup}>
-              &times;
-            </span>
-            <QRCode id="qrc" value="1234567" />
-          </div>
-        </div>
-      )}
-      {/* Popup */}
-      {showPopup1 && (
-        <div className="popup1-overlay">
-          <div className="popup1">
-            <span className="close" onClick={closePopup}>
-              &times;
-            </span>
-            <div>
-              <label htmlFor="newProductName">Nouveau Nom:</label>
-              <input id="newProductName" type="text" placeholder={newProductName} onChange={handleNameChange} />
-            </div>
-
-            <div>
-              <label htmlFor="adminput">Nouvelle Quantité:</label>
-              <input id="adminput" type="text" placeholder={inputValue} onChange={handleInputChange} />
-            </div>
-
-            <div>
-              <label htmlFor="newProductImage">Nouvelle Image URL:</label>
-              <ImageUploader />
-            </div>
-            <button id="adminbnt" onClick={onValidate}>
-              Valider
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
   );
 };
 

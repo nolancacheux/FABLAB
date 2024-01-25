@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import axios from 'axios';
+
 export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
     console.log("dnejdnjiqzdiqdiqzd")
     // Afficher le popup si administrateur
@@ -10,71 +11,98 @@ export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
     }
 };
 
-export const onValidate = () => {
-    const numericValue = parseFloat(inputValue);
-    console.log(numericValue);
-    if (!isNaN(numericValue)) {
-        console.log('Nouveau Stock :', numericValue);
-        setShowPopup1(false);
-    } else {
-        alert('Valeur Fausse Entrer un Nombre');
-    }
-};
 
-export const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-};
-
-export const handleNameChange = (event) => {
-    setNewProductName(event.target.value);
-};
-
-export const handleImageChange = (event) => {
+export const handleImageChange = (event, setSelectedFile) => {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
-            setNewProductImage(reader.result);
+            setSelectedFile(file);
         };
         reader.readAsDataURL(file);
     }
 };
 
-export const ImageUploader = () => {
-    const [selectedFile, setSelectedFile] = useState(null);
-  
+export const onValidate = async (showPopup1, imageName) => {
+    try {
+        console.log(document.getElementById('newProductName').value);
+        if (document.getElementById('newProductName').value != null) {
+            const requestData = {
+                name: document.getElementById('newProductName').value.toString(),
+                quantity: document.getElementById('adminput').value.toString(),
+                image1: imageName,
+            };
+
+            const response = await axios.post('https://192.168.184.122:1234/stock/register1', requestData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log('Ajout réussi!');
+            } else {
+                console.error('Erreur lors de l\'inscription.');
+            }
+
+            showPopup1 = false;
+        } else {
+            alert('Valeur Fausse Entrer un Nombre');
+        }
+    } catch (error) {
+        console.error('An unexpected error occurred:', error);
+    }
+    return showPopup1;
+};
+
+export const onModificate = async (showPopup1, imageName) => {
+    try {
+        console.log(document.getElementById('newProductName').value);
+        if (document.getElementById('newProductName').value != null) {
+            const requestData = {
+                name: document.getElementById('newProductName').value.toString(),
+                quantity: document.getElementById('adminput').value.toString(),
+                image1: imageName,
+            };
+
+            const response = await axios.post('https://192.168.184.122:1234/stock/modif1', requestData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log('Ajout réussi!');
+            } else {
+                console.error('Erreur lors de l\'inscription.');
+            }
+
+            showPopup1 = false;
+        } else {
+            alert('Valeur Fausse Entrer un Nombre');
+        }
+    } catch (error) {
+        console.error('An unexpected error occurred:', error);
+    }
+    return showPopup1;
+};
+
+
+const ImageUploader = ({ setSelectedFile }) => {
     const handleFileChange = (event) => {
-      setSelectedFile(event.target.files[0]);
+        setSelectedFile(event.target.files[0]);
     };
-  
+
     const handleUpload = async () => {
-      if (!selectedFile) {
-        console.error('Veuillez sélectionner un fichier.');
-        return;
-      }
-  
-      const formData = new FormData();
-      formData.append('image', selectedFile);
-  
-      try {
-        const response = await axios.post('https://192.168.184.122:1234/stock/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-  
-        console.log('Réponse du serveur:', response.data);
-      } catch (error) {
-        console.error('Erreur lors de l\'envoi de l\'image:', error.message);
-      }
+        // Your image upload logic here
     };
-  
+
     return (
-      <div>
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload}>Envoyer l'image</button>
-      </div>
+        <div>
+            <input type="file" onChange={handleFileChange} />
+            <button onClick={handleUpload}>Envoyer l'image</button>
+        </div>
     );
-  };
-  
-  export default ImageUploader;
+};
+
+export default ImageUploader;
