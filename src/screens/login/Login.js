@@ -19,22 +19,22 @@ class Login extends React.Component {
         this.buttonRef = React.createRef();
         var first = undefined
         var second = undefined
-        if(sessionStorage.getItem("scan-login") != undefined){
-            if(sessionStorage.getItem("scan-login").length > 0){
+        if (sessionStorage.getItem("scan-login") != undefined) {
+            if (sessionStorage.getItem("scan-login").length > 0) {
                 sessionStorage.getItem("scan-login")
                 const phrase = sessionStorage.getItem("scan-login")
 
-                first = phrase.substring(1,phrase.search("/"))
-                second = phrase.substring(phrase.search("/")+1,phrase.length-1)
-                
+                first = phrase.substring(1, phrase.search("/"))
+                second = phrase.substring(phrase.search("/") + 1, phrase.length - 1)
+
             }
         }
         this.state = {
             nom: "",
             prenom: "",
-            email: first!=undefined?first:"",
+            email: first != undefined ? first : "",
             isValidEmail: false,
-            mdp: second!=undefined?second:"",
+            mdp: second != undefined ? second : "",
             afficher: false,
             isValidPassword: false,
             stay: false,
@@ -45,7 +45,7 @@ class Login extends React.Component {
             validEmail: false,
             validMdp: false,
             emailRecup: "",
-            logged:false,
+            logged: false,
             image: null,
         };
         this.handleChange = this.handleChange.bind(this);
@@ -59,11 +59,11 @@ class Login extends React.Component {
         this.deleteCookie = this.deleteCookie.bind(this);
 
 
-        
-        
+
+
     }
 
-    
+
     checkCookieExists(cookieName) {
         var cookies = document.cookie.split(";");
 
@@ -83,25 +83,25 @@ class Login extends React.Component {
     }
 
 
-    
+
 
     // ! ---------- Animation changement de page ----------//
-    
+
     componentDidMount() {
 
         if (this.buttonRef.current) {
             // Déclencher automatiquement le clic sur le bouton
-            
-            if(this.state.email != "" && this.state.mdp != ""){
+
+            if (this.state.email != "" && this.state.mdp != "") {
                 console.log("ok")
                 this.buttonRef.current.click();
-                sessionStorage.setItem("scan-login","")
-                this.setState({email:"",mdp:""})
+                sessionStorage.setItem("scan-login", "")
+                this.setState({ email: "", mdp: "" })
             }
-            
+
         }
         const bouton_connexion = document.querySelector("#lg-bouton-connexion");
-        const bouton_inscription = document.querySelector( "#lg-bouton-inscription" );
+        const bouton_inscription = document.querySelector("#lg-bouton-inscription");
         const menu = document.querySelector(".lg-menu");
 
         bouton_inscription.addEventListener("click", () => {
@@ -135,18 +135,18 @@ class Login extends React.Component {
 
         const passwords = document.querySelectorAll(".lg-div.lg-mdp");
         passwords.forEach(password => {
-          const passField = password.querySelector("input");
-          const showBtn = password.querySelector(".show_hide");
-        
-          showBtn.onclick = function () {
-            if (passField.type === "password") {
-              passField.type = "text";
-              showBtn.classList.add("active");
-            } else { 
-              passField.type = "password";
-              showBtn.classList.remove("active");
+            const passField = password.querySelector("input");
+            const showBtn = password.querySelector(".show_hide");
+
+            showBtn.onclick = function () {
+                if (passField.type === "password") {
+                    passField.type = "text";
+                    showBtn.classList.add("active");
+                } else {
+                    passField.type = "password";
+                    showBtn.classList.remove("active");
+                }
             }
-          }
         });
 
         // ! ---------- Vérification Mot de passe (niveau de sécurisation) ----------//
@@ -156,7 +156,7 @@ class Login extends React.Component {
         const iconText = document.getElementsByClassName("lg-icon-text")[0];
         const text = document.getElementsByClassName("lg-text")[0];
         const input = document.getElementById("lg-password");
-        const faExclamationCircle = document.getElementById( "lg-exclamation-circle-for-pass" );
+        const faExclamationCircle = document.getElementById("lg-exclamation-circle-for-pass");
         const SaisieMotDePasse = document.getElementById("lg-SaisieMotDePasse");
         const cadenas = document.getElementById("lg-cadenas");
         let alphabet = /[a-zA-Z]/,
@@ -208,7 +208,7 @@ class Login extends React.Component {
             }
         });
 
-               
+
     }
 
     //! ---------- Vérification formulaire (message d'erreur) ----------//
@@ -226,7 +226,7 @@ class Login extends React.Component {
         const message = document.getElementsByClassName("lg-message");
         const sucess = document.getElementsByClassName("sucess");
         const error = document.getElementsByClassName("error");
-        const SaisieMotDePasses = document.getElementById( "lg-SaisieMotDePasse" );
+        const SaisieMotDePasses = document.getElementById("lg-SaisieMotDePasse");
         const Input = document.getElementById("lg-password");
         const cadenass = document.getElementById("lg-cadenas");
         const showHides = document.getElementsByClassName("show_hide")[0];
@@ -322,7 +322,7 @@ class Login extends React.Component {
             email
         );
     }
-    
+
     // ! ---------- Changer Mdp & mail ----------//
 
     handleChange(e) {
@@ -334,28 +334,28 @@ class Login extends React.Component {
         });
     }
 
-    
+
     mailChange(e) {
-        const email = e.target.value; 
-        const myRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+        const email = e.target.value;
+        const myRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const isValidEmail = myRegex.test(email);
         this.setState({
             email: email,
             isValidEmail: isValidEmail,
         });
     }
-    
+
     passwordChange(e) {
-        const pass = e.target.value; 
+        const pass = e.target.value;
         const myRegex =
-        /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+            /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
         const isValidPassword = myRegex.test(pass);
         this.setState({
             mdp: pass,
             isValidPassword: isValidPassword,
         });
     }
-    
+
     // ! ---------- Envoyer le formulaire ----------//
 
     async envoi(e) {
@@ -369,30 +369,48 @@ class Login extends React.Component {
             alert("Veuillez remplir tous les champs obligatoires");
             return;
         }
-        
-      // Suite de votre code ici après la mise à jour de l'état
-      
+
+        // Suite de votre code ici après la mise à jour de l'état
+
         const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/register`;
         const data = JSON.stringify(this.state);
         console.log(data);
         const headers = {
             'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
-            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Origin': '*',
         };
-        axios.post(baseURL,data,{ headers })
+
+        console.log("avant la requete ")
+
+        axios.post(baseURL, data, { headers })
             .then(res => {
                 console.log(res.data)
                 sessionStorage.setItem("email", res.data.user.email);
                 sessionStorage.setItem("admin", res.data.user.admin);
                 sessionStorage.setItem("id", res.data.user._id);
                 sessionStorage.setItem("firstName", res.data.user.firstName);
-                sessionStorage.setItem("historic", res.data.user.historic);
+                
+                // Convertir le tableau en chaîne JSON
+                var historicJSON = 
+                {
+                    "historic":res.data.user.historic
+                }
+                console.log(historicJSON)
+
+                // Stocker la chaîne JSON dans le sessionStorage
+                sessionStorage.setItem('historic', historicJSON);
+
                 sessionStorage.setItem("lastName", res.data.user.lastName);
                 sessionStorage.setItem("numberId", res.data.user.numberId);
+
             })
-            .catch( error => {
+            .catch(error => {
                 alert(JSON.parse(error.request.response).error)
             })
+
+        console.log("Après la requête");
+
+        
         this.setState({
             nom: "",
             prenom: "",
@@ -406,12 +424,12 @@ class Login extends React.Component {
             creation: true,
             image: null,
         });
- 
-    }
-   
-  
 
-    
+    }
+
+
+
+
     async envoi2(e) {
         e.preventDefault();
         if (
@@ -421,17 +439,18 @@ class Login extends React.Component {
             alert("Veuillez remplir tous les champs obligatoires");
             return;
         }
-        const baseURL = `https://192.168.184.122:1234/users/connect`;
+        const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/connect`;
         const data = JSON.stringify({
-            'email':this.state.email,
-            'password':this.state.mdp
+            'email': this.state.email,
+            'password': this.state.mdp
         });
+        
         console.log(data);
         const headers = {
             'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
-            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Origin': '*',
         };
-        axios.post(baseURL,data,{ headers })
+        axios.post(baseURL, data, { headers })
             .then(res => {
                 console.log(res.data)
                 console.log(res.data.user.historic)
@@ -439,25 +458,36 @@ class Login extends React.Component {
                 sessionStorage.setItem("admin", res.data.user.admin);
                 sessionStorage.setItem("id", res.data.user._id);
                 sessionStorage.setItem("firstName", res.data.user.firstName);
+
+         
                 sessionStorage.setItem("historic", res.data.user.historic);
                 sessionStorage.setItem("lastName", res.data.user.lastName);
                 sessionStorage.setItem("numberId", res.data.user.numberId);
-                this.setState({logged:true})
+
+                var historicJSON = 
+                    {
+                        "historic":res.data.user.historic
+                    }
+                    var historicJSON = JSON.stringify(res.data.user.historic);
+                    sessionStorage.setItem('historic', historicJSON);
+                    
+                    
+                this.setState({ logged: true })
             })
             .catch(error => {
                 alert(JSON.parse(error.request.response).error)
             })
-        
+
     }
     render() {
-        
+
         // ! ---------- Changement de Page ----------/
         if (
             this.state.creation || this.state.logged
         ) {
             return <Navigate to="/Carte" />;
         }
-        if(this.state.qrc){
+        if (this.state.qrc) {
             <Navigate to="/Scanner" />;
         }
 
@@ -465,9 +495,9 @@ class Login extends React.Component {
 
         return (
             <div className="lg-menu">
-                <PreLoader></PreLoader> 
-                
-                <div className="lg-formulaire"> 
+                <PreLoader></PreLoader>
+
+                <div className="lg-formulaire">
                     <div className="lg-inscription-connexion">
                         {/* Formulaire : Se Connecter */}
                         <form className="lg-formulaire-connexion" id="lg-forms">
@@ -475,13 +505,13 @@ class Login extends React.Component {
                             <div className="lg-champ-de-saisie">
                                 <i className="fas fa-envelope"></i>
                                 <div className="lg-div">
-                                    <input type="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" className="lg-input"/>
+                                    <input type="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" className="lg-input" />
                                 </div>
                             </div>
                             <div className="lg-champ-de-saisie">
                                 <i className="fas fa-lock"></i>
                                 <div className="lg-div lg-mdp">
-                                    <input type="password"  name="mdp" onChange={this.handleChange} value={this.state.mdp} spellCheck="false" placeholder="Mot de passe" className="lg-input"/>
+                                    <input type="password" name="mdp" onChange={this.handleChange} value={this.state.mdp} spellCheck="false" placeholder="Mot de passe" className="lg-input" />
                                     <span className="lg-show-btn">
                                         <i className="fas fa-eye show_hide"></i>
                                     </span>
@@ -499,17 +529,17 @@ class Login extends React.Component {
                                         </label>
                                         <Link to={`/Scanner`}>
                                             <div id='qr-connect' onClick={this.qr_connect}>
-                                                    Connexion QR
-                                                    <ion-icon name="qr-code-outline"></ion-icon>
+                                                Connexion QR
+                                                <ion-icon name="qr-code-outline"></ion-icon>
                                             </div>
                                         </Link>
-                                        
+
                                     </div>
                                 </label>
                                 <div className="lg-espace"></div>
                             </div>
-                            <input type="submit" onClick={this.envoi2}  ref={this.buttonRef} o name="identifier" className="lg-bouton"  value="Se connecter" />
-                            
+                            <input type="submit" onClick={this.envoi2} ref={this.buttonRef} o name="identifier" className="lg-bouton" value="Se connecter" />
+
                         </form>
                         {/* Formulaire : S'inscrire */}
                         <form name="sign-up" className="lg-formulaire-inscription" id="lg-form" >
@@ -556,7 +586,7 @@ class Login extends React.Component {
                             <div className="lg-champ-de-saisie" id="lg-SaisieMotDePasse" >
                                 <i className="fas fa-lock" id="lg-cadenas"></i>
                                 <div className="lg-div lg-mdp">
-                                    <input type="password" spellCheck="false"  name="mdp" placeholder="Mot de passe" className="lg-input" id="lg-password"  onChange={this.passwordChange} />
+                                    <input type="password" spellCheck="false" name="mdp" placeholder="Mot de passe" className="lg-input" id="lg-password" onChange={this.passwordChange} />
                                     <span className="lg-show-btn">
                                         <i className="fas fa-eye show_hide"></i>
                                     </span>
@@ -568,12 +598,12 @@ class Login extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <input  type="submit" className="lg-bouton"  onClick={this.envoi}  name="inscrire"  value="S'inscrire" id="lg-btn" />
-                    
+                            <input type="submit" className="lg-bouton" onClick={this.envoi} name="inscrire" value="S'inscrire" id="lg-btn" />
+
                         </form>
                     </div>
                     {/* Pop-up Mot de Passe Oublié */}
-                   
+
                     <div className="lg-panneaux">
                         {/* Panneau Gauche : S'inscrire */}
                         <div className="lg-panneau lg-panneau-gauche">
