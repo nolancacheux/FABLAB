@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {handleImageChange, handleImageClick, handleInputChange, handleNameChange} from "../Function";
 import ImageAdd from "../Images Compo/addsymbole.png";
-import config from "../../../configip.js"
+import {Refresh} from "react-ionicons";
 var imageName = '';
 const ImageUploader = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -21,7 +21,7 @@ const ImageUploader = () => {
         formData.append("image", selectedFile);
         imageName = selectedFile.name
         try {
-            const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/upload`, formData, {
+            const response = await axios.post("https://10.224.1.225:1234/stock/upload", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -41,6 +41,9 @@ const ImageUploader = () => {
     );
 };
 
+const reloadPage = () => {
+    window.location.reload(true);
+};
 
 const Add_Compo = ({admin}) => {
     const [showPopup, setShowPopup] = useState(false);
@@ -62,7 +65,7 @@ const Add_Compo = ({admin}) => {
                 };
                 console.log(requestData);
 
-                const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/register1`, requestData, {
+                const response = await axios.post('https://10.224.1.225:1234/stock/register1', requestData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -70,10 +73,10 @@ const Add_Compo = ({admin}) => {
 
                 if (response.status === 200) {
                     console.log('Ajout réussi!');
+                    reloadPage();
                 } else {
                     console.error('Erreur lors de l\'inscription.');
                 }
-
                 setShowPopup1(false);
             } else {
                 alert('Valeur Fausse Entrer un Nombre');

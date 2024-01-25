@@ -22,7 +22,6 @@ body{
     width: calc(20% - 20px);
 }
 
-
 .product-card::before {
     content: '';
     position: absolute;
@@ -48,14 +47,13 @@ body{
   
   .product-name {
     position: absolute;
-  top: 5%;
-  width: 100%;
-  text-align: right;
-  transform: translateX(-50%);
-  color: black;
-  font-size: 120%;
-  font-weight: bold;
-  margin-left: 10%;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    transform: translateX(-50%);
+    color: black;
+    font-size: 120%;
+    font-weight: bold;
   }
   
 #img{
@@ -177,6 +175,7 @@ body{
     padding :3%;
     transition: background-color 0.3s ease;
     margin-top:8%;
+    border: solid 3px white;
   }
   
   #adminbnt:hover {

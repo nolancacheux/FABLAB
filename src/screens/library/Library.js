@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
-import ImageBackground from "./Images Compo/interrupteur+en+t.png";
-import ImageBackground2 from "./Images Compo/ampli+lc+2,3-18+v.png";
-import ImageBackground3 from "./Images Compo/amplificateur+af+18v.png";
-import ImageBackground4 from "./Images Compo/condensateur+chimique+bizarre.png";
-import ImageBackground5 from "./Images Compo/condensateur+chimique+bleu.png";
 import "./library.css"
 import ProductCard from "./Component JS Stock/Product_Card";
 import Add_Compo from "./Component JS Stock/Add_Compo";
 import axios from "axios";
-import config from "../../configip.js"
 
 const ProduitList = ({ admin }) => {
     const [produits1, setProduits1] = useState([]);
@@ -19,7 +13,7 @@ const ProduitList = ({ admin }) => {
     useEffect(() => {
         const fetchProduits1 = async () => {
             try {
-                const response = await axios.get(`https://${config.ipserveur}:${config.portserveur}/stock/getAllProduit1`);
+                const response = await axios.get('https://10.224.1.225:1234/stock/getAllProduit1');
                 setProduits1(response.data.produits1);
                 setLoading(false);
             } catch (error) {
@@ -39,11 +33,12 @@ const ProduitList = ({ admin }) => {
             ) : (
                 <div className="product-container">
                     {produits1.map((produit) => (
-                        <ProductCard key={produit._id}
+                        <ProductCard key={produit.numberId}
                                 product={{
                                     name: produit.name,
                                     quantity: produit.quantity,
-                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                    image: `https://10.224.1.225:1234/uploads/${produit.image1}`,
+                                    iD: produit.numberId
                                 }}
                                 admin={admin}
                         />
@@ -59,35 +54,8 @@ const ProduitList = ({ admin }) => {
 
 
 
-
 const Library = () => {
-
-
-    /*const data = JSON.stringify({
-        'nom':"Ampli lc 2,3-18V",
-        'prenom':"Baum",
-        'email':"mattbaum288@gmail.com",
-        'mdp':"ampli+lc+2,3-18+v.png"
-    });
-
-    const baseURL = "https://192.168.184.122:1234/users/register";
-    console.log(data);
-    const headers = {
-        'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
-        'Access-Control-Allow-Origin':'*',
-    };
-    axios.post(baseURL,data,{ headers })
-        .then(res => {
-            console.log(res.data)
-        })
-
-  const getconnexion = sessionStorage.getItem("email");
-
-  if (getconnexion == undefined) {
-      window.location.href = "/";
-      alert("Vous n'êtes pas connecté");
-  }else;*/
-    let admin=true;
+    let admin=false;
     return (
         <div>
             <Header icon={"print-outline"}
@@ -97,7 +65,6 @@ const Library = () => {
             ></Header>
             <section>
                 <ProduitList admin={admin}/>
-                
             </section>
             <Navigation
                 library={true}
