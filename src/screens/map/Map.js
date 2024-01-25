@@ -239,7 +239,7 @@ class Map extends React.Component {
         
       <div className="content-container">
       <div className="tableau-container">
-        <h1 style={{fontSize: "2rem",marginLeft: "13%",  fontWeight: "bold", marginBottom: "20px" }}>Nos horaires</h1>
+        <h1 style={{fontSize: "2rem",marginLeft: "23%",  fontWeight: "bold", marginBottom: "20px" }}>Nos horaires</h1>
 
         <table className="tableau-horaires">
           <thead>
@@ -276,7 +276,7 @@ class Map extends React.Component {
         </table>
       </div>
         <div className="youtube-container">
-        <h1 style={{fontSize: "2rem",marginLeft: "13%",  fontWeight: "bold", marginBottom: "20px" }}>Le fablab</h1>
+        <h1 style={{fontSize: "2rem",marginLeft: "36%",  fontWeight: "bold", marginBottom: "20px" }}>Le fablab</h1>
 
           <iframe
             width="450"  // Largeur réduite

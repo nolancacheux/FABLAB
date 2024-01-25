@@ -455,7 +455,7 @@ class Login extends React.Component {
         if (
             this.state.creation || this.state.logged
         ) {
-            return <Navigate to="/Carte" />;
+            return <Navigate to="/Accueil" />;
         }
         if(this.state.qrc){
             <Navigate to="/Scanner" />;

@@ -1,52 +1,131 @@
-.mycard {
-  height: 100%;
-  width: 100%;
-  max-width: 24rem;
+@media screen and (max-width: 500px) {
+
+  .testimonials {
+    display: flex;
+    margin-left: 15%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 300px;
+    perspective: 241px;
+    overflow: hidden;
 }
-.cardtitle {
-  font-weight: bold;
-  --tw-text-opacity: 1;
-  color: red;
-  text-align: center;
+  
+  .mycard {
+      max-width: 100%; /* S'adapte à la largeur de l'écran */
+  }
+
+  .cardtitle {
+      /* Les styles restent les mêmes, car ils sont déjà centrés et réactifs */
+  }
+
+  .cardimg {
+      max-height: 4rem; /* Réduire la taille pour les petits écrans */
+      margin-top: 1.75rem;
+      margin-bottom: 1.75rem;
+  }
+
+  .carddescription {
+      /* Les styles restent les mêmes, car ils sont déjà centrés et réactifs */
+  }
+
+  .slider {
+      min-height: auto; /* S'adapte au contenu à l'intérieur */
+  }
+  .titre-horaires {
+      font-size: 18px; /* Réduire la taille de la police pour les petits écrans */
+  }
+
+  .tableau-horaires th,
+  .tableau-horaires td {
+      width: 4px; /* Réduire le padding pour les petits écrans */
+  }
+
+  .content-container {
+      flex-direction: column; /* Empiler verticalement sur les petits écrans */
+  }
+
+  .youtube-container {
+      width: 100%; /* S'adapte à la largeur de l'écran */
+      height: auto; /* S'adapte au contenu à l'intérieur */
+  }
+
+  .testimonials .item {
+      width: 100%; /* S'adapte à la largeur de l'écran */
+      max-width: 100%; /* Assure que la largeur ne dépasse pas l'écran */
+      transform: none; /* Supprime les transformations pour les petits écrans */
+  }
+
+  .testimonials .item img {
+      /* Les styles restent les mêmes, car ils sont déjà adaptatifs */
+  }
+
+  .testimonials .item p,
+  .testimonials .item h2 {
+      font-size: 12px; /* Réduire la taille de la police pour les petits écrans */
+  }
+
+  .dots label {
+      margin: 5px; /* Réduire la marge pour les petits écrans */
+  }
+
+  .tableau-container {
+    margin-left: 10%;
+    text-align: left; /* Alignement à droite */
+  }
+  
+  
+.tableau-horaires th {
+  background-color: #0493c3; /* Rouge atténué pour les en-têtes */
+  color: white;
+  font-size: 11px;
+  padding: 3px;
 }
-.cardimg {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2.75rem;
-  margin-bottom: 2.75rem;
-  max-height: 6rem;
-  border-radius: 9999px;
+
+.tableau-horaires td {
+  margin-left: 0 auto;
+  font-size: 11px;
+  border: 1px solid #ddd;
 }
-.carddescription {
-  --tw-text-opacity: 1;
-  color: rgba(0, 0, 0, 0.79);
-  text-align: center;
+
+.youtube-container {
+  flex-shrink: 0; /* Empêche le conteneur de rétrécir */
+  height: 269px; /* Hauteur du conteneur */
 }
+
+.tableau-horaires tr:nth-child(even){background-color: #f2f2f2;}
 .slider {
   width: 100%;
 
   min-height: 385px;
 }
-.slider input {
-  display: none;
+.youtube-container {
+  flex-shrink: 0; /* Empêche le conteneur de rétrécir */
+  height: 269px; /* Hauteur du conteneur */
 }
+}
+
+@media screen and (min-width: 500px) {
+
+  .testimonials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 300px;
+    perspective: 350px;
+    overflow: hidden;
+  }
+  .youtube-container {
+    flex-shrink: 0; /* Empêche le conteneur de rétrécir */
+    width: 550px; /* Largeur du conteneur */
+    height: 269px; /* Hauteur du conteneur */
+  }
 .tableau-container {
   margin-left: 50px;
   text-align: left; /* Alignement à droite */
 }
 
-.titre-horaires {
-  font-size: 24px;
-  font-weight: bold;
-  color: #d35400; /* Couleur personnalisée pour le titre */
-  margin-bottom: 10px;
-  display: inline-block; /* Pour aligner le titre avec le tableau */
-}
-
-.tableau-horaires {
-  border-collapse: collapse;
-  width: auto; /* Largeur adaptée au contenu */
-}
 
 .tableau-horaires th {
   background-color: #0493c3; /* Rouge atténué pour les en-têtes */
@@ -60,6 +139,50 @@
 }
 
 .tableau-horaires tr:nth-child(even){background-color: #f2f2f2;}
+.slider {
+  width: 100%;
+
+  min-height: 385px;
+}
+}
+
+.titre-horaires {
+  font-size: px;
+  font-weight: bold;
+  color: #d35400; /* Couleur personnalisée pour le titre */
+  margin-bottom: 10px;
+  display: inline-block; /* Pour aligner le titre avec le tableau */
+}
+
+
+
+.mycard {
+  height: 100%;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.cardtitle {
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: red;
+  text-align: center;
+}
+
+
+.cardimg {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.75rem;
+  margin-bottom: 2.75rem;
+  max-height: 6rem;
+  border-radius: 9999px;
+}
+.carddescription {
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, 0.79);
+  text-align: center;
+}
 
 .content-container {
   display: flex;
@@ -67,24 +190,11 @@
   align-items: start;
 }
 
-.youtube-container {
-  flex-shrink: 0; /* Empêche le conteneur de rétrécir */
-  width: 570px; /* Largeur du conteneur */
-  height: 269px; /* Hauteur du conteneur */
-}
-
 /* Styles existants pour .tableau-horaires et autres */
-
-
-.testimonials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  min-height: 300px;
-  perspective: 350px;
-  overflow: hidden;
+.slider input {
+  display: none;
 }
+
 .testimonials .item {
   max-width: 15rem;
   border-radius: 1.5rem;

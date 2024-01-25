@@ -20,6 +20,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 75px;
 }
+
+@media screen and (min-width: 500px) {
 h1,
 h2,
 h3,
@@ -30,6 +32,17 @@ h6 {
   padding: 0;
   line-height: normal;
 }
+}
+@media screen and (max-width: 500px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 5%;
+  line-height: normal;
+}}
 p,
 a,
 li,
