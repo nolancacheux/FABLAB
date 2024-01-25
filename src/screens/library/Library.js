@@ -10,10 +10,55 @@ import "./library.css"
 import ProductCard from "./Component JS Stock/Product_Card";
 import Add_Compo from "./Component JS Stock/Add_Compo";
 import axios from "axios";
+
+const ProduitList = (admin) => {
+    const [produits1, setProduits1] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProduits1 = async () => {
+            try {
+                const response = await axios.get('https://192.168.184.122:1234/stock/getAllProduit1');
+                setProduits1(response.data.produits1);
+                setLoading(false);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des produits:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchProduits1();
+    }, []);
+
+    return (
+        <div>
+            <h1>Liste des Produits1</h1>
+            {loading ? (
+                <p>Chargement en cours...</p>
+            ) : (
+                <ul>
+                    {produits1.map((produit) => (
+                        <li key={produit._id}>
+                            <ProductCard
+                            product={{
+                                name: produit.name,
+                                quantity: produit.quantity,
+                                image: "https://192.168.184.122:1234/uploads/" + produit.image1
+                            }}
+                            admin={admin}
+                            />
+                                </li>
+                                ))}
+                        </ul>
+                    )}
+                </div>
+            );
+};
+
 const Library = () => {
      
 
-      const data = JSON.stringify({
+      /*const data = JSON.stringify({
           'nom':"Ampli lc 2,3-18V",
           'prenom':"Baum",
           'email':"mattbaum288@gmail.com",
@@ -36,7 +81,7 @@ const Library = () => {
     if (getconnexion == undefined) {
         window.location.href = "/";
         alert("Vous n'êtes pas connecté");
-    }else;
+    }else;*/
   let admin=true;
   return (
       <div>
@@ -46,6 +91,7 @@ const Library = () => {
           destination = '/Machine'
           ></Header>
           <section>
+              <ProduitList admin={admin}/>
               <div className="product-container">
                   <ProductCard
                       product={{
@@ -168,4 +214,4 @@ const Library = () => {
   );
 };
   
-  export default Library;
+export default Library;

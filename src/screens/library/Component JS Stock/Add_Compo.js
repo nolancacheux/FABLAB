@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {handleImageChange, handleImageClick, handleInputChange, handleNameChange, onValidate} from "../Function";
+import {handleImageChange, handleImageClick, handleInputChange, handleNameChange} from "../Function";
 import ImageAdd from "../Images Compo/addsymbole.png";
 var imageName = '';
 const ImageUploader = () => {
@@ -49,6 +49,39 @@ const Add_Compo = ({admin}) => {
         setShowPopup1(false);
     };
 
+    const onValidate = async () => {
+        try {
+            console.log(document.getElementById('newProductName').value);
+            if (document.getElementById('newProductName').value != null) {
+                const requestData = {
+                    name: document.getElementById('newProductName').value.toString(),
+                    quantity: document.getElementById('adminput').value.toString(),
+                    image1: imageName,
+                };
+                console.log(requestData);
+
+                const response = await axios.post('https://192.168.184.122:1234/stock/register1', requestData, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.status === 200) {
+                    console.log('Ajout réussi!');
+                } else {
+                    console.error('Erreur lors de l\'inscription.');
+                }
+
+                setShowPopup1(false);
+            } else {
+                alert('Valeur Fausse Entrer un Nombre');
+            }
+        } catch (error) {
+            console.error('An unexpected error occurred:', error);
+        }
+    };
+
+
     return (
         <div className="product-card">
             <div className="product-image" onClick={() => handleImageClick(admin, setShowPopup, setShowPopup1)}>
@@ -80,7 +113,7 @@ const Add_Compo = ({admin}) => {
                             <label htmlFor="newProductImage">Nouvelle Image URL:</label>
                             <ImageUploader />
                         </div>
-                        <button id="adminbnt" onClick={onValidate(showPopup1,imageName)}>
+                        <button id="adminbnt" onClick={onValidate}>
                             Valider
                         </button>
                     </div>

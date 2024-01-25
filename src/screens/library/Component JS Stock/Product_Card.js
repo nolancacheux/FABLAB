@@ -3,6 +3,7 @@ import axios from "axios";
 import { handleImageClick, handleInputChange, handleNameChange, onModificate } from "../Function";
 import QRCode from "react-qr-code";
 var imageName = '';
+
 const ImageUploader = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -48,8 +49,18 @@ const ProductCard = ({ product, admin }) => {
   const [newProductImage, setNewProductImage] = useState(product.image);
 
   const closePopup = () => {
+    setNewProductName(String(newProductName));
+    setInputValue(String(inputValue));
     setShowPopup(false);
     setShowPopup1(false);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleNewProductNameChange = (event) => {
+    setNewProductName(event.target.value);
   };
 
   return (
@@ -82,19 +93,19 @@ const ProductCard = ({ product, admin }) => {
             </span>
                 <div>
                   <label htmlFor="newProductName">Nouveau Nom:</label>
-                  <input id="newProductName" type="text" placeholder={newProductName} />
+                  <input id="newProductName" type="text" value={String(newProductName)} onChange={handleNewProductNameChange}/>
                 </div>
 
                 <div>
                   <label htmlFor="adminput">Nouvelle Quantité:</label>
-                  <input id="adminput" type="text" placeholder={inputValue}/>
+                  <input id="adminput" type="text" value={String(inputValue)} onChange={handleInputChange}/>
                 </div>
 
                 <div>
                   <label htmlFor="newProductImage">Nouvelle Image URL:</label>
                   <ImageUploader />
                 </div>
-                <button id="adminbnt" onClick={onModificate(showPopup1,imageName)}>
+                <button id="adminbnt" onClick={onModificate}>
                   Valider
                 </button>
               </div>
