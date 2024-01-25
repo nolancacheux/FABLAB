@@ -32,27 +32,28 @@ const ProduitList = (admin) => {
 
     return (
         <div>
-            <h1>Liste des Produits1</h1>
+            <h1>Liste des Composants</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
             ) : (
-                <ul>
+                <div className="product-container">
                     {produits1.map((produit) => (
-                        <li key={produit._id}>
-                            <ProductCard
-                            product={{
-                                name: produit.name,
-                                quantity: produit.quantity,
-                                image: "https://192.168.184.122:1234/uploads/" + produit.image1
-                            }}
-                            admin={admin}
-                            />
-                                </li>
-                                ))}
-                        </ul>
+                        <ProductCard key={produit._id}
+                                     product={{
+                                         name: produit.name,
+                                         quantity: produit.quantity,
+                                         image: `https://10.224.1.225:1234/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                     }}
+                                     admin={admin}
+                        />
+                    ))}
+                    {admin && (
+                        <Add_Compo admin={admin}/>
                     )}
                 </div>
-            );
+            )}
+        </div>
+    );
 };
 
 const Machine = () => {

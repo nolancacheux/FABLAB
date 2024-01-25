@@ -175,6 +175,7 @@ body{
     padding :3%;
     transition: background-color 0.3s ease;
     margin-top:8%;
+    border: solid 3px white;
   }
   
   #adminbnt:hover {
