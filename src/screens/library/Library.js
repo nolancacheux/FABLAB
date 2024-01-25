@@ -20,13 +20,13 @@ const ProduitList = (admin) => {
             try {
                 const response = await axios.get('https://192.168.184.122:1234/stock/getAllProduit1');
                 setProduits1(response.data.produits1);
+
                 setLoading(false);
             } catch (error) {
                 console.error('Erreur lors de la récupération des produits:', error);
                 setLoading(false);
             }
         };
-
         fetchProduits1();
     }, []);
 
@@ -39,20 +39,22 @@ const ProduitList = (admin) => {
                 <ul>
                     {produits1.map((produit) => (
                         <li key={produit._id}>
+                            {console.log("https://192.168.184.122:1234/uploads/" + produit.image1)}
                             <ProductCard
                             product={{
+
                                 name: produit.name,
                                 quantity: produit.quantity,
                                 image: "https://192.168.184.122:1234/uploads/" + produit.image1
                             }}
                             admin={admin}
                             />
-                                </li>
-                                ))}
-                        </ul>
-                    )}
-                </div>
-            );
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
 };
 
 const Library = () => {
@@ -82,7 +84,7 @@ const Library = () => {
         window.location.href = "/";
         alert("Vous n'êtes pas connecté");
     }else;*/
-  let admin=true;
+  let admin=false;
   return (
       <div>
           <Header icon={"print-outline"} 
