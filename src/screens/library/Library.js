@@ -32,7 +32,7 @@ const ProduitList = ({ admin }) => {
 
     return (
         <div>
-            <h1>Liste des Produits1</h1>
+            <h1>Liste des Composants</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
             ) : (
