@@ -37,7 +37,7 @@ const Library = () => {
         window.location.href = "/";
         alert("Vous n'êtes pas connecté");
     }else;
-  let admin=false;
+  let admin=true;
   return (
       <div>
           <Header icon={"print-outline"} 
