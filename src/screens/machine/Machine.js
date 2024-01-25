@@ -9,7 +9,9 @@ import Add_Compo_Outils from "./Component JS Stock/Add_Compo_Outils.js";
 import Product_Card_Machine from "./Component JS Stock/Product_Card_Machine.js";
 import Add_Compo_Machine from "./Component JS Stock/Add_Compo_Machine.js";
 
-import exemple from "../../assets/images/diode.png";
+import perceuse from "../../assets/images/perceuse.png";
+import tournevis from "../../assets/images/tournevis.png";
+import marteau from "../../assets/images/marteau.png";
 
 import axios from "axios";
 
@@ -62,9 +64,31 @@ const ProduitList = (admin) => {
                                     name: "Perceuse sans fil",
                                     pret: "2024-01-20",
                                     nbJour: 3,
-                                    reserved: true,
+                                    reserved: false,
                                     is_late: false,
-                                    image: exemple,  
+                                    image: perceuse,  
+                                }}
+                                admin={admin}
+                        />
+                        <Product_Card_Outils key={2}
+                                product={{
+                                    name: "Tournevis",
+                                    pret: "2024-01-20",
+                                    nbJour: 3,
+                                    reserved: false,
+                                    is_late: false,
+                                    image: tournevis
+                                }}
+                                admin={admin}
+                        />
+                        <Product_Card_Outils key={3}
+                                product={{
+                                    name: "Marteau",
+                                    pret: "2024-01-20",
+                                    nbJour: 3,
+                                    reserved: false,
+                                    is_late: false,
+                                    image: marteau,  
                                 }}
                                 admin={admin}
                         />
