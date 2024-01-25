@@ -1,130 +1,219 @@
-import React from "react";
-import "./../../components/navigation/navigation.css";
-import "./../../components/header/header.css";
-import "./library.css";
-import "../../Hadrien/reset.css";
+import React, { useState, useEffect } from "react";
 import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
-import BoxFav from "../../components/Boxfavoris/boxfav";
-import PB from "../../assets/images/PB.PNG";
+import ImageBackground from "./Images Compo/interrupteur+en+t.png";
+import ImageBackground2 from "./Images Compo/ampli+lc+2,3-18+v.png";
+import ImageBackground3 from "./Images Compo/amplificateur+af+18v.png";
+import ImageBackground4 from "./Images Compo/condensateur+chimique+bizarre.png";
+import ImageBackground5 from "./Images Compo/condensateur+chimique+bleu.png";
+import "./library.css"
+import ProductCard from "./Component JS Stock/Product_Card";
+import Add_Compo from "./Component JS Stock/Add_Compo";
+import axios from "axios";
 
-class Library extends React.Component {
-  //! Back-End pour afficher les données de l'utilisateur //
+const ProduitList = ({ admin }) => {
+    const [produits1, setProduits1] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: "",
-      prenom: "",
-      nom: "",
-      genre: "",
-      email: "",
-      mdp: "",
-      data: [],
-      image: null,
-      tab: [],
-    };
-  }
-  recup() {
-    const email = sessionStorage.getItem("email");
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
+    useEffect(() => {
+        const fetchProduits1 = async () => {
+            try {
+                const response = await axios.get('https://10.224.1.225:1234/stock/getAllProduit1');
+                setProduits1(response.data.produits1);
+                setLoading(false);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des produits:', error);
+                setLoading(false);
+            }
+        };
 
-    fetch("http://51.254.38.150:3000/connexion/" + email, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        const { id, prenom, nom, email, mdp } = result;
-        this.setState({ id, prenom, nom, email, mdp }, () => {
-          fetch(
-            "http://51.254.38.150:3000/connexion/biere/" + this.state.id,
-            requestOptions
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              //console.log(data); // Affiche le tableau dans la console
-              // Faites ce que vous souhaitez avec le tableau ici
-              // Par exemple, stockez-le dans une variable de l'état de votre composant
-              this.setState({ data: data[0] }, () => {});
-            })
-            .catch((error) => {
-              console.log("Erreur lors de la récupération du tableau:", error);
-            });
-        });
-      })
-      .catch((error) =>
-        console.log(
-          "Erreur lors de la récupération des données de l'utilisateur:",
-          error
-        )
-      );
-  }
+        fetchProduits1();
+    }, []);
 
-  componentDidMount() {
-    this.recup();
-  }
-
-  render() {
-    //! Front-End de la page Library !//
-    if (this.state.data === null) {
-      return (
+    return (
         <div>
-          <Header
-            icon={"library-outline"}
-            title={"Bibliothèque"}
-            position={false}
-          ></Header>
-          <section>
-            <div className="pf-lst-coeur"></div>
-            <div className="pf-gauche">
-              <img src={PB} className="pf-imgjaune"></img>
-              <h1 className="pf-nom">Favoris</h1>
-              <p className="pf-nbfav">{"0"} Bières</p>
-            </div>
-          </section>
-          <Navigation
-            library={true}
-            search={false}
-            map={false}
-            profil={false}
-            setting={false}
-            position={false}
-          />
+            <h1>Liste des Composants</h1>
+            {loading ? (
+                <p>Chargement en cours...</p>
+            ) : (
+                <ul>
+                    {produits1.map((produit) => (
+                        <li key={produit._id}>
+                            <ProductCard
+                                product={{
+                                    name: produit.name,
+                                    quantity: produit.quantity,
+                                    image: `https://10.224.1.225:1234/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                }}
+                                admin={admin}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
-      );
-    } else {
-      return (
+    );
+};
+
+
+
+const Library = () => {
+
+
+    /*const data = JSON.stringify({
+        'nom':"Ampli lc 2,3-18V",
+        'prenom':"Baum",
+        'email':"mattbaum288@gmail.com",
+        'mdp':"ampli+lc+2,3-18+v.png"
+    });
+
+    const baseURL = "https://192.168.184.122:1234/users/register";
+    console.log(data);
+    const headers = {
+        'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
+        'Access-Control-Allow-Origin':'*',
+    };
+    axios.post(baseURL,data,{ headers })
+        .then(res => {
+            console.log(res.data)
+        })
+
+  const getconnexion = sessionStorage.getItem("email");
+
+  if (getconnexion == undefined) {
+      window.location.href = "/";
+      alert("Vous n'êtes pas connecté");
+  }else;*/
+    let admin=true;
+    return (
         <div>
-          <Header
-            icon={"library-outline"}
-            title={"Bibliothèque"}
-            position={false}
-          ></Header>
-          <section>
-            <div className="pf-lst-coeur">
-              {this.state.data.map((beer, index) => (
-                <BoxFav key={index} beer={beer} />
-              ))}
-            </div>
-            <div className="pf-gauche">
-              <img src={PB} className="pf-imgjaune"></img>
-              <h1 className="pf-nom">Favoris</h1>
-              <p className="pf-nbfav">{this.state.data.length} Bières</p>
-            </div>
-          </section>
-          <Navigation
-            library={true}
-            search={false}
-            map={false}
-            profil={false}
-            setting={false}
-            position={false}
-          />
+            <Header icon={"print-outline"}
+                    title={"Machine"}
+                    position={false}
+                    destination = '/Machine'
+            ></Header>
+            <section>
+                <ProduitList admin={admin}/>
+                <div className="product-container">
+                    <ProductCard
+                        product={{
+                            name: 'LED Rouge 4V',
+                            quantity: 12,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground2,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground3,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground4,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground5,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Verte 4V',
+                            quantity: 15,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Rouge 4V',
+                            quantity: 12,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    <ProductCard
+                        product={{
+                            name: 'LED Rouge 4V',
+                            quantity: 12,
+                            image: ImageBackground,
+                        }}
+                        admin={admin}
+                    />
+                    {admin && (
+                        <Add_Compo admin={admin}/>
+                    )}
+                </div>
+            </section>
+            <Navigation
+                library={true}
+                search={false}
+                map={false}
+                profil={false}
+                setting={false}
+                position={false}
+            />
         </div>
-      );
-    }
-  }
-}
+    );
+};
 
 export default Library;

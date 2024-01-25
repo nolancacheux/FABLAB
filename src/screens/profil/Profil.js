@@ -20,6 +20,8 @@ function Profil() {
     const prenom = sessionStorage.getItem("lastName");
     const email = sessionStorage.getItem("email");
 
+    console.log(historicJSONRecupere)
+
     // Convertir la chaîne JSON en tableau d'objets
     var historicDataRecupere = JSON.parse(historicJSONRecupere);
 
@@ -78,7 +80,7 @@ function Profil() {
     useEffect(() => {
         const fetchProduits1 = async () => {
             try {
-                const response = await axios.get('https://192.168.184.122:1234/stock/getAllProduit1');
+                const response = await axios.get(`https://${config.ipserveur}:${config.portserveur}/stock/getAllProduit1`);
                 setProduits1(response.data.produits1);
                 setLoading(false);
             } catch (error) {
@@ -103,7 +105,7 @@ function Profil() {
                             product={{
                                 name: produit.name,
                                 quantity: produit.quantity,
-                                image: "https://192.168.184.122:1234/uploads/" + produit.image1
+                                image: `https://${config.ipserveur}:${config.portserveur}/uploads/` + produit.image1
                             }}
                             admin={admin}
                             />
@@ -174,7 +176,8 @@ function Profil() {
                             </div>
                         </div>
                         <div className="prf-back">
-                            <div className="black-Title"> {nom} {prenom} </div> 
+                            <div className="black-Title"> {nom} </div> 
+                            <div className="black-Title"> {prenom} </div> 
                             <div className="bottom-right"> 
                                 <button className="adminbnt" onClick={GenerateQRCode}>Afficher QRcode</button>  
                                 {qr && (

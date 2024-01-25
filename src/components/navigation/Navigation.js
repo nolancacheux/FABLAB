@@ -19,16 +19,16 @@ function Navigation({ library, search, map, profil, setting, position }) {
   return (
     <footer style={footerStyle}>
       <div className="navigation">
-        <span className="nav-credit">© 2023 🍺 HopBeer, Inc.</span>
+        <span className="nav-credit">© 2024 FabLab, Inc.</span>
         <ul>
-          <NavigationItem icon="library-outline" text="Bibliothèque" active={library} />
-          <NavigationItem icon="search-outline" text="Recherche" active={search} />
-          <NavigationItem icon="map-outline" text="Carte" active={map} />
+          <NavigationItem icon="cash-outline" text="Stockage" active={library} />
+          <NavigationItem icon="search-outline" text="IAssistant" active={search} />
+          <NavigationItem icon="storefront-outline" text="Accueil" active={map} />
           <NavigationItem icon="happy-outline" text="Profil" active={profil} />
           <NavigationItem icon="construct-outline" text="Paramètre" active={setting} />
           <div className="nav-animation"></div>
         </ul>
-        <span className="nav-slogan">La bière à portée de clic 📍</span>
+        <span className="nav-slogan">Votre système de gestion FabLab</span>
       </div>
     </footer>
   );

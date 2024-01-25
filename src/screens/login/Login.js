@@ -27,6 +27,7 @@ class Login extends React.Component {
                 first = phrase.substring(1, phrase.search("/"))
                 second = phrase.substring(phrase.search("/") + 1, phrase.length - 1)
 
+
             }
         }
         this.state = {
@@ -35,6 +36,7 @@ class Login extends React.Component {
             email: first != undefined ? first : "",
             isValidEmail: false,
             mdp: second != undefined ? second : "",
+
             afficher: false,
             isValidPassword: false,
             stay: false,
@@ -46,6 +48,7 @@ class Login extends React.Component {
             validMdp: false,
             emailRecup: "",
             logged: false,
+
             image: null,
         };
         this.handleChange = this.handleChange.bind(this);
@@ -59,9 +62,8 @@ class Login extends React.Component {
         this.deleteCookie = this.deleteCookie.bind(this);
 
 
-
-
     }
+
 
 
     checkCookieExists(cookieName) {
@@ -84,7 +86,6 @@ class Login extends React.Component {
 
 
 
-
     // ! ---------- Animation changement de page ----------//
 
     componentDidMount() {
@@ -98,6 +99,7 @@ class Login extends React.Component {
                 sessionStorage.setItem("scan-login", "")
                 this.setState({ email: "", mdp: "" })
             }
+
 
         }
         const bouton_connexion = document.querySelector("#lg-bouton-connexion");
@@ -207,7 +209,6 @@ class Login extends React.Component {
                 SaisieMotDePasse.style.border = "2px solid #f0f0f0";
             }
         });
-
 
     }
 
@@ -372,6 +373,8 @@ class Login extends React.Component {
 
         // Suite de votre code ici après la mise à jour de l'état
 
+
+
         const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/register`;
         const data = JSON.stringify(this.state);
         console.log(data);
@@ -383,17 +386,18 @@ class Login extends React.Component {
         console.log("avant la requete ")
 
         axios.post(baseURL, data, { headers })
+
             .then(res => {
                 console.log(res.data)
                 sessionStorage.setItem("email", res.data.user.email);
                 sessionStorage.setItem("admin", res.data.user.admin);
                 sessionStorage.setItem("id", res.data.user._id);
                 sessionStorage.setItem("firstName", res.data.user.firstName);
-                
+
                 // Convertir le tableau en chaîne JSON
-                var historicJSON = 
+                var historicJSON =
                 {
-                    "historic":res.data.user.historic
+                    "historic": res.data.user.historic
                 }
                 console.log(historicJSON)
 
@@ -410,7 +414,8 @@ class Login extends React.Component {
 
         console.log("Après la requête");
 
-        
+
+
         this.setState({
             nom: "",
             prenom: "",
@@ -424,68 +429,70 @@ class Login extends React.Component {
             creation: true,
             image: null,
         });
-
     }
 
+        async envoi2(e) {
+            e.preventDefault();
+            if (
+                this.state.email.trim() === "" ||
+                this.state.mdp.trim() === ""
+            ) {
+                alert("Veuillez remplir tous les champs obligatoires");
+                return;
+            }
+            const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/connect`;
+            const data = JSON.stringify({
+                'email': this.state.email,
+                'password': this.state.mdp
+            });
 
+            console.log(data);
+            const headers = {
+                'Content-Type': 'application/json', // Specify the content type if necessary
+                'Access-Control-Allow-Origin': '*',
+            };
+            axios.post(baseURL, data, { headers })
+                .then(res => {
+                    console.log(res.data)
+                    console.log(res.data.user.historic)
+                    sessionStorage.setItem("email", res.data.user.email);
+                    sessionStorage.setItem("admin", res.data.user.admin);
+                    sessionStorage.setItem("id", res.data.user._id);
+                    sessionStorage.setItem("firstName", res.data.user.firstName);
 
+                    sessionStorage.setItem("historic", res.data.user.historic);
+                    sessionStorage.setItem("lastName", res.data.user.lastName);
+                    sessionStorage.setItem("numberId", res.data.user.numberId);
 
-    async envoi2(e) {
-        e.preventDefault();
-        if (
-            this.state.email.trim() === "" ||
-            this.state.mdp.trim() === ""
-        ) {
-            alert("Veuillez remplir tous les champs obligatoires");
-            return;
-        }
-        const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/connect`;
-        const data = JSON.stringify({
-            'email': this.state.email,
-            'password': this.state.mdp
-        });
-        
-        console.log(data);
-        const headers = {
-            'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
-            'Access-Control-Allow-Origin': '*',
-        };
-        axios.post(baseURL, data, { headers })
-            .then(res => {
-                console.log(res.data)
-                console.log(res.data.user.historic)
-                sessionStorage.setItem("email", res.data.user.email);
-                sessionStorage.setItem("admin", res.data.user.admin);
-                sessionStorage.setItem("id", res.data.user._id);
-                sessionStorage.setItem("firstName", res.data.user.firstName);
-
-         
-                sessionStorage.setItem("historic", res.data.user.historic);
-                sessionStorage.setItem("lastName", res.data.user.lastName);
-                sessionStorage.setItem("numberId", res.data.user.numberId);
-
-                var historicJSON = 
+                    var historicJSON =
                     {
-                        "historic":res.data.user.historic
+                        "historic": res.data.user.historic
                     }
                     var historicJSON = JSON.stringify(res.data.user.historic);
+                    console.log(historicJSON)
                     sessionStorage.setItem('historic', historicJSON);
-                    
-                    
-                this.setState({ logged: true })
-            })
-            .catch(error => {
-                alert(JSON.parse(error.request.response).error)
-            })
 
+                    sessionStorage.setItem("lastName", res.data.user.lastName);
+                    sessionStorage.setItem("numberId", res.data.user.numberId);
+                    this.setState({ logged: true })
+                })
+                .catch(error => {
+                    alert(JSON.parse(error.request.response).error)
+                });
+        
     }
+
     render() {
+
 
         // ! ---------- Changement de Page ----------/
         if (
             this.state.creation || this.state.logged
         ) {
-            return <Navigate to="/Carte" />;
+            return <Navigate to="/Accueil" />;
+        }
+        if (this.state.qrc) {
+            <Navigate to="/Scanner" />;
         }
         if (this.state.qrc) {
             <Navigate to="/Scanner" />;
@@ -498,6 +505,7 @@ class Login extends React.Component {
                 <PreLoader></PreLoader>
 
                 <div className="lg-formulaire">
+
                     <div className="lg-inscription-connexion">
                         {/* Formulaire : Se Connecter */}
                         <form className="lg-formulaire-connexion" id="lg-forms">
@@ -534,11 +542,13 @@ class Login extends React.Component {
                                             </div>
                                         </Link>
 
+
                                     </div>
                                 </label>
                                 <div className="lg-espace"></div>
                             </div>
                             <input type="submit" onClick={this.envoi2} ref={this.buttonRef} o name="identifier" className="lg-bouton" value="Se connecter" />
+
 
                         </form>
                         {/* Formulaire : S'inscrire */}
