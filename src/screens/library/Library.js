@@ -13,7 +13,7 @@ import axios from "axios";
 const Library = () => {
      
 
-      /*const data = JSON.stringify({
+      const data = JSON.stringify({
           'nom':"Ampli lc 2,3-18V",
           'prenom':"Baum",
           'email':"mattbaum288@gmail.com",
@@ -29,7 +29,7 @@ const Library = () => {
       axios.post(baseURL,data,{ headers })
           .then(res => {
               console.log(res.data)
-          })*/
+          })
 
     const getconnexion = sessionStorage.getItem("email");
 
