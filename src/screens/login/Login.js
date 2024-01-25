@@ -7,6 +7,7 @@ import image from "../../assets/images/arduino.png";
 import Logo from "../../assets/images/LogoPreloader2.png";
 import config from "../../configip.js"
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 
 
@@ -15,12 +16,25 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.buttonRef = React.createRef();
+        var first = undefined
+        var second = undefined
+        if(sessionStorage.getItem("scan-login") != undefined){
+            if(sessionStorage.getItem("scan-login").length > 0){
+                sessionStorage.getItem("scan-login")
+                const phrase = sessionStorage.getItem("scan-login")
+
+                first = phrase.substring(1,phrase.search("/"))
+                second = phrase.substring(phrase.search("/")+1,phrase.length-1)
+                
+            }
+        }
         this.state = {
             nom: "",
             prenom: "",
-            email: "",
+            email: first!=undefined?first:"",
             isValidEmail: false,
-            mdp: "",
+            mdp: second!=undefined?second:"",
             afficher: false,
             isValidPassword: false,
             stay: false,
@@ -43,8 +57,13 @@ class Login extends React.Component {
         this.formulaireErreur = this.formulaireErreur.bind(this);
         this.checkCookieExists = this.checkCookieExists.bind(this);
         this.deleteCookie = this.deleteCookie.bind(this);
+
+
+        
+        
     }
 
+    
     checkCookieExists(cookieName) {
         var cookies = document.cookie.split(";");
 
@@ -63,11 +82,24 @@ class Login extends React.Component {
             cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
 
-  
+
+    
 
     // ! ---------- Animation changement de page ----------//
     
     componentDidMount() {
+
+        if (this.buttonRef.current) {
+            // Déclencher automatiquement le clic sur le bouton
+            
+            if(this.state.email != "" && this.state.mdp != ""){
+                console.log("ok")
+                this.buttonRef.current.click();
+                sessionStorage.setItem("scan-login","")
+                this.setState({email:"",mdp:""})
+            }
+            
+        }
         const bouton_connexion = document.querySelector("#lg-bouton-connexion");
         const bouton_inscription = document.querySelector( "#lg-bouton-inscription" );
         const menu = document.querySelector(".lg-menu");
@@ -302,7 +334,7 @@ class Login extends React.Component {
         });
     }
 
-
+    
     mailChange(e) {
         const email = e.target.value; 
         const myRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
@@ -327,7 +359,7 @@ class Login extends React.Component {
     // ! ---------- Envoyer le formulaire ----------//
 
     async envoi(e) {
-        e.preventDefault();
+        e.preventDefault()
         if (
             this.state.nom.trim() === "" ||
             this.state.prenom.trim() === "" ||
@@ -378,6 +410,8 @@ class Login extends React.Component {
     }
    
   
+
+    
     async envoi2(e) {
         e.preventDefault();
         if (
@@ -417,12 +451,14 @@ class Login extends React.Component {
     }
     render() {
         
-        // ! ---------- Changement de Page ----------//
-
+        // ! ---------- Changement de Page ----------/
         if (
             this.state.creation || this.state.logged
         ) {
             return <Navigate to="/Carte" />;
+        }
+        if(this.state.qrc){
+            <Navigate to="/Scanner" />;
         }
 
         // ! ---------- Front-End de la page Login ----------//
@@ -461,11 +497,18 @@ class Login extends React.Component {
                                             </span>
                                             <span>Rester connecté</span>
                                         </label>
+                                        <Link to={`/Scanner`}>
+                                            <div id='qr-connect' onClick={this.qr_connect}>
+                                                    Connexion QR
+                                                    <ion-icon name="qr-code-outline"></ion-icon>
+                                            </div>
+                                        </Link>
+                                        
                                     </div>
                                 </label>
                                 <div className="lg-espace"></div>
                             </div>
-                            <input type="submit" onClick={this.envoi2}  name="identifier" className="lg-bouton"  value="Se connecter" />
+                            <input type="submit" onClick={this.envoi2}  ref={this.buttonRef} o name="identifier" className="lg-bouton"  value="Se connecter" />
                             
                         </form>
                         {/* Formulaire : S'inscrire */}

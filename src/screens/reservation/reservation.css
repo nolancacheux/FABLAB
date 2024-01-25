@@ -1,0 +1,366 @@
+/************ Partie de Gauche ************/
+
+.resa-left {
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 28%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    
+}
+.stg-forms h2 {
+    font-size: 15px;
+    color: var(--secondary);
+}
+.stg-champ-de-saisie {
+    width: 90%;
+    margin: 10px 0 20px;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+    background-color: var(--gray-light);
+    border: 3px solid var(--gray-light);
+}
+ .setting form  {
+    display: flex;
+    width: 100%;
+}
+.stg-champ-de-saisie i {
+    line-height: 45px;
+    transition: 0.5s;
+    font-size: 16px;
+    text-align: center;
+    color: var(--gray);
+}
+.stg-champ-de-saisie input {
+    margin-top: 13px;
+    line-height: 1;
+    width: 100px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--secondary);
+    box-shadow: inset 0 0 0 32px var(--gray-light);
+}
+.stg-icone {
+    height: 46px;
+    width: 46px;
+    margin: 0 0.45rem;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+.stg-form-group input {
+    display: none;
+}
+.stg-icon-text {
+    display: flex;
+    width: 100%;
+    margin-top: -6px;
+    margin-left: 18px;
+    position: absolute;
+    display: flex;
+}
+.stg-mdp input {
+    outline: none;
+}
+.stg-champ-de-saisie .stg-indicate {
+    margin-left: 10px;
+    display: none;
+}
+.stg-champ-de-saisie .stg-indicate.active {
+    display: block;
+}
+.stg-icon-text i {
+    margin-right: 10px;
+    margin-top: -14px;
+}
+.stg-icon-text h6 {
+    margin-top: 4px;
+    width: 100%;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+}
+.stg-bouton {
+    width: 150px;
+    height: 49px;
+    border-radius: 49px;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: 0.1s;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    background-color: var(--tertary);
+    color: var(--secondary);
+}
+.stg-div span {
+    right: 15px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    position: absolute;
+}
+.stg-div {
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.stg-div input {
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    display: block;
+    border: 2px solid var(--gray-light);
+}
+.stg-div .stg-icones i {
+    left: -45px;
+    margin-top: 10px;
+    font-size: 16px;
+    position: absolute;
+    visibility: hidden;
+}
+.stg-div small {
+    margin-top: 27px;
+    font-size: 0.67em;
+    margin-left: -20px;
+    visibility: hidden;
+    font-weight: bold;
+    position: absolute;
+}
+
+/************ Partie de Droite ************/
+.stg-right {
+    height: 70vh;
+    width: 50%;
+    margin-right: 0;
+    padding: 0px 0px 0px 60px;
+    flex-direction: column;
+    align-items: stretch;
+}
+.stg-explication {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    height: auto;
+}
+.stg-description {
+    width: 100%;
+    margin-left: 30px;
+    position: relative;
+}
+.stg-description h2 {
+    margin-bottom: 10px;
+}
+.stg-coordination {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stg-modification {
+    margin: 0px 15px;
+}
+.stg-modification input {
+    margin-right: 10px;
+}
+.stg-coordination button:nth-child(3) {
+    background-color: var(--important);
+    color: var(--gray-light);
+}
+.stg-profil {
+    height: 16vh;
+}
+.stg-city {
+    border-radius: 25px;
+    width: 100%;
+    background-color: var(--gray-light);
+}
+.stg-city input {
+    width: 80%;
+}
+.stg-description textarea {
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    resize: none;
+    color: var(--gray);
+    background-color: var(--gray-light);
+}
+.stg-choice {
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+.stg-city i {
+    padding-left: 30px;
+    color: var(--gray);
+}
+.stg-Ville {
+    padding: 15px;
+    width: 460px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--gray-light);
+}
+.stg-localisation {
+    margin-top: 20px;
+}
+.stg-localisation h2 {
+    margin-bottom: 10px;
+}
+#stg-image-container {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--gray);
+    position: relative;
+}
+#stg-image-preview {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#stg-add-button {
+    bottom: 0px;
+    right: 0px;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    background-color: white;
+    background-color: var(--tertary);
+}
+#stg-add-button i {
+    font-size: 13px;
+}
+#stg-image-upload {
+    display: none;
+}
+#stg-area {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    overflow: auto;
+    box-sizing: border-box;
+    color: var(--secondary);
+}
+#stg-liste_resultatsPays, #stg-liste_resultatsLangue {
+    width: 300px;
+    max-height: 100px;
+    padding: 0;
+    margin: 0;
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+    border: none;
+    overflow-y: auto;
+}
+#stg-liste_resultatsPays li, #stg-liste_resultatsLangue li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+/************ Effet ************/
+.stg-icone:hover {
+    color: var(--important);
+    border-color: var(--important);
+}
+.stg-champ-de-saisie input::placeholder {
+    font-weight: 500;
+    color: var(--gray);
+}
+.stg-bouton:active {
+    transform: scale(0.97);
+}
+.stg-div span i.active::before {
+    content: "\f070";
+}
+.stg-div span i:hover {
+    color: var(--secondary);
+}
+#stg-liste_resultatsPays li:hover, #stg-liste_resultatsLangue li:hover {
+    background-color: #f4f4f4;
+}
+.resa-valider{
+    text-align: center;
+    background-color: var(--tertary);
+    width: 22%;
+    height: 10%;
+    border-radius: 25px;
+    margin-left: 32%;
+}
+.resa-valider:hover {
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+}
+/************ Media Query ************/
+@media (max-width: 1060px) {
+     .setting section {
+        display: block;
+    }
+    .resa-left, .stg-right, .stg-champ-de-saisie {
+        width: 100%;
+        left: 1%;
+        margin-left: 0%;
+        
+    }
+    .resa-left{
+        margin-top: 25%;
+    }
+    .stg-right {
+        padding: 0px 0px 0px 0px;
+    }
+    .stg-explication {
+        margin-top: 10px;
+    }
+    .stg-description {
+        margin-left: 60px;
+    }
+    .stg-coordination {
+        display: block;
+        align-items: center;
+        justify-content: center;
+    }
+    .stg-modification {
+        margin: 0px 0px;
+    }
+    .setting form {
+        display: block;
+    }
+    .resa-valider {
+        width: 28%;
+        height: 40px;
+        margin-left: 35%;
+    }
+    header{
+        display: flex;
+        margin-left: 70%;
+        margin-top: 5%;
+        width: 20%;
+        height: 30px;
+    }
+}

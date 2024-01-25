@@ -1,5 +1,15 @@
 /************ Connexion ************/
 
+#qr-connect {
+  grid-gap: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+
 .lg-menu {
   width: 100%;
   min-height: 100vh;
@@ -106,7 +116,6 @@
 .lg-option {
   font-size: 13px;
   margin: 5px 0px;
-  display: flex;
 }
 .lg-option a {
   cursor: pointer;
@@ -118,8 +127,11 @@
 .lg-form-group input {
   display: none;
 }
+.lg-form-group {
+  display: flex;
+  grid-gap: 10px;
+}
 .lg-menu label {
-  grid-gap: 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
