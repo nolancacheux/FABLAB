@@ -71,8 +71,8 @@ const ProductCard = ({ product, admin }) => {
   return (
     <div className="product-card">
       <div className="product-image" onClick={() => handleImageClick(admin, setShowPopup, setShowPopup1)}>
-        <div className="quantity-overlay">
-          <div> Quantité : {product.quantity}</div>
+      <div className="quantity-overlay">
+          <div> Machine disponible : {product.reserved ? "NON" : "OUI"}</div>
         </div>
         <img id="img" src={product.image} alt={product.name} />
         <div className="product-name">{product.name}</div>
