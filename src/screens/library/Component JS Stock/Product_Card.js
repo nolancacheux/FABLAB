@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { handleImageClick, handleInputChange, handleNameChange, onModificate } from "../Function";
 import QRCode from "react-qr-code";
+import config from "../../../configip.js"
 var imageName = '';
 
 const ImageUploader = () => {
@@ -21,7 +22,7 @@ const ImageUploader = () => {
     formData.append("image", selectedFile);
     imageName = selectedFile.name;
     try {
-      const response = await axios.post("https://192.168.184.122:1234/stock/upload", formData, {
+      const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

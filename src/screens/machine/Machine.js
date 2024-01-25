@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
 import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
-import ImageBackground from "./Images Compo/interrupteur+en+t.png";
-import ImageBackground2 from "./Images Compo/ampli+lc+2,3-18+v.png";
-import ImageBackground3 from "./Images Compo/amplificateur+af+18v.png";
-import ImageBackground4 from "./Images Compo/condensateur+chimique+bizarre.png";
-import ImageBackground5 from "./Images Compo/condensateur+chimique+bleu.png";
 import "./machine.css"
-import ProductCard from "./Component JS Stock/Product_Card";
-import Add_Compo from "./Component JS Stock/Add_Compo";
+import config from "../../configip.js"
+import Product_Card_Outils from "./Component JS Stock/Product_Card_Outils.js";
+import Add_Compo_Outils from "./Component JS Stock/Add_Compo_Outils.js";
+
+import Product_Card_Machine from "./Component JS Stock/Product_Card_Machine.js";
+import Add_Compo_Machine from "./Component JS Stock/Add_Compo_Machine.js";
+
+import exemple from "../../assets/images/diode.png";
+
 import axios from "axios";
 
 const ProduitList = (admin) => {
-    const [produits1, setProduits1] = useState([]);
+    const [produits2, setProduits2] = useState([]);
+    const [produits3, setProduits3] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchProduits1 = async () => {
+        const fetchProduits2 = async () => {
             try {
-                const response = await axios.get('https://192.168.184.122:1234/stock/getAllProduit1');
-                setProduits1(response.data.produits1);
+                const response = await axios.get(`https://${config.ipserveur}:${config.portserveur}/stock/getAllProduit2`);
+                setProduits2(response.data.produits2);
                 setLoading(false);
             } catch (error) {
                 console.error('Erreur lors de la récupération des produits:', error);
@@ -27,61 +30,86 @@ const ProduitList = (admin) => {
             }
         };
 
-        fetchProduits1();
+        fetchProduits2(); 
+    }, []);
+
+
+    useEffect(() => {
+        const fetchProduits3 = async () => {
+            try {
+                const response = await axios.get(`https://${config.ipserveur}:${config.portserveur}/stock/getAllProduit3`);
+                setProduits3(response.data.produits3);
+                setLoading(false);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des produits:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchProduits3();   
     }, []);
 
     return (
         <div>
-            <h1>Liste des Produits1</h1>
+            <h1>Liste des Machines & Outils</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
             ) : (
-                <ul>
-                    {produits1.map((produit) => (
-                        <li key={produit._id}>
-                            <ProductCard
-                            product={{
-                                name: produit.name,
-                                quantity: produit.quantity,
-                                image: "https://192.168.184.122:1234/uploads/" + produit.image1
-                            }}
-                            admin={admin}
-                            />
-                                </li>
-                                ))}
-                        </ul>
+                
+                <div className="product-container">
+                    <Product_Card_Outils key={1}
+                                product={{
+                                    name: "Perceuse sans fil",
+                                    pret: "2024-01-20",
+                                    nbJour: 3,
+                                    reserved: true,
+                                    is_late: false,
+                                    image: exemple,  
+                                }}
+                                admin={admin}
+                        />
+            
+                    {produits2.map((produit) => (
+                        <Product_Card_Outils key={produit._id}
+                                product={{
+                                    name: produit.name,
+                                    pret: produit.pret,
+                                    nbJour: produit.nbJour,
+                                    reserved: produit.reserved,
+                                    is_late: produit.is_late,
+                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                }}
+                                admin={admin}
+                        />
+                    ))}
+                    {produits3.map((produit) => (
+                        <Product_Card_Machine key={produit._id}
+                                product={{
+                                    name: produit.name,
+                                    pret: produit.pret,
+                                    nbHeure: produit.nbJour,
+                                    reserved: produit.reserved,
+                                    is_late: produit.is_late,
+                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                }}
+                                admin={admin}
+                        />
+                    ))}
+                    {admin && (
+                        <Add_Compo_Machine admin={admin}/>
+                    )}
+                    {admin && (
+                        <Add_Compo_Outils admin={admin}/>
                     )}
                 </div>
-            );
+            )}
+        </div>
+    );
 };
 
 const Machine = () => {
      
 
-      /*const data = JSON.stringify({
-          'nom':"Ampli lc 2,3-18V",
-          'prenom':"Baum",
-          'email':"mattbaum288@gmail.com",
-          'mdp':"ampli+lc+2,3-18+v.png"
-      });
-
-      const baseURL = "https://192.168.184.122:1234/users/register";
-      console.log(data);
-      const headers = {
-          'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
-          'Access-Control-Allow-Origin':'*',
-      };
-      axios.post(baseURL,data,{ headers })
-          .then(res => {
-              console.log(res.data)
-          })
-
-    const getconnexion = sessionStorage.getItem("email");
-
-    if (getconnexion == undefined) {
-        window.location.href = "/";
-        alert("Vous n'êtes pas connecté");
-    }else;*/
   let admin=false;
   return (
       <div>
@@ -92,115 +120,7 @@ const Machine = () => {
           ></Header>
           <section>
               <ProduitList admin={admin}/>
-              <div className="product-container">
-                  <ProductCard
-                      product={{
-                          name: 'LED Rouge 4V',
-                          quantity: 12,
-                          image: ImageBackground2,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground2,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground4,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground3,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground5,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground5,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground5,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground5,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground5,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground5,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Verte 4V',
-                          quantity: 15,
-                          image: ImageBackground,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Rouge 4V',
-                          quantity: 12,
-                          image: ImageBackground,
-                      }}
-                      admin={admin}
-                  />
-                  <ProductCard
-                      product={{
-                          name: 'LED Rouge 4V',
-                          quantity: 12,
-                          image: ImageBackground,
-                      }}
-                      admin={admin}
-                  />
-                  {admin && (
-                  <Add_Compo admin={admin}/>
-                  )}
-              </div>
+              
           </section>
           <Navigation
               library={true}

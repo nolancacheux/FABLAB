@@ -22,6 +22,7 @@ body{
     width: calc(20% - 20px);
 }
 
+
 .product-card::before {
     content: '';
     position: absolute;
@@ -47,13 +48,14 @@ body{
   
   .product-name {
     position: absolute;
-    top: 5%;
-    width: 100%;
-    text-align: center;
-    transform: translateX(-50%);
-    color: black;
-    font-size: 120%;
-    font-weight: bold;
+  top: 5%;
+  width: 100%;
+  text-align: right;
+  transform: translateX(-50%);
+  color: black;
+  font-size: 120%;
+  font-weight: bold;
+  margin-left: 10%;
   }
   
 #img{

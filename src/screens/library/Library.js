@@ -10,6 +10,7 @@ import "./library.css"
 import ProductCard from "./Component JS Stock/Product_Card";
 import Add_Compo from "./Component JS Stock/Add_Compo";
 import axios from "axios";
+import config from "../../configip.js"
 
 const ProduitList = ({ admin }) => {
     const [produits1, setProduits1] = useState([]);
@@ -18,7 +19,7 @@ const ProduitList = ({ admin }) => {
     useEffect(() => {
         const fetchProduits1 = async () => {
             try {
-                const response = await axios.get('https://10.224.1.225:1234/stock/getAllProduit1');
+                const response = await axios.get(`https://${config.ipserveur}:${config.portserveur}/stock/getAllProduit1`);
                 setProduits1(response.data.produits1);
                 setLoading(false);
             } catch (error) {
@@ -36,24 +37,26 @@ const ProduitList = ({ admin }) => {
             {loading ? (
                 <p>Chargement en cours...</p>
             ) : (
-                <ul>
+                <div className="product-container">
                     {produits1.map((produit) => (
-                        <li key={produit._id}>
-                            <ProductCard
+                        <ProductCard key={produit._id}
                                 product={{
                                     name: produit.name,
                                     quantity: produit.quantity,
-                                    image: `https://10.224.1.225:1234/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
                                 }}
                                 admin={admin}
-                            />
-                        </li>
+                        />
                     ))}
-                </ul>
+                    {admin && (
+                        <Add_Compo admin={admin}/>
+                    )}
+                </div>
             )}
         </div>
     );
 };
+
 
 
 
@@ -94,115 +97,7 @@ const Library = () => {
             ></Header>
             <section>
                 <ProduitList admin={admin}/>
-                <div className="product-container">
-                    <ProductCard
-                        product={{
-                            name: 'LED Rouge 4V',
-                            quantity: 12,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground2,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground3,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground4,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground5,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Verte 4V',
-                            quantity: 15,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Rouge 4V',
-                            quantity: 12,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    <ProductCard
-                        product={{
-                            name: 'LED Rouge 4V',
-                            quantity: 12,
-                            image: ImageBackground,
-                        }}
-                        admin={admin}
-                    />
-                    {admin && (
-                        <Add_Compo admin={admin}/>
-                    )}
-                </div>
+                
             </section>
             <Navigation
                 library={true}

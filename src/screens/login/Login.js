@@ -372,7 +372,7 @@ class Login extends React.Component {
         
       // Suite de votre code ici après la mise à jour de l'état
       
-        const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/register`;
+        const baseURL = `https://${config.ipserveurlogin}:${config.portserveur}/users/register`;
         const data = JSON.stringify(this.state);
         console.log(data);
         const headers = {

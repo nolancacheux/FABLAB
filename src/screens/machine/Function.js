@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from "../../configip.js"
 
 export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
     console.log("dnejdnjiqzdiqdiqzd")
@@ -33,7 +34,7 @@ export const onValidate = async (showPopup1, imageName) => {
                 image1: imageName,
             };
 
-            const response = await axios.post('https://192.168.184.122:1234/stock/register1', requestData, {
+            const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/register1`, requestData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -65,7 +66,7 @@ export const onModificate = async (showPopup1, imageName) => {
                 image1: imageName,
             };
 
-            const response = await axios.post('https://192.168.184.122:1234/stock/modif1', requestData, {
+            const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/modif1`, requestData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
