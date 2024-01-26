@@ -24,12 +24,14 @@ class Login extends React.Component {
                 sessionStorage.getItem("scan-login")
                 const phrase = sessionStorage.getItem("scan-login")
 
-                first = phrase.substring(1, phrase.search("/"))
-                second = phrase.substring(phrase.search("/") + 1, phrase.length - 1)
+                first = phrase.substring(0, phrase.search("/"))
+                second = phrase.substring(phrase.search("/") + 1, phrase.length)
 
 
             }
         }
+        console.log(first)
+        console.log(second)
         this.state = {
             nom: "",
             prenom: "",
@@ -393,6 +395,7 @@ class Login extends React.Component {
                 sessionStorage.setItem("admin", res.data.user.admin);
                 sessionStorage.setItem("id", res.data.user._id);
                 sessionStorage.setItem("firstName", res.data.user.firstName);
+                sessionStorage.setItem("password", res.data.user.mdp);
 
                 // Convertir le tableau en chaîne JSON
                 var historicJSON =
@@ -459,7 +462,7 @@ class Login extends React.Component {
                     sessionStorage.setItem("admin", res.data.user.admin);
                     sessionStorage.setItem("id", res.data.user._id);
                     sessionStorage.setItem("firstName", res.data.user.firstName);
-
+                    sessionStorage.setItem("password", res.data.user.mdp);
                     sessionStorage.setItem("historic", res.data.user.historic);
                     sessionStorage.setItem("lastName", res.data.user.lastName);
                     sessionStorage.setItem("numberId", res.data.user.numberId);
