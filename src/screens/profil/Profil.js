@@ -20,8 +20,6 @@ function Profil() {
     const prenom = sessionStorage.getItem("lastName");
     const email = sessionStorage.getItem("email");
 
-    console.log(historicJSONRecupere)
-
     // Convertir la chaîne JSON en tableau d'objets
     var historicDataRecupere = JSON.parse(historicJSONRecupere);
 
@@ -150,6 +148,41 @@ function Profil() {
           return '';
     }
 
+    function getObjectTempPret(item){
+        if (item.numberId.charAt(0) == '1') {
+            // Pour produit1
+            return ``;
+          } else if (item.numberId.charAt(0) == '2') {
+            // Pour produit2
+            
+            /*
+            const expirationDate = new Date(item.pret);
+            const currentDate = new Date();
+            const remainingTime = expirationDate - currentDate;
+            const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));
+    
+            // Ajouter une classe conditionnelle en fonction du temps restant
+            const className = remainingDays > 0 ? 'green-text' : 'red-text';
+    
+            return <span className={className}>{remainingDays} jours</span>;*/
+            return `${item.nbJour} jours`;
+          } else if (item.numberId.charAt(0) == '3') {
+            // Pour produit3
+            /*
+            const expirationDate = new Date(item.pret);
+            const currentDate = new Date();
+            const remainingTime = expirationDate - currentDate;
+            const remainingHours = Math.ceil(remainingTime / (1000 * 60 * 60));
+    
+            // Ajouter une classe conditionnelle en fonction du temps restant
+            const className = remainingHours > 0 ? 'green-text' : 'red-text';
+    
+            return <span className={className}>{remainingHours} heures</span>;*/
+            return `Date : ${item.nbHeure} heures`;
+          }
+          // Gérez d'autres cas si nécessaire
+          return '';
+    }
 
     const tableauDynamique = (
         <div className="tableau" style={{ height: "100%", overflowY: "auto", borderRadius: "10px" }}>
@@ -169,6 +202,9 @@ function Profil() {
                             </td>
                             <td className="object">
                                 {getObjectNameAndQuantity(item)}
+                            </td>
+                            <td>
+                                {getObjectTempPret(item)}
                             </td>
 
 

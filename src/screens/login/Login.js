@@ -397,15 +397,19 @@ class Login extends React.Component {
                 sessionStorage.setItem("firstName", res.data.user.firstName);
                 sessionStorage.setItem("password", res.data.user.mdp);
 
-                // Convertir le tableau en chaîne JSON
-                var historicJSON =
-                {
-                    "historic": res.data.user.historic
-                }
-                console.log(historicJSON)
+                if (!res.data.user.historic.length > 0) {
 
-                // Stocker la chaîne JSON dans le sessionStorage
-                sessionStorage.setItem('historic', historicJSON);
+                    var historicJSON =
+                    {
+                        "historic": res.data.user.historic
+                    }
+
+                    var historicJSON = JSON.stringify(res.data.user.historic);
+                    console.log(historicJSON)
+                    sessionStorage.setItem('historic', historicJSON);
+                }else {
+                    sessionStorage.setItem('historic', '[]');
+                }
 
                 sessionStorage.setItem("lastName", res.data.user.lastName);
                 sessionStorage.setItem("numberId", res.data.user.numberId);
@@ -434,55 +438,61 @@ class Login extends React.Component {
         });
     }
 
-        async envoi2(e) {
-            e.preventDefault();
-            if (
-                this.state.email.trim() === "" ||
-                this.state.mdp.trim() === ""
-            ) {
-                alert("Veuillez remplir tous les champs obligatoires");
-                return;
-            }
-            const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/connect`;
-            const data = JSON.stringify({
-                'email': this.state.email,
-                'password': this.state.mdp
-            });
+    async envoi2(e) {
+        e.preventDefault();
+        if (
+            this.state.email.trim() === "" ||
+            this.state.mdp.trim() === ""
+        ) {
+            alert("Veuillez remplir tous les champs obligatoires");
+            return;
+        }
+        const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/connect`;
+        const data = JSON.stringify({
+            'email': this.state.email,
+            'password': this.state.mdp
+        });
 
-            console.log(data);
-            const headers = {
-                'Content-Type': 'application/json', // Specify the content type if necessary
-                'Access-Control-Allow-Origin': '*',
-            };
-            axios.post(baseURL, data, { headers })
-                .then(res => {
-                    console.log(res.data)
-                    console.log(res.data.user.historic)
-                    sessionStorage.setItem("email", res.data.user.email);
-                    sessionStorage.setItem("admin", res.data.user.admin);
-                    sessionStorage.setItem("id", res.data.user._id);
-                    sessionStorage.setItem("firstName", res.data.user.firstName);
-                    sessionStorage.setItem("password", res.data.user.mdp);
-                    sessionStorage.setItem("historic", res.data.user.historic);
-                    sessionStorage.setItem("lastName", res.data.user.lastName);
-                    sessionStorage.setItem("numberId", res.data.user.numberId);
+        console.log(data);
+        const headers = {
+            'Content-Type': 'application/json', // Specify the content type if necessary
+            'Access-Control-Allow-Origin': '*',
+        };
+        axios.post(baseURL, data, { headers })
+            .then(res => {
+                console.log(res.data)
+                console.log(res.data.user.historic)
+                sessionStorage.setItem("email", res.data.user.email);
+                sessionStorage.setItem("admin", res.data.user.admin);
+                sessionStorage.setItem("id", res.data.user._id);
+                sessionStorage.setItem("firstName", res.data.user.firstName);
+                sessionStorage.setItem("password", res.data.user.mdp);
+                sessionStorage.setItem("historic", res.data.user.historic);
+                sessionStorage.setItem("lastName", res.data.user.lastName);
+                sessionStorage.setItem("numberId", res.data.user.numberId);
+
+                if (!res.data.user.historic.length > 0) {
 
                     var historicJSON =
                     {
                         "historic": res.data.user.historic
                     }
+
                     var historicJSON = JSON.stringify(res.data.user.historic);
                     console.log(historicJSON)
                     sessionStorage.setItem('historic', historicJSON);
+                }else {
+                    sessionStorage.setItem('historic', '[]'c);
+                }
 
-                    sessionStorage.setItem("lastName", res.data.user.lastName);
-                    sessionStorage.setItem("numberId", res.data.user.numberId);
-                    this.setState({ logged: true })
-                })
-                .catch(error => {
-                    alert(JSON.parse(error.request.response).error)
-                });
-        
+                sessionStorage.setItem("lastName", res.data.user.lastName);
+                sessionStorage.setItem("numberId", res.data.user.numberId);
+                this.setState({ logged: true })
+            })
+            .catch(error => {
+                alert(JSON.parse(error.request.response).error)
+            });
+
     }
 
     render() {
