@@ -68,10 +68,6 @@ function Profil() {
         });
     }
 
-    useEffect(() => {
-        GenerateQRCode();
-    }, []);
-
     const ProduitList = (admin) => {
         const [produits1, setProduits1] = useState([]);
         const [loading, setLoading] = useState(true);
