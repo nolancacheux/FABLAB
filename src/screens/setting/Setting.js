@@ -992,6 +992,8 @@ class Setting extends React.Component {
           profil={false}
           setting={true}
           position={false}
+          profil_txt={"Profil"} 
+          para_txt={"Paramètre"}
         />
         ;
       </div>
