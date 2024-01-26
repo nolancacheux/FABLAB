@@ -32,7 +32,17 @@ const Search = () => {
   const [showActionButtons, setShowActionButtons] = useState(false);
   const [displayedResponse, setDisplayedResponse] = useState("");
   const [isWriting, setIsWriting] = useState(false);
-  
+  const admin = (sessionStorage.getItem("admin"));
+    const [profiltxt, setprofiltxt] = useState("Profil");
+    const [paratxt, setparatxt] = useState("Profil");
+   
+    useEffect(() => {
+        if (admin === "true") {
+            setprofiltxt("Reservation");
+            setparatxt("AdminGestion");
+            console.log("ok");
+        }
+    }, [admin]);
 
   const equipments = [
     { id: 1, name: "  Découpeuse laser", description: "Pour découper et graver presque tout type de matière.", image: DecoupeuseLaserImage },
@@ -273,7 +283,16 @@ const Search = () => {
           </div>
         )}
       </div>
-      <Navigation library={false} search={true} map={false} profil={false} setting={false} position={false} />
+      <Navigation
+                library={false}
+                search={true}
+                map={false}
+                profil={false}
+                setting={false}
+                position={false}
+                profil_txt={profiltxt}
+            para_txt={paratxt}
+            />
     </div>
   );
 

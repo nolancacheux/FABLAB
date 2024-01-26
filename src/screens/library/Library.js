@@ -65,7 +65,7 @@ const ProduitList = () => {
 
 
 const Library = () => {
-    console.log("okay slaope")
+    
     const admin = (sessionStorage.getItem("admin"));
     const [profiltxt, setprofiltxt] = useState("Profil");
     const [paratxt, setparatxt] = useState("Profil");
