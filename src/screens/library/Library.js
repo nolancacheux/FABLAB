@@ -28,6 +28,7 @@ const ProduitList = ({ admin }) => {
 
     return (
         <div>
+            {console.log(admin)}
             <h1>Liste des Composants</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
@@ -43,6 +44,7 @@ const ProduitList = ({ admin }) => {
                                 }}
                                 admin={admin}
                         />
+
                     ))}
                     {admin && (
                         <Add_Compo admin={admin}/>
@@ -56,7 +58,7 @@ const ProduitList = ({ admin }) => {
 
 
 const Library = () => {
-    let admin=false;
+    let admin=sessionStorage.getItem("admin");
     return (
         <div>
             <Header icon={"print-outline"}
