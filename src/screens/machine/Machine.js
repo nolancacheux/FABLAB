@@ -78,7 +78,7 @@ const ProduitList = () => {
                                     iD:produit.numberId,
                                     name: produit.name,
                                     pret: produit.pret,
-                                    nbHeure: produit.nbJour,
+                                    nbHeure: produit.nbHeure,
                                     reserved: produit.reserved,
                                     is_late: produit.is_late,
                                     image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
