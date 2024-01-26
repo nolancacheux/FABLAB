@@ -13,7 +13,7 @@ import axios from "axios";
 import Product_Card_Outils from "./Component JS Stock/Product_Card_Outils";
 
 const ProduitList = () => {
-    const admin = !(sessionStorage.getItem("admin"));
+    const admin = (sessionStorage.getItem("admin"));
 
     const [produits2, setProduits2] = useState([]);
     const [produits3, setProduits3] = useState([]);

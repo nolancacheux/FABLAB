@@ -90,42 +90,6 @@ const ProductCard = ({ product, admin }) => {
           </div>
         </div>
       )}
-      {/* Popup */}
-      {showPopup1 && (
-        <div className="popup1-overlay">
-          <div className="popup1">
-            <span className="close" onClick={closePopup}>
-              &times;
-            </span>
-            <div>
-              <label htmlFor="newProductName">Nouveau Nom:</label>
-              <input id="newProductName" type="text" value={String(newProductName)} onChange={handleNewProductNameChange} />
-            </div>
-
-            {/* Ajout des champs pour les nouvelles propriétés */}
-            <div>
-              <label htmlFor="pret">Prêt (Date):</label>
-              <input type="date" value={pret} onChange={(e) => setPret(e.target.value)} />
-            </div>
-            <div>
-              <label htmlFor="nbJour">Nombre de Jours:</label>
-              <input type="number" value={nbJour} onChange={(e) => setNbJour(e.target.value)} />
-            </div>
-            <div>
-              <label htmlFor="isLate">En Retard:</label>
-              <input type="checkbox" checked={isLate} onChange={(e) => setIsLate(e.target.checked)} />
-            </div>
-
-            <div>
-              <label htmlFor="newProductImage">Nouvelle Image URL:</label>
-              <ImageUploader />
-            </div>
-            <button id="adminbnt" onClick={onModificate}>
-              Valider
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
