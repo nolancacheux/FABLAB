@@ -44,17 +44,17 @@ body{
     overflow: hidden;
     border-radius: 20px;
   }
-  
-  .product-name {
-    position: absolute;
-    top: 5%;
-    width: 100%;
-    text-align: center;
-    transform: translateX(-50%);
-    color: black;
-    font-size: 120%;
-    font-weight: bold;
-  }
+
+.product-name {
+  position: absolute;
+  top: 1.3em;
+  width: 90%;
+  text-align: center;
+  transform: translateY(-50%);
+  color: black;
+  font-size: 120%;
+  font-weight: bold;
+}
   
 #img{
   width: 100%;
