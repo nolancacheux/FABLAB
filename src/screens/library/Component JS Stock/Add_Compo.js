@@ -3,6 +3,9 @@ import axios from "axios";
 import {handleImageChange, handleImageClick, handleInputChange, handleNameChange} from "../Function";
 import ImageAdd from "../Images Compo/addsymbole.png";
 import {Refresh} from "react-ionicons";
+
+import config from "../../../configip.js"
+
 var imageName = '';
 const ImageUploader = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -21,7 +24,7 @@ const ImageUploader = () => {
         formData.append("image", selectedFile);
         imageName = selectedFile.name
         try {
-            const response = await axios.post("https://10.224.1.225:1234/stock/upload", formData, {
+            const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/upload`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -65,7 +68,7 @@ const Add_Compo = ({admin}) => {
                 };
                 console.log(requestData);
 
-                const response = await axios.post('https://10.224.1.225:1234/stock/register1', requestData, {
+                const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/register1`, requestData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

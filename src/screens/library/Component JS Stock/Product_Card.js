@@ -4,6 +4,8 @@ import { handleImageClick} from "../Function";
 import QRCode from "react-qr-code";
 var imageName = '';
 
+import config from "../../../configip.js"
+
 const ImageUploader = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -21,7 +23,7 @@ const ImageUploader = () => {
     formData.append("image", selectedFile);
     imageName = selectedFile.name;
     try {
-      const response = await axios.post("https://192.168.184.122:1234/stock/upload", formData, {
+      const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -90,7 +92,7 @@ const ProductCard = ({ product, admin }) => {
                     productId: newProductId
                 };
 
-                const response = await axios.post('https://10.224.1.225:1234/stock/modif1', requestData, {
+                const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/modif1`, requestData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
