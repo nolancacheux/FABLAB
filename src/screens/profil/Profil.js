@@ -276,7 +276,7 @@ function Profil() {
                 </div>
                 {tableauDynamique}
             </section>
-            <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false} />
+            <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false} profil_txt={"Profil"} para_txt={"Paramètre"}/>
         </div>
 
     );

@@ -1,5 +1,5 @@
 const config = {
-    ipserveur:"192.168.184.77",
+    ipserveur:"192.168.184.122",
     portserveur:"1234" 
 }
   

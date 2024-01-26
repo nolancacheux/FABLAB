@@ -65,15 +65,18 @@ const ProduitList = () => {
 
 
 const Library = () => {
-    let admin=false;
+    console.log("okay slaope")
+    const admin = (sessionStorage.getItem("admin"));
     const [profiltxt, setprofiltxt] = useState("Profil");
     const [paratxt, setparatxt] = useState("Profil");
-
-    if(sessionStorage.getItem("admin")=== true){
-        setprofiltxt("Reservation")
-        setparatxt("AdminGestion")
-        
-    }
+   
+    useEffect(() => {
+        if (admin === "true") {
+            setprofiltxt("Reservation");
+            setparatxt("AdminGestion");
+            console.log("ok");
+        }
+    }, [admin]);
     return (
         <div>
             <Header icon={"print-outline"}
