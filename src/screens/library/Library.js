@@ -8,7 +8,7 @@ import axios from "axios";
 import config from "../../configip.js"
 
 const ProduitList = () => {
-    const admin = !(sessionStorage.getItem("admin")=== "true");
+    const admin = (sessionStorage.getItem("admin")=== "true");
     const [produits1, setProduits1] = useState([]);
     const [loading, setLoading] = useState(true);
     
