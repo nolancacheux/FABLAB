@@ -3,9 +3,12 @@ import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
 import "./machine.css"
 import config from "../../configip.js"
-import Product_Card_Machine from "./Component JS Stock/Product_Card_Machine";
+
 import Product_Card_Outils from "./Component JS Stock/Product_Card_Outils.js";
 import Add_Compo_Outils from "./Component JS Stock/Add_Compo_Outils.js";
+
+import Product_Card_Machine from "./Component JS Stock/Product_Card_Machine.js";
+import Add_Compo_Machine from "./Component JS Stock/Add_Compo_Machine.js";
 import Decoupe from "../../equipements/decoupeuselaser.png"
 import Scanner from "../../equipements/scanner3D.png"
 import Impr from "../../equipements/imprimante3D.png"
@@ -62,71 +65,7 @@ const ProduitList = (admin) => {
             ) : (
                 
                 <div className="product-container">
-                    <Product_Card_Outils key={1}
-                                product={{
-                                    name: "Perceuse sans fil",
-                                    pret: "2024-01-20",
-                                    nbJour: 3,
-                                    reserved: true,
-                                    is_late: false,
-                                    image: exemple,  
-                                }}
-                                admin={admin}
-                        />
-            
-                    {produits2.map((produit) => (
-                        <Product_Card_Outils key={produit._id}
-                                product={{
-                                    name: produit.name,
-                                    pret: produit.pret,
-                                    nbJour: produit.nbJour,
-                                    reserved: produit.reserved,
-                                    is_late: produit.is_late,
-                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
-                                }}
-                                admin={admin}
-                        />
-                    ))}
-                    {produits3.map((produit) => (
-                        <Product_Card_Machine key={produit._id}
-                                product={{
-                                    name: produit.name,
-                                    pret: produit.pret,
-                                    nbHeure: produit.nbJour,
-                                    reserved: produit.reserved,
-                                    is_late: produit.is_late,
-                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
-                                }}
-                                admin={admin}
-                        />
-                    ))}
-                    {admin && (
-                        <Add_Compo_Machine admin={admin}/>
-                    )}
-                    {admin && (
-                        <Add_Compo_Outils admin={admin}/>
-                    )}
-                </div>
-            )}
-        </div>
-    );
-};
-
-const Machine = () => {
-     
-
-  let admin=false;
-  return (
-      <div>
-          <Header icon={"cash-outline"} 
-          title={"Stockage"} 
-          position={false}
-          destination = '/Stockage'
-          ></Header>
-          <section>
-              <ProduitList admin={admin}/>
-              <div className="product-container">
-                  <Product_Card_Outils
+                    <Product_Card_Outils
                       product={{
                           name: "Découpeuse laser",
                           pret: 0,
@@ -203,6 +142,60 @@ const Machine = () => {
                       }}
                       admin={admin}
                   />
+                    {produits2.map((produit) => (
+                        <Product_Card_Outils key={produit._id}
+                                product={{
+                                    name: produit.name,
+                                    pret: produit.pret,
+                                    nbJour: produit.nbJour,
+                                    reserved: produit.reserved,
+                                    is_late: produit.is_late,
+                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                }}
+                                admin={admin}
+                        />
+                    ))}
+                    {produits3.map((produit) => (
+                        <Product_Card_Machine key={produit._id}
+                                product={{
+                                    name: produit.name,
+                                    pret: produit.pret,
+                                    nbHeure: produit.nbJour,
+                                    reserved: produit.reserved,
+                                    is_late: produit.is_late,
+                                    image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                                }}
+                                admin={admin}
+                        />
+                    ))}
+                    {admin && (
+                        <Add_Compo_Machine admin={admin}/>
+                    )}
+                    {admin && (
+                        <Add_Compo_Outils admin={admin}/>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const Machine = () => {
+     
+
+  let admin=false;
+  return (
+      <div>
+          <Header icon={"cash-outline"} 
+          title={"Stockage"} 
+          position={false}
+          destination = '/Stockage'
+          ></Header>
+          <section>
+              <ProduitList admin={admin}/>
+              <div className="product-container">
+                  
+                  
               </div>
           </section>
           <Navigation
