@@ -397,15 +397,19 @@ class Login extends React.Component {
                 sessionStorage.setItem("firstName", res.data.user.firstName);
                 sessionStorage.setItem("password", res.data.user.mdp);
 
-                // Convertir le tableau en chaîne JSON
-                var historicJSON =
-                {
-                    "historic": res.data.user.historic
-                }
-                console.log(historicJSON)
+                if (!res.data.user.historic.length > 0) {
 
-                // Stocker la chaîne JSON dans le sessionStorage
-                sessionStorage.setItem('historic', historicJSON);
+                    var historicJSON =
+                    {
+                        "historic": res.data.user.historic
+                    }
+
+                    var historicJSON = JSON.stringify(res.data.user.historic);
+                    console.log(historicJSON)
+                    sessionStorage.setItem('historic', historicJSON);
+                }else {
+                    sessionStorage.setItem('historic', null);
+                }
 
                 sessionStorage.setItem("lastName", res.data.user.lastName);
                 sessionStorage.setItem("numberId", res.data.user.numberId);
@@ -467,13 +471,19 @@ class Login extends React.Component {
                     sessionStorage.setItem("lastName", res.data.user.lastName);
                     sessionStorage.setItem("numberId", res.data.user.numberId);
 
-                    var historicJSON =
-                    {
-                        "historic": res.data.user.historic
+                    if (!res.data.user.historic.length > 0) {
+
+                        var historicJSON =
+                        {
+                            "historic": res.data.user.historic
+                        }
+    
+                        var historicJSON = JSON.stringify(res.data.user.historic);
+                        console.log(historicJSON)
+                        sessionStorage.setItem('historic', historicJSON);
+                    }else {
+                        sessionStorage.setItem('historic', null);
                     }
-                    var historicJSON = JSON.stringify(res.data.user.historic);
-                    console.log(historicJSON)
-                    sessionStorage.setItem('historic', historicJSON);
 
                     sessionStorage.setItem("lastName", res.data.user.lastName);
                     sessionStorage.setItem("numberId", res.data.user.numberId);
