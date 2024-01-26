@@ -1,3 +1,5 @@
-npm start
 npm i 
 npm i qr-scanner
+npm i react-qr-code
+npm i qrcode
+npm start

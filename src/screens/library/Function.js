@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import config from "../../../configip.js"
+import config from "../../configip.js"
 
 export const handleImageClick = (admin, setShowPopup, setShowPopup1) => {
     console.log("dnejdnjiqzdiqdiqzd")

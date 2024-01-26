@@ -5,7 +5,7 @@ import "./library.css"
 import ProductCard from "./Component JS Stock/Product_Card";
 import Add_Compo from "./Component JS Stock/Add_Compo";
 import axios from "axios";
-import config from "../../../configip.js"
+import config from "../../configip.js"
 
 const ProduitList = ({ admin }) => {
     const [produits1, setProduits1] = useState([]);
