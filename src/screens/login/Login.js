@@ -397,7 +397,7 @@ class Login extends React.Component {
                 sessionStorage.setItem("firstName", res.data.user.firstName);
                 sessionStorage.setItem("password", res.data.user.mdp);
 
-                if (!res.data.user.historic.length > 0) {
+                if (res.data.user.historic.length > 0) {
 
                     var historicJSON =
                     {
@@ -471,7 +471,7 @@ class Login extends React.Component {
                 sessionStorage.setItem("lastName", res.data.user.lastName);
                 sessionStorage.setItem("numberId", res.data.user.numberId);
 
-                if (!res.data.user.historic.length > 0) {
+                if (res.data.user.historic.length > 0) {
 
                     var historicJSON =
                     {
@@ -482,7 +482,7 @@ class Login extends React.Component {
                     console.log(historicJSON)
                     sessionStorage.setItem('historic', historicJSON);
                 }else {
-                    sessionStorage.setItem('historic', '[]'c);
+                    sessionStorage.setItem('historic', '[]');
                 }
 
                 sessionStorage.setItem("lastName", res.data.user.lastName);

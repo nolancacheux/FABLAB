@@ -155,7 +155,6 @@ function Profil() {
           } else if (item.numberId.charAt(0) == '2') {
             // Pour produit2
             
-            /*
             const expirationDate = new Date(item.pret);
             const currentDate = new Date();
             const remainingTime = expirationDate - currentDate;
@@ -164,11 +163,11 @@ function Profil() {
             // Ajouter une classe conditionnelle en fonction du temps restant
             const className = remainingDays > 0 ? 'green-text' : 'red-text';
     
-            return <span className={className}>{remainingDays} jours</span>;*/
-            return `${item.nbJour} jours`;
+            return <span className={className}>{remainingDays} jours</span>;
+            //return `${item.nbJour} jours`;
           } else if (item.numberId.charAt(0) == '3') {
             // Pour produit3
-            /*
+            
             const expirationDate = new Date(item.pret);
             const currentDate = new Date();
             const remainingTime = expirationDate - currentDate;
@@ -177,8 +176,8 @@ function Profil() {
             // Ajouter une classe conditionnelle en fonction du temps restant
             const className = remainingHours > 0 ? 'green-text' : 'red-text';
     
-            return <span className={className}>{remainingHours} heures</span>;*/
-            return `Date : ${item.nbHeure} heures`;
+            return <span className={className}>{remainingHours} heures</span>;
+            //return `Date : ${item.nbHeure} heures`;
           }
           // Gérez d'autres cas si nécessaire
           return '';
