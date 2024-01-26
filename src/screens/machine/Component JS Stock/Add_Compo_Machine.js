@@ -56,19 +56,17 @@ const Add_Compo = ({admin}) => {
         try {
             const name = document.getElementById('newProductName').value;
             const pret = document.getElementById('pret').value;
-            const nbHeure = document.getElementById('nbHeure').value;
-            const isLate = document.getElementById('isLate').checked;
-
             if (name) {
                 const requestData = {
                     name,
                     pret,
-                    nbHeure: parseInt(nbHeure),
-                    reserved: isLate,
+                    nbHeure: 0,
+                    reserved: false,
                     image: imageName, // image est le nom du fichier après le téléchargement
                 };
+                console.log(requestData);
 
-                const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/register2`, requestData, {
+                const response = await axios.post(`https://${config.ipserveur}:${config.portserveur}/stock/register3`, requestData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -113,15 +111,6 @@ const Add_Compo = ({admin}) => {
                             <label htmlFor="pret">Prêt (Date):</label>
                             <input type="date" id="pret" />
                         </div>
-                        <div>
-                            <label htmlFor="nbHeure">Nombre d'heures:</label>
-                            <input type="number" id="nbHeure" />
-                        </div>
-                        <div>
-                            <label htmlFor="isLate">En Retard:</label>
-                            <input type="checkbox" id="isLate" />
-                        </div>
-                
                         <div>
                             <label htmlFor="newProductImage">Nouvelle Image URL:</label>
                             <ImageUploader />

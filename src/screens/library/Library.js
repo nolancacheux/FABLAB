@@ -7,7 +7,8 @@ import Add_Compo from "./Component JS Stock/Add_Compo";
 import axios from "axios";
 import config from "../../configip.js"
 
-const ProduitList = ({ admin }) => {
+const ProduitList = () => {
+    const admin = (sessionStorage.getItem("admin"));
     const [produits1, setProduits1] = useState([]);
     const [loading, setLoading] = useState(true);
     
@@ -34,6 +35,7 @@ const ProduitList = ({ admin }) => {
       
     return (
         <div>
+            {console.log(admin)}
             <h1>Liste des Composants</h1>
             {loading ? (
                 <p>Chargement en cours...</p>
@@ -49,6 +51,7 @@ const ProduitList = ({ admin }) => {
                                 }}
                                 admin={admin}
                         />
+
                     ))}
                     {admin && (
                         <Add_Compo admin={admin}/>

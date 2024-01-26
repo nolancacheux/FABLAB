@@ -85,7 +85,8 @@ const ProductCard = ({ product, admin }) => {
             <span className="close" onClick={closePopup}>
               &times;
             </span>
-            <QRCode id="qrc" value="1234567" />
+            <QRCode id="qrc" value={product.iD+"/"+sessionStorage.getItem("numberId")} />
+            {console.log(product.iD+"/"+sessionStorage.getItem("numberId"))}
           </div>
         </div>
       )}
@@ -130,5 +131,3 @@ const ProductCard = ({ product, admin }) => {
 };
 
 export default ProductCard;
-
-

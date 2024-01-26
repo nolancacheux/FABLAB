@@ -1,4 +1,6 @@
-/************ Profile ************/
+@media screen and (min-width: 500px) {
+    
+    /************ Profile ************/
 .prf-card {
     background:var(--primary);
     border: none;
@@ -276,14 +278,20 @@
     background-color: #f2f2f2;
 }
 
-.custom-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+.green-text {
+    background-color: #006600; /* Vert foncé */
+    color: #fff; /* Texte blanc */
+    opacity: 0.6; /* Opacité plus basse */
 }
-
-.custom-table tbody tr:hover {
-    background-color: #e0e0e0;
+.red-text {
+    background-color: #990000; /* Rouge foncé */
+    
+    
 }
-
+.green-text:hover {
+    color: #000; /* Texte noir */
+    opacity:1;
+}
 .object-photo {
     max-width: 66px; /* Ajustez la largeur maximale de la photo selon vos besoins */
     border-radius: 5px;
@@ -325,8 +333,6 @@
 
 
 .adminbnt {
-    margin-top: 88%;
-    margin-left: -8%;
     transition: 0.2s;
     border-radius: 25px;
     padding: 7px 10px;
@@ -350,8 +356,8 @@
 
 
 .adminbnt1 {
-    margin-top: 6%;
-    margin-left: -2%;
+    margin-top: 6% auto;
+    margin-left: -2% auto;
     color: black;
     position : absolute;
     transition: 0.2s;
@@ -377,42 +383,49 @@
 }
 
 
-.black-Title{
-    font-size: 300%;
+.black-Title {
+    max-width: 380px;
+    width: 100%;
+    margin: 30px auto; /* Auto pour centrer horizontalement, et ajustez la marge verticale selon vos besoins */
+    text-align: center;
+    height: 55px;
+    line-height: 55px; /* Ajuste la hauteur de ligne pour centrer le texte verticalement */
+    color: black;
+    border-radius: 55px;
+    display: flex; /* Utilise flexbox pour centrer le contenu */
+    align-items: center; /* Centre le contenu verticalement */
+    justify-content: center; /* Centre le contenu horizontalement */
+    padding: 0 0.4rem;
+    position: relative;
+    background-color: var(--gray-light);
+    border: 3px solid var(--gray-light);
+}
 }
 
-/* Media Query pour les écrans jusqu'à 780px */
-@media screen and (max-width: 780px) {
-    .adminbnt {
-        margin-top: 88%;
-        margin-left: -8%;
-        transition: 0.2s;
-        border-radius: 25px;
-        padding: 7px 10px;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        background-color: var(--tertary);
-        border: 3px solid var(--primary);
+
+
+
+
+
+/* Ajoutez cette requête média à la fin de votre feuille de style */
+@media screen and (max-width: 500px) {
+    .prf-right-block {
+        flex-direction: column-reverse; /* Inverse l'ordre des éléments flex dans .prf-right-block */
     }
-    
-}
 
-/* Media Query pour les écrans jusqu'à 980px */
-@media screen and (max-width: 980px) {
-
-    
+    .prf-back {
+        width: 100%; /* Ajustez la largeur pour remplir le conteneur */
+        order: -1; /* Placez .prf-back au-dessus dans l'ordre de flex */
     }
 
-/* Media Query pour les écrans jusqu'à 1200px */
-@media screen and (max-width: 1200px) {
-    
-    
-   
-}
+    .prf-card {
+        width: 100%; /* Ajustez la largeur pour remplir le conteneur */
+        margin-right: 0; /* Annulez la marge droite si nécessaire */
+    }
 
-@media screen and (min-width: 450px) {
-    
-    
+    .tableau {
+        width: 100%; /* Ajustez la largeur pour remplir le conteneur */
+    }
+
+    /* Autres ajustements pour les petits écrans si nécessaire */
 }
