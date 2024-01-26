@@ -56,7 +56,7 @@ const ProduitList = ({ admin }) => {
 
 
 const Library = () => {
-    let admin=true;
+    let admin=false;
     return (
         <div>
             <Header icon={"print-outline"}

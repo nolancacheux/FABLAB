@@ -56,8 +56,9 @@ const ProduitList = (admin) => {
 
         fetchProduits3();   
     }, []);
-
+    admin=false;
     return (
+        
         <div>
             <h1>Liste des Machines & Outils</h1>
             {loading ? (
@@ -183,7 +184,7 @@ const ProduitList = (admin) => {
 const Machine = () => {
      
 
-  let admin=false;
+    let admin=false;
   return (
       <div>
           <Header icon={"cash-outline"} 
