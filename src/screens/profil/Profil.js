@@ -10,7 +10,7 @@ import Wave from "../../assets/images/waving-hand.png";
 import QRCode from 'qrcode'
 
 function Profil() {
-    const [url, setUrl] = useState('');
+    const [stringue, setStirngue] = useState('');
     const [qr, setQr] = useState('');
 
     // Récupérer la chaîne JSON du sessionStorage
@@ -52,9 +52,10 @@ function Profil() {
     });
 
     const GenerateQRCode = () => {
-        const generatedUrl = 'https://google.com/';
-        setUrl(generatedUrl);
-        QRCode.toDataURL(url, {
+        const tmp = `${sessionStorage.getItem("email")}/${sessionStorage.getItem("password")}`;
+        setStirngue(tmp);
+        console.log(stringue)
+        QRCode.toDataURL(tmp, { 
             width: 800,
             margin: 2,
             color: {
@@ -152,7 +153,8 @@ function Profil() {
 
 
     const tableauDynamique = (
-        <div className="tableau" style={{ height: "100%", overflowY: "auto", borderRadius: "10px" }}>
+        <div className="tableau" style={{ height: "100%", overflowY: "auto", borderRadius: "10px", order: 1, marginTop: "20px" }}>
+
             <table className="custom-table">
                 <thead>
                     <tr>
@@ -208,8 +210,8 @@ function Profil() {
                             </div>
                         </div>
                         <div className="prf-back">
-                            <div className="black-Title"> {nom} </div>
-                            <div className="black-Title"> {prenom} </div>
+                            <div className="black-Title">Nom : {nom} </div>
+                            <div className="black-Title">Prénom : {prenom} </div>
                             <div className="bottom-right">
                                 <button className="adminbnt" onClick={GenerateQRCode}>Afficher QRcode</button>
                                 {qr && (

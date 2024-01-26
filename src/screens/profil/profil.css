@@ -325,8 +325,6 @@
 
 
 .adminbnt {
-    margin-top: 88%;
-    margin-left: -8%;
     transition: 0.2s;
     border-radius: 25px;
     padding: 7px 10px;
@@ -350,8 +348,8 @@
 
 
 .adminbnt1 {
-    margin-top: 6%;
-    margin-left: -2%;
+    margin-top: 6% auto;
+    margin-left: -2% auto;
     color: black;
     position : absolute;
     transition: 0.2s;
@@ -377,42 +375,20 @@
 }
 
 
-.black-Title{
-    font-size: 300%;
-}
-
-/* Media Query pour les écrans jusqu'à 780px */
-@media screen and (max-width: 780px) {
-    .adminbnt {
-        margin-top: 88%;
-        margin-left: -8%;
-        transition: 0.2s;
-        border-radius: 25px;
-        padding: 7px 10px;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        background-color: var(--tertary);
-        border: 3px solid var(--primary);
-    }
-    
-}
-
-/* Media Query pour les écrans jusqu'à 980px */
-@media screen and (max-width: 980px) {
-
-    
-    }
-
-/* Media Query pour les écrans jusqu'à 1200px */
-@media screen and (max-width: 1200px) {
-    
-    
-   
-}
-
-@media screen and (min-width: 450px) {
-    
-    
+.black-Title {
+    max-width: 380px;
+    width: 100%;
+    margin: 30px auto; /* Auto pour centrer horizontalement, et ajustez la marge verticale selon vos besoins */
+    text-align: center;
+    height: 55px;
+    line-height: 55px; /* Ajuste la hauteur de ligne pour centrer le texte verticalement */
+    color: black;
+    border-radius: 55px;
+    display: flex; /* Utilise flexbox pour centrer le contenu */
+    align-items: center; /* Centre le contenu verticalement */
+    justify-content: center; /* Centre le contenu horizontalement */
+    padding: 0 0.4rem;
+    position: relative;
+    background-color: var(--gray-light);
+    border: 3px solid var(--gray-light);
 }
