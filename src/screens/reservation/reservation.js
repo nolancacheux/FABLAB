@@ -84,15 +84,15 @@ fonction_valider(){
       sessionStorage.setItem("scan",'');
       this.setState(
         {
-          type: 1,
-          tmp_id: '',
-          tmp_id_user: '',
-          name:'',
-          duree:'',
-          quantite:undefined,
-          borderColor: 'transparent',
-          quantite_txt: '',
-          quantite_ok: false
+            type: 1,
+      tmp_id: '',
+      tmp_id_user: '',
+      name:'',
+      duree:'',
+      quantite:undefined,
+      borderColor: 'transparent',
+      quantite_txt: '',
+      quantite_ok: false
         }
       )  
 
@@ -107,17 +107,7 @@ componentDidMount() {
     const first = phrase.substring(0,phrase.search("/"))
     const second = phrase.substring(phrase.search("/")+1,phrase.length)
 
-    const baseURL = `https://${config.ipserveur}:${config.portserveur}/reservation/${first}`;
-
-        axios.get(baseURL).then((resp) => {
-          this.setState({
-            quantite: resp.data,
-            
-          }
-          )
-          console.log(this.state.quantite);
-        }
-        );
+    
     
     this.setState(
       {
@@ -135,8 +125,19 @@ componentDidMount() {
           console.log(this.state)
           console.log(this.state.tmp_id +"ok");
           if (this.state.tmp_id.substring(0,1) === '1') {
-            this.state.type= 1
+            
             console.log(this.state.type)
+            const baseURL = `https://${config.ipserveur}:${config.portserveur}/reservation/${first}`;
+
+            axios.get(baseURL).then((resp) => {
+              this.setState({
+                quantite: resp.data,
+                type: 1
+              }
+              )
+              console.log(this.state.quantite);
+            }
+            );
           
           } else if (this.state.tmp_id.substring(0, 1) === '2') {
             this.state.type= 2
