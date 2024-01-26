@@ -10,7 +10,8 @@ import config from "../../configip.js"
 const ProduitList = ({ admin }) => {
     const [produits1, setProduits1] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    
+    
     useEffect(() => {
         const fetchProduits1 = async () => {
             try {
@@ -25,7 +26,12 @@ const ProduitList = ({ admin }) => {
 
         fetchProduits1();
     }, []);
-
+    
+   
+        
+          
+        
+      
     return (
         <div>
             <h1>Liste des Composants</h1>
@@ -57,6 +63,14 @@ const ProduitList = ({ admin }) => {
 
 const Library = () => {
     let admin=false;
+    const [profiltxt, setprofiltxt] = useState("Profil");
+    const [paratxt, setparatxt] = useState("Profil");
+
+    if(sessionStorage.getItem("admin")=== true){
+        setprofiltxt("Reservation")
+        setparatxt("AdminGestion")
+        
+    }
     return (
         <div>
             <Header icon={"print-outline"}
@@ -74,6 +88,8 @@ const Library = () => {
                 profil={false}
                 setting={false}
                 position={false}
+                profil_txt={profiltxt}
+            para_txt={paratxt}
             />
         </div>
     );

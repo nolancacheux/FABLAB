@@ -279,6 +279,8 @@ componentDidMount() {
             profil={false}
             setting={true}
             position={false}
+            profil_txt={"AdminGestion"}
+            para_txt={"Reservation"}
           />
           ;
         </div>
@@ -404,6 +406,8 @@ componentDidMount() {
             profil={false}
             setting={true}
             position={false}
+            profil_txt={"AdminGestion"}
+            para_txt={"Reservation"}
           />
           ;
         </div>
@@ -528,6 +532,8 @@ componentDidMount() {
             profil={false}
             setting={true}
             position={false}
+            profil_txt={"AdminGestion"}
+            para_txt={"Reservation"}
           />
           ;
         </div>

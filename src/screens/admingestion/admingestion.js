@@ -106,7 +106,7 @@ function Admingestion() {
                 
                 {tableauDynamique}
             </section>
-            <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false}/>;      
+            <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false} profil_txt={"AdminGestion"} para_txt={"Reservation"}/>;      
         </div>
         
     );

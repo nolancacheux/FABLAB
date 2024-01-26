@@ -8,6 +8,7 @@ import Navigation from "./../../components/navigation/Navigation";
 import PP from "../../assets/images/Profil.png";
 import { Navigate } from "react-router";
 import bcrypt from "bcryptjs";
+
 class Setting extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +34,7 @@ class Setting extends React.Component {
       emailRecup: "",
       image: "",
       imageStyle: "",
+      isadmin: sessionStorage.getItem("admin")
     };
     this.handleChange = this.handleChange.bind(this);
     this.mailChange = this.mailChange.bind(this);
@@ -739,10 +741,11 @@ class Setting extends React.Component {
   //! Front-End de la page Settings !//
 
   render() {
-    if (this.state.delete) {
-      return <Navigate to="/" />;
-    }
+    // if (this.state.isadmin) {
+    //   return <Navigate to="/Reservation" />;
+    // }
     return (
+      
       <div>
         <Header
           icon={"construct-outline"}
