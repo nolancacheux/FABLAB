@@ -1,0 +1,370 @@
+/************ Profile ************/
+
+
+.tableau-admin {
+    background:var(--primary);
+    border: none;
+    width: 67%;
+    margin-left: 16%;
+    margin-top: 5%;
+    background-color: white;
+    position: relative
+    ;
+}
+
+
+
+#admin-tr th{
+    border: none;
+    margin-right: 10px;
+}
+
+
+
+.prf-front h2 {
+    font-weight: 500;
+    color: var(--primary);
+}
+.prf-front p {
+    font-size: 13px;
+    margin-top: 5px;
+    color: var(--primary);
+}
+.prf-back {
+    padding: 15px 40px;
+    color: var(--primary);
+    background: var(--secondary);
+}
+.prf-back h1 {
+    font-size: 50px;
+    line-height: 55px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+.prf-back h2{
+    color: var(--primary);
+}
+.prf-back p {
+    font-size: 14px;
+}
+.object-photo-admin {
+    width: 20%;
+}
+.prf-row {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+.prf-col {
+    flex: 1;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    color: var(--primary);
+}
+.prf-col h2 {
+    font-size: 20px;
+}
+.prf-col::after {
+    content: "";
+    width: 1.5px;
+    height: 20px;
+    top: 5px;
+    right: 0;
+    position: absolute;
+    background: var(--important);
+}
+.prf-col:last-child::after {
+    display: none;
+}
+.prf-col p {
+    margin-top: 5px;
+}
+.prf-button-container {
+    display: flex;
+    margin-top: 15px;
+}
+.prf-custom-button {
+    padding: 8px;
+    border-radius: 25px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid var(--primary);
+}
+.prf-custom-button ion-icon {
+    margin-right: 8px;
+    color: var(--primary);
+}
+.prf-custom-button span {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--primary);
+}
+.prf-block {
+    width: 20%;
+    height: 100%;
+    border-radius: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--tertary);
+}
+.prf-block ion-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+    animation: shake 10s infinite;
+}
+.prf-block h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.prf-block p {
+    font-size: 14px;
+}
+.prf-contact,.prf-confidence {
+    padding: 22px 30px;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    display: flex;
+    color: var(--primary);
+}
+.prf-bottom-right h3 {
+    color: var(--tertary);
+}
+
+.prf-phone-only{
+    display: none;
+}
+
+/************ Effet ************/
+.prf-block:hover {
+    transform: translateY(5px);
+}
+
+/************ Animation Icone Statistique ************/
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+    75% {
+        transform: translateX(5px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/************ Media Query ************/
+
+@media screen and (max-width: 780px) {
+    .prf-top-right {
+        padding: 15px;
+        height: 35%;
+    }
+    .prf-card {
+        display: none;
+    }
+    .prf-block h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .prf-block p {
+        font-size: 10px;
+    }
+    .prf-bottom-right a ion-icon{
+        display: none;
+    }
+    .prf-phone-only{
+        background: url(../../assets/images/user.png);
+        height: 20%;
+        border-radius: 10px;
+        width: 100%;
+        padding: 10px 0px 0px 10px;
+        margin-bottom: 20px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: block;
+        color: var(--primary);
+    }
+    .prf-phone-only p{
+        margin-top: 10px;
+    }
+    .prf-phone-only button{
+        margin-bottom: 20px;
+    }
+}
+
+/* Ajoutez ces styles à votre feuille de style existante */
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+     /* Ajoutez cette ligne pour arrondir les bords du tableau */
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Ajustez la marge intérieure selon vos besoins */
+    text-align: left;
+    border-radius: 30px; /* Ajoutez cette ligne pour arrondir les bords des cellules */
+    text-align: center;
+}
+
+.custom-table th {
+    background-color: #f2f2f2;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+.object-photo {
+    max-width: 66px; /* Ajustez la largeur maximale de la photo selon vos besoins */
+    border-radius: 5px;
+    display: block; 
+    margin: auto;
+}
+
+.object{
+    text-align: center;
+
+}
+
+.qqq {
+    width: 75%;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 35%;
+    height: 29%;
+    margin-left: -6%;
+    border-radius: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.pimg{
+    margin-left: 41%;
+    margin-top: -14%;
+    position: absolute;
+}
+
+
+.adminbnt {
+    margin-top: 88%;
+    margin-left: -8%;
+    transition: 0.2s;
+    border-radius: 25px;
+    padding: 7px 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--tertary);
+    border: 3px solid var(--primary);
+}
+
+/************ Effet ************/
+
+.adminbnt:active {
+    transform: scale(0.95);
+}
+.adminbnt:hover {
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+}
+
+
+.adminbnt1 {
+    margin-top: 6%;
+    margin-left: -2%;
+    color: black;
+    position : absolute;
+    transition: 0.2s;
+    border-radius: 25px;
+    padding: 7px 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--tertary);
+    border: 3px solid var(--primary);
+}
+
+
+/************ Effet ************/
+
+.adminbnt1:active {
+    transform: scale(0.95);
+}
+.adminbnt1:hover {
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+}
+
+
+/* Media Query pour les écrans jusqu'à 780px */
+@media screen and (max-width: 780px) {
+    .adminbnt {
+        margin-top: 88%;
+        margin-left: -8%;
+        transition: 0.2s;
+        border-radius: 25px;
+        padding: 7px 10px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: var(--tertary);
+        border: 3px solid var(--primary);
+    }
+    
+}
+
+/* Media Query pour les écrans jusqu'à 980px */
+@media screen and (max-width: 980px) {
+
+    
+    }
+
+/* Media Query pour les écrans jusqu'à 1200px */
+@media screen and (max-width: 1200px) {
+    
+    
+   
+}
+
+@media screen and (min-width: 450px) {
+    
+    
+}

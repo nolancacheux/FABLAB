@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import QrScanner from 'qr-scanner';
-import './scanner.css'; // Créez un fichier CSS séparé pour les styles
+import './scanner.css'; 
 import Navigation from "./../../components/navigation/Navigation";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './scanner.css';
+
 if (process.env.REACT_APP_NOWARNINGS === 'true') {
     console.warn = () => {}; // Désactive les avertissements console.warn
     console.error = () => {}; // Désactive les avertissements console.error
@@ -25,6 +25,8 @@ const scanner = () => {
       }
       else if (result.search('/') != -1 && result.search('-') != -1){
         sessionStorage.setItem("scan", result);
+
+        
         navigate('/Reservation');
       }
       

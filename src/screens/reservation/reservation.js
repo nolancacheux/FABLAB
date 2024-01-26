@@ -5,12 +5,18 @@ import "../../screens/profil/profil.css";
 import Header from "./../../components/header/Header";
 import "../../Hadrien/reset.css";
 import Navigation from "./../../components/navigation/Navigation";
-import PP from "../../assets/images/Profil.png";
-import { Navigate } from "react-router";
-import bcrypt from "bcryptjs";
-import { Link } from 'react-router-dom';
+import config from "./../../configip";
+
 import './reservation.css';
 import axios from "axios";
+
+if (process.env.REACT_APP_NOWARNINGS === 'true') {
+    console.warn = () => {}; // Désactive les avertissements console.warn
+    console.error = () => {}; // Désactive les avertissements console.error
+  }
+
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
 class Reservation extends React.Component {
   constructor(props) {
     super(props);
@@ -18,17 +24,82 @@ class Reservation extends React.Component {
       type: 1,
       tmp_id: '',
       tmp_id_user: '',
-      name:''
+      name:'',
+      duree:'',
+      quantite:undefined,
+      borderColor: 'transparent',
+      quantite_txt: '',
+      quantite_ok: false
     };
+    //this.componentDidMount = this.componentDidMount.bind(this);
     this.componentDidMount();
+    this.handleChange = this.handleChange.bind(this);
+    this.fonction_valider = this.fonction_valider.bind(this);
     
   }
+  handleChange = (event) => {
+    
+    this.state.duree = event.target.value;
+    if(parseInt(this.state.duree) > this.state.quantite){
+      console.log("ta daronne y'en a plus");
+      this.setState(
+        {
+          borderColor :'red',
+          quantite_txt: 'insufisante',
+          quantite_ok: true
+        }
+      )
+      
+    }
+    else{
+      this.setState(
+        {
+          borderColor :'transparent',
+          quantite_txt: '',
+          quantite_ok: false
+        }
+      )
+    }
+  };
 fonction_valider(){
       event.preventDefault()
+      const baseURL = `https://${config.ipserveur}:${config.portserveur}/reservation`;
+      const data = JSON.stringify({
+      'iduser':this.state.tmp_id_user,
+      'idequipement':this.state.tmp_id,
+      'duree': this.state.duree,
+      'type':this.state.type
+
+      });
+      console.log(data);
+      const headers = {
+          'Content-Type': 'application/json', // Spécifiez le type de contenu si nécessaire
+          'Access-Control-Allow-Origin':'*',
+      };
+      axios.post(baseURL,data,{ headers })
+            .then(res => {
+          console.log(res)
+         // window.location.reload();
+      })
       sessionStorage.setItem("scan",'');
-      window.location.reload();
+      this.setState(
+        {
+          type: 1,
+          tmp_id: '',
+          tmp_id_user: '',
+          name:'',
+          duree:'',
+          quantite:undefined,
+          borderColor: 'transparent',
+          quantite_txt: '',
+          quantite_ok: false
+        }
+      )  
+
     }
 componentDidMount() {
+  
+
   if (sessionStorage.getItem("scan") !== null) {
 
     const phrase = sessionStorage.getItem("scan")
@@ -36,32 +107,51 @@ componentDidMount() {
     const first = phrase.substring(0,phrase.search("/"))
     const second = phrase.substring(phrase.search("/")+1,phrase.length)
 
-  
-    this.state.tmp_id_user = second ;
-    console.log(this.state.tmp_id_user);
-    this.state.tmp_id = first;
+    const baseURL = `https://${config.ipserveur}:${config.portserveur}/reservation/${first}`;
 
-    axios.get('https://192.168.184.122:1234/users/' + this.state.tmp_id).then(resp => {
-      this.state.name = resp.data;
-      console.log(resp.data);
-    });
+        axios.get(baseURL).then((resp) => {
+          this.setState({
+            quantite: resp.data,
+            
+          }
+          )
+          console.log(this.state.quantite);
+        }
+        );
+    
+    this.setState(
+      {
+        tmp_id_user: second,
+        tmp_id: first,
+      },
+      () => {
+        const baseURL = `https://${config.ipserveur}:${config.portserveur}/users/${this.state.tmp_id_user}`;
 
+        axios.get(baseURL).then((resp) => {
+          this.setState({
+            name: resp.data,
+          });
+          console.log(resp.data);
+          console.log(this.state)
+          console.log(this.state.tmp_id +"ok");
+          if (this.state.tmp_id.substring(0,1) === '1') {
+            this.state.type= 1
+            console.log(this.state.type)
+          
+          } else if (this.state.tmp_id.substring(0, 1) === '2') {
+            this.state.type= 2
+            console.log(this.state.type)
+            
+          } else if (this.state.tmp_id.substring(0, 1) === '3') {
+            this.state.type= 3
+            console.log(this.state.type)
+            
+          }
+        });
+      }
+    );
   }
   
-  
-  if (this.state.tmp_id.substring(0,1) === '1') {
-    this.state.type= 1
-    console.log(this.state.type)
-  
-  } else if (this.state.tmp_id.substring(0, 1) === '2') {
-    this.state.type= 2
-    console.log(this.state.type)
-    
-  } else if (this.state.tmp_id.substring(0, 1) === '3') {
-    this.state.type= 3
-    console.log(this.state.type)
-    
-  }
 }
   render() {
     
@@ -158,8 +248,8 @@ componentDidMount() {
                 </div>
                 
                
-                <h2>Quantité</h2>
-                <div className="stg-champ-de-saisie" id="stg-SaisieMotDePasse">
+                <h2>Quantité {this.state.quantite_txt}</h2>
+                <div className="stg-champ-de-saisie" id="stg-SaisieMotDePasse" style={{border: `2px solid ${this.state.borderColor} `}}>
                   <i className="fas fa-loc" id="stg-cadenas" />
                   <div className="stg-div stg-mdp">
                     <input
@@ -170,13 +260,14 @@ componentDidMount() {
                       
                       className="stg-input"
                       id="stg-password"
+                      onChange={this.handleChange}
                       
                     />
                     
                   </div>
                   
                 </div> 
-                <button className="resa-valider" onClick={this.fonction_valider}> Valider</button>
+                <button className="resa-valider" onClick={this.fonction_valider} disabled = {this.state.quantite_ok}> Valider</button>
               </div>
             </form>
           </section>
@@ -286,7 +377,7 @@ componentDidMount() {
                
                 <h2>Nombre de jour :</h2>
                 <div className="stg-champ-de-saisie" id="stg-SaisieMotDePasse">
-                  <i className="fas fa-loc" id="stg-cadenas" />
+                  <i className="fa-solid fa-calendar" id="stg-cadenas" />
                   <div className="stg-div stg-mdp">
                     <input
                       type="number"
@@ -295,21 +386,11 @@ componentDidMount() {
                       placeholder="Nombre de jour"
                       className="stg-input"
                       id="stg-password"
-                      
+                      onChange={this.handleChange}
                     />
-                    <span className="stg-show-btn">
-                      <i className="fas fa-eye show_hide" />
-                    </span>
+                    
                   </div>
-                  <div className="stg-indicate">
-                    <div className="stg-icon-text">
-                      <i
-                        className="fas fa-exclamation-circle error_icon"
-                        id="stg-exclamation-circle-for-pass"
-                      />
-                      <h6 className="stg-text" />
-                    </div>
-                  </div>
+                  
                 </div> 
                 <button className="resa-valider" onClick={this.fonction_valider}>Valider</button>
               </div>
@@ -430,7 +511,7 @@ componentDidMount() {
                       placeholder="Nombre d'heures"
                       className="stg-input"
                       id="stg-password"
-                      
+                      onChange={this.handleChange}
                     />
                     
                   </div>
