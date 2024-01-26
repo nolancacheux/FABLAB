@@ -2,9 +2,18 @@
 .prf-card {
     background:var(--primary);
     border: none;
-    width: 33%;
-    margin-right: 20px;
+    width: 30%;
+    margin-right: 10px;
 }
+
+.tableau {
+    background:var(--primary);
+    border: none;
+    width: 67%;
+    margin-right: 10px;
+    background-color: white;
+}
+
 .prf-right-block {
     width: 100%;
     flex: 1;
@@ -67,7 +76,6 @@
 }
 .prf-back {
     padding: 15px 40px;
-    transform: rotateY(180deg);
     color: var(--primary);
     background: var(--secondary);
 }
@@ -116,9 +124,6 @@
 .prf-col p {
     margin-top: 5px;
 }
-.prf-card:hover .prf-card-inner {
-    transform: rotateY(180deg);
-}
 .prf-button-container {
     display: flex;
     margin-top: 15px;
@@ -160,7 +165,7 @@
 .prf-block ion-icon {
     font-size: 40px;
     margin-bottom: 8px;
-    animation: shake 2s infinite;
+    animation: shake 10s infinite;
 }
 .prf-block h3 {
     font-size: 18px;
@@ -181,33 +186,12 @@
 .prf-bottom-right h3 {
     color: var(--tertary);
 }
-.prf-bottom-right a {
-    margin-top: 20px;
-    transition: 0.3s;
-    flex-grow: 1;
-    flex-basis: 0;
-    display: flex;
-    position: relative;
-    color: var(--primary);
-}
-.prf-bottom-right a ion-icon:nth-child(1) {
-    margin-right: 15px;
-    color: var(--important);
-}
-.prf-bottom-right a ion-icon:nth-child(3) {
-    right: 0;
-    position: absolute;
-}
+
 .prf-phone-only{
     display: none;
 }
 
 /************ Effet ************/
-
-.prf-bottom-right a:hover {
-    transform: translateX(10px);
-    color: var(--important);
-}
 .prf-block:hover {
     transform: translateY(5px);
 }
@@ -268,4 +252,167 @@
     .prf-phone-only button{
         margin-bottom: 20px;
     }
+}
+
+/* Ajoutez ces styles à votre feuille de style existante */
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+     /* Ajoutez cette ligne pour arrondir les bords du tableau */
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Ajustez la marge intérieure selon vos besoins */
+    text-align: left;
+    border-radius: 30px; /* Ajoutez cette ligne pour arrondir les bords des cellules */
+    text-align: center;
+}
+
+.custom-table th {
+    background-color: #f2f2f2;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+.object-photo {
+    max-width: 66px; /* Ajustez la largeur maximale de la photo selon vos besoins */
+    border-radius: 5px;
+    display: block; 
+    margin: auto;
+}
+
+.object{
+    text-align: center;
+
+}
+
+.qqq {
+    width: 75%;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 35%;
+    height: 29%;
+    margin-left: -6%;
+    border-radius: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.pimg{
+    margin-left: 41%;
+    margin-top: -14%;
+    position: absolute;
+}
+
+
+.adminbnt {
+    margin-top: 88%;
+    margin-left: -8%;
+    transition: 0.2s;
+    border-radius: 25px;
+    padding: 7px 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--tertary);
+    border: 3px solid var(--primary);
+}
+
+/************ Effet ************/
+
+.adminbnt:active {
+    transform: scale(0.95);
+}
+.adminbnt:hover {
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+}
+
+
+.adminbnt1 {
+    margin-top: 6%;
+    margin-left: -2%;
+    color: black;
+    position : absolute;
+    transition: 0.2s;
+    border-radius: 25px;
+    padding: 7px 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--tertary);
+    border: 3px solid var(--primary);
+}
+
+
+/************ Effet ************/
+
+.adminbnt1:active {
+    transform: scale(0.95);
+}
+.adminbnt1:hover {
+    background-color: var(--primary);
+    border: 3px solid var(--tertary);
+}
+
+
+.black-Title{
+    font-size: 300%;
+}
+
+/* Media Query pour les écrans jusqu'à 780px */
+@media screen and (max-width: 780px) {
+    .adminbnt {
+        margin-top: 88%;
+        margin-left: -8%;
+        transition: 0.2s;
+        border-radius: 25px;
+        padding: 7px 10px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: var(--tertary);
+        border: 3px solid var(--primary);
+    }
+    
+}
+
+/* Media Query pour les écrans jusqu'à 980px */
+@media screen and (max-width: 980px) {
+
+    
+    }
+
+/* Media Query pour les écrans jusqu'à 1200px */
+@media screen and (max-width: 1200px) {
+    
+    
+   
+}
+
+@media screen and (min-width: 450px) {
+    
+    
 }

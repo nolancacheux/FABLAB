@@ -1,225 +1,235 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./../../components/navigation/navigation.css";
 import "./../../components/header/header.css";
 import "../../screens/profil/profil.css";
 import "../../Hadrien/reset.css";
 import Header from "./../../components/header/Header";
 import Navigation from "./../../components/navigation/Navigation";
-import PP from '../../assets/images/user.png'
+import syb from './addsymbole.png'
 import Wave from "../../assets/images/waving-hand.png";
+import QRCode from 'qrcode'
 
-class Profil extends React.Component {
+function Profil() {
+    const [url, setUrl] = useState('');
+    const [qr, setQr] = useState('');
 
-    //! Back-End pour afficher les données de l'utilisateur //
+    // Récupérer la chaîne JSON du sessionStorage
+    var historicJSONRecupere = sessionStorage.getItem('historic');
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: "",
-            prenom: "",
-            nom: "",
-            genre: "",
-            email: "",
-            mdp: "",
-            image: "",
-            description: "",
-            ville: "",
-            pays: "",
-            emailTmp: "",
-            imageAffiche: "",
-        };
+    const nom = sessionStorage.getItem("firstName");
+    const prenom = sessionStorage.getItem("lastName");
+    const email = sessionStorage.getItem("email");
+
+    console.log(historicJSONRecupere)
+
+    // Convertir la chaîne JSON en tableau d'objets
+    var historicDataRecupere = JSON.parse(historicJSONRecupere);
+
+    const [state, setState] = useState({
+        id: "",
+        prenom: "",
+        nom: "",
+        genre: "",
+        email: "",
+        mdp: "",
+        image: "",
+        description: "",
+        ville: "",
+        pays: "",
+        emailTmp: "",
+        imageAffiche: "",
+        donneesDynamiques: [
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+            { date: "2022-02-15", nomObjet: "Objet 2", image: syb },
+            { date: "2022-03-20", nomObjet: "Objet 3", image: syb },
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+            { date: "2022-01-01", nomObjet: "Objet 1", quantite: "17", image: syb },
+        ],
+    });
+
+    const GenerateQRCode = () => {
+        const generatedUrl = 'https://google.com/';
+        setUrl(generatedUrl);
+        QRCode.toDataURL(url, {
+            width: 800,
+            margin: 2,
+            color: {
+                dark: '#335383FF',
+                light: '#EEEEEEFF'
+            }
+        }, (err, url) => {
+            if (err) return console.error(err)
+
+            console.log(url)
+            setQr(url);
+        });
     }
 
-    componentDidMount() {
-        this.recup();
-    }
+    useEffect(() => {
+        GenerateQRCode();
+    }, []);
 
-    recup() {
-        const email = sessionStorage.getItem("email");
-        var requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
-      
-        fetch("http://51.254.38.150:3000/connexion/" + email, requestOptions)
-          .then((response) => response.json())
-          .then((result) => {
-            const { id, prenom, nom, genre, email, mdp, description, ville, pays, image } = result;
-            this.setState({ id, prenom, nom, genre, email, mdp, description, ville, pays, image });
-            this.setState({ emailTmp: email }, () => {
-                if ((this.state.image !== null) && (this.state.image !== '')) {
-                  var requestOptions2 = {
-                    method: "GET",
-                    redirect: "follow",
-                  };
-                  fetch("http://51.254.38.150:3000/connexion/photo/" + this.state.image, requestOptions2)
-                    .then(response => response.blob())
-                    .then(blob => {
-                      const imageURL = URL.createObjectURL(blob);
-                      this.setState({ imageAffiche: imageURL }, () => {
-                        this.forceUpdate(); // Forcer le composant à se rendre à nouveau
-                      });
-                    })
-                    .catch(error => console.log('Erreur lors de la récupération de l\'image :', error));
-                } else {
-                  this.setState({ imageAffiche: PP }, () => {
-                    this.forceUpdate(); // Forcer le composant à se rendre à nouveau
-                  });
+    const ProduitList = (admin) => {
+        const [produits1, setProduits1] = useState([]);
+        const [loading, setLoading] = useState(true);
+
+        useEffect(() => {
+            const fetchProduits1 = async () => {
+                try {
+                    const response = await axios.get(`https://${config.ipserveur}:${config.portserveur}/stock/getAllProduit1`);
+                    setProduits1(response.data.produits1);
+                    setLoading(false);
+                } catch (error) {
+                    console.error('Erreur lors de la récupération des produits:', error);
+                    setLoading(false);
                 }
-              });
-            return email;
-          })
-          .catch((error) =>
-            console.log(
-              "Erreur lors de la récupération des données de l'utilisateur:",
-              error
-            )
-          );
-      }
-      
-      
+            };
 
-    
+            fetchProduits1();
+        }, []);
 
-    render() {
-
-        //! Front-End de la page Profil !//
-
-        const { prenom, nom, email } = this.state;
         return (
             <div>
-                <Header icon={"happy-outline"} title={"Profil"} position={false}></Header>
-                <section className="profil" style={{ height: "70%", width: "100%", padding: "0px 30px", maxHeight: "calc(100vh - 10vh)", flexWrap: "wrap", position: "fixed", display: "flex" }}>
-                    <div className="prf-card">
-                        <div className="prf-card-inner">
-                            <div className="prf-front" style={{backgroundImage: `url(${this.state.imageAffiche})`}}>
-                                <h2> {prenom} {nom} </h2>
-                                <p>{email}</p>
-                                <div className="prf-button-container">
-                                    <button className="prf-custom-button">
-                                        <ion-icon name="language-outline"></ion-icon>
-                                        <span>{this.state.pays}</span>{" "}
-                                    </button>
-                                    <button className="prf-custom-button">
-                                        <ion-icon name="earth-outline"></ion-icon>
-                                        <span>{this.state.ville}</span>{" "}
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="prf-back">
-                                <img src={Wave} alt="" />
-                                <h1>
-                                    {prenom} <span>{nom}</span>
-                                </h1>{" "}
-                                <p>{this.state.description}</p>{" "}
-                                <div className="prf-row">
-                                    <div className="prf-col">
-                                        <h2>12</h2>
-                                        <p>Notation</p>
-                                    </div>
-                                    <div className="prf-col">
-                                        <h2>234 k</h2>
-                                        <p>Abonnés</p>
-                                    </div>
-                                    <div className="prf-col">
-                                        <h2>679</h2>
-                                        <p>Suivi</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="prf-right-block">
-                        <div className="prf-phone-only">
-                            <h2>  {prenom} {nom}  </h2>
+                <h1>Liste des Produits1</h1>
+                {loading ? (
+                    <p>Chargement en cours...</p>
+                ) : (
+                    <ul>
+                        {produits1.map((produit) => (
+                            <li key={produit._id}>
+                                <ProductCard
+                                    product={{
+                                        name: produit.name,
+                                        quantity: produit.quantity,
+                                        image: `https://${config.ipserveur}:${config.portserveur}/uploads/` + produit.image1
+                                    }}
+                                    admin={admin}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        );
+    };
+
+
+
+    function getObjectNameAndQuantity(item) {
+        if (item.numberId.charAt(0) == '1') {
+          // Pour produit1
+          return `Nom : ${item.name}, Quantité : ${item.quantity}`;
+        } else if (item.numberId.charAt(0) == '2') {
+          // Pour produit2
+          return `Nom : ${item.name}`;
+        } else if (item.numberId.charAt(0) == '3') {
+          // Pour produit3
+          return `Nom : ${item.name}}`;
+        }
+        // Gérez d'autres cas si nécessaire
+        return '';
+      }
+      
+
+    function getObjectDate(item){
+        if (item.numberId.charAt(0) == '1') {
+            // Pour produit1
+            return ``;
+          } else if (item.numberId.charAt(0) == '2') {
+            // Pour produit2
+            return `Date : ${item.pret.substring(0,10)}`;
+          } else if (item.numberId.charAt(0) == '3') {
+            // Pour produit3
+            return `Date : ${item.pret.substring(0,10)}`;
+          }
+          // Gérez d'autres cas si nécessaire
+          return '';
+    }
+
+
+    const tableauDynamique = (
+        <div className="tableau" style={{ height: "100%", overflowY: "auto", borderRadius: "10px" }}>
+            <table className="custom-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Nom / Quantité de l'objet emprunté</th>
+                        <th>Temps du pret</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {historicDataRecupere.map((item, index) => (
+                        <tr key={index}>
+                            <td>  
+                                {getObjectDate(item)}
+                            </td>
+                            <td className="object">
+                                {getObjectNameAndQuantity(item)}
+                            </td>
+
+
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+
+    return (
+        <div>
+            <Header icon={"happy-outline"} title={"Profil"} position={false} ></Header>
+            <section className="profil" style={{
+                height: "72%",
+                width: "100%",
+                padding: "0px 30px",
+                maxHeight: "calc(100vh - 10vh)",
+                flexWrap: "wrap",
+                position: "fixed",
+                display: "flex",
+            }}>
+                <div className="prf-card">
+                    <div className="prf-card-inner">
+                        <div className="prf-front" style={{ backgroundImage: `url(${state.imageAffiche})` }}>
+                            <h2> {prenom} {nom} </h2>
                             <p>{email}</p>
                             <div className="prf-button-container">
                                 <button className="prf-custom-button">
                                     <ion-icon name="language-outline"></ion-icon>
-                                    <span>{this.state.pays}</span>
+                                    <span>{state.pays}</span>{" "}
                                 </button>
                                 <button className="prf-custom-button">
                                     <ion-icon name="earth-outline"></ion-icon>
-                                    <span>{this.state.ville}</span>
+                                    <span>{state.ville}</span>{" "}
                                 </button>
                             </div>
                         </div>
-                        <div className="prf-top-right">
-                            <div className="prf-block">
-                                <ion-icon name="trophy-outline"></ion-icon>
-                                <h3>100e</h3>
-                                <p>Classement</p>
-                            </div>
-                            <div className="prf-block">
-                                <ion-icon name="beer-outline"></ion-icon>
-                                <h3>1700 bières</h3>
-                                <p>Bière bue</p>
-                            </div>
-                            <div className="prf-block">
-                                <ion-icon name="star-outline"></ion-icon>
-                                <h3>13000</h3>
-                                <p>Avis</p>
-                            </div>
-                            <div className="prf-block">
-                                <ion-icon name="calendar-outline"></ion-icon>
-                                <h3>2 ans</h3>
-                                <p>Membre depuis</p>
-                            </div>
-                        </div>
-                        <div className="prf-bottom-right">
-                            <div className="prf-contact">
-                                <h3>Restons en contact</h3>
-                                <a href="/">
-                                    <ion-icon name="mail-open-outline"></ion-icon>
-                                    <p>Nous contacter</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                                <a href="/">
-                                    <ion-icon name="logo-tiktok"></ion-icon>
-                                    <p>Tiktok</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                                <a href="/">
-                                    <ion-icon name="logo-instagram"></ion-icon>
-                                    <p>Instagram</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                                <a href="/">
-                                    <ion-icon name="logo-facebook"></ion-icon>
-                                    <p>Facebook</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                            </div>
-                            <div className="prf-confidence">
-                                <h3>Zone légale</h3>
-                                <a href="/">
-                                    <ion-icon name="lock-closed-outline"></ion-icon>
-                                    <p>Politique de confidentialité</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                                <a href="/">
-                                    <ion-icon name="document-text-outline"></ion-icon>
-                                    <p>Conditions d'utilisation</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                                <a href="/">
-                                    <ion-icon name="refresh-outline"></ion-icon>
-                                    <p>Réinitialiser l'application</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
-                                <a href="/">
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                    <p>Supprimer mes données</p>
-                                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                                </a>
+                        <div className="prf-back">
+                            <div className="black-Title"> {nom} </div>
+                            <div className="black-Title"> {prenom} </div>
+                            <div className="bottom-right">
+                                <button className="adminbnt" onClick={GenerateQRCode}>Afficher QRcode</button>
+                                {qr && (
+                                    <>
+                                        <img src={qr} alt="QR Code" className="pimg" />
+                                        <a href={qr} className="adminbnt1" download={`qrcode_${prenom + nom}.png`}>
+                                            Télécharger
+                                        </a>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
-                </section>
-                <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false}/>;
-            </div>
-        );
-    }
+                </div>
+                {tableauDynamique}
+            </section>
+            <Navigation library={false} search={false} map={false} profil={true} setting={false} position={false} />
+        </div>
+
+    );
 }
 
 export default Profil;
