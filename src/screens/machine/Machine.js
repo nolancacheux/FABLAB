@@ -100,7 +100,15 @@ const ProduitList = () => {
 };
 
 const Machine = () => {
-    let admin=sessionStorage.getItem("admin");
+     
+    const [profiltxt, setprofiltxt] = useState("Profil");
+    const [paratxt, setparatxt] = useState("Profil");
+    if(sessionStorage.getItem("admin")=== true){
+        setprofiltxt("Reservation")
+        setparatxt("AdminGestion")
+        
+    }
+    let admin=false;
   return (
       <div>
           <Header icon={"cash-outline"} 
@@ -112,13 +120,15 @@ const Machine = () => {
               <ProduitList admin={admin}/>
           </section>
           <Navigation
-              library={true}
-              search={false}
-              map={false}
-              profil={false}
-              setting={false}
-              position={false}
-          />
+                library={false}
+                search={true}
+                map={false}
+                profil={false}
+                setting={false}
+                position={false}
+                profil_txt={profiltxt}
+            para_txt={paratxt}
+            />
       </div>
   );
 };

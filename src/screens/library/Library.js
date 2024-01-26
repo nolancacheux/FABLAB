@@ -11,7 +11,8 @@ const ProduitList = () => {
     const admin = !(sessionStorage.getItem("admin"));
     const [produits1, setProduits1] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    
+    
     useEffect(() => {
         const fetchProduits1 = async () => {
             try {
@@ -26,7 +27,12 @@ const ProduitList = () => {
 
         fetchProduits1();
     }, []);
-
+    
+   
+        
+          
+        
+      
     return (
         <div>
             {console.log(admin)}
@@ -59,7 +65,15 @@ const ProduitList = () => {
 
 
 const Library = () => {
-    let admin=sessionStorage.getItem("admin");
+    let admin=false;
+    const [profiltxt, setprofiltxt] = useState("Profil");
+    const [paratxt, setparatxt] = useState("Profil");
+
+    if(sessionStorage.getItem("admin")=== true){
+        setprofiltxt("Reservation")
+        setparatxt("AdminGestion")
+        
+    }
     return (
         <div>
             <Header icon={"print-outline"}
@@ -77,6 +91,8 @@ const Library = () => {
                 profil={false}
                 setting={false}
                 position={false}
+                profil_txt={profiltxt}
+            para_txt={paratxt}
             />
         </div>
     );

@@ -9,7 +9,7 @@ import Bar from "../../assets/images/Bar.jpg";
 import Item from "./ItemMap";
 import axios from 'axios';
 import BeerRech from "./BeerRech";
-import { Link } from "react-router-dom";
+import { Link, parsePath } from "react-router-dom";
 import DecoupeuseLaserImage from '../../equipements/decoupeuselaser.jpeg';
 import Imprimante3DImage from '../../equipements/imprimante3D.jpg';
 import PosteElectroniqueImage from '../../equipements/posteelectronique.jpg';
@@ -46,10 +46,22 @@ class Map extends React.Component {
       nbBiereAffiche: 6,
       input: "",
       placeholdersearch: "Rechercher une bière",
-      recherchetype: "Rechercher un bar"
+      recherchetype: "Rechercher un bar",
+      paratxt: "Paramètre",
+      profiltxt:"Profil"
     };
   }
-
+  componentDidMount(){
+   
+    if(sessionStorage.getItem("admin")=== true){
+      this.setState(
+        {
+        paratxt: "Reservation",
+        profiltxt:"AdminGestion"
+        }
+      )
+    }
+  }
   handleInputChange = (e) => {
     let inputValue = e.target.value;
     if (this.state.placeholdersearch === "Rechercher un bar") {
@@ -69,6 +81,7 @@ class Map extends React.Component {
   // ! ---------- Front-End de la page Map ----------//
 
   render() {
+   
     return (
 
       <div>
@@ -289,7 +302,16 @@ class Map extends React.Component {
           </iframe>
         </div>
       </div>
-        <Navigation library={false} search={false} map={true} profil={false} setting={false} position={true} />
+      <Navigation
+            library={false}
+            search={false}
+            map={true}
+            profil={false}
+            setting={false}
+            position={false}
+            profil_txt={this.state.profiltxt}
+            para_txt={this.state.paratxt}
+          />
       </div>
     );
   }
