@@ -53,7 +53,7 @@ class Map extends React.Component {
   }
   componentDidMount(){
    
-    if(sessionStorage.getItem("admin")=== true){
+    if(sessionStorage.getItem("admin")=== "true"){
       this.setState(
         {
         paratxt: "Reservation",
