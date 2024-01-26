@@ -20,8 +20,6 @@ function Profil() {
     const prenom = sessionStorage.getItem("lastName");
     const email = sessionStorage.getItem("email");
 
-    console.log(historicJSONRecupere)
-
     // Convertir la chaîne JSON en tableau d'objets
     var historicDataRecupere = JSON.parse(historicJSONRecupere);
 
@@ -151,10 +149,61 @@ function Profil() {
           return '';
     }
 
+    function getObjectTempPret(item){
+        if (item.numberId.charAt(0) == '1') {
+            // Pour produit1
+            return ``;
+          } else if (item.numberId.charAt(0) == '2') {
+            // Pour produit2
+            
+            return `${item.nbJour} jours`;
+          } else if (item.numberId.charAt(0) == '3') {
+            // Pour produit3
+            
+            
+            return `Date : ${item.nbHeure} heures`;
+          }
+          // Gérez d'autres cas si nécessaire
+          return '';
+    }
+
+    function getTableRowClassName(item) {
+        if (item.numberId.charAt(0) == '1') {
+            // Pour produit1
+            return '';
+        } else if (item.numberId.charAt(0) == '2') {
+            // Pour produit2
+            if(item.reserved == true){
+                const empruntDate = new Date(item.pret);
+                const currentDate = new Date();
+                const remainingTime = currentDate - empruntDate;
+                const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24));
+                return remainingDays > 0 ? 'green-text' : 'red-text';
+            }else{
+                return '';
+            }
+           
+          
+        } else if (item.numberId.charAt(0) == '3') {
+            // Pour produit3
+            if(item.reserved == true){
+                const empruntDate = new Date(item.pret);
+                const currentDate = new Date();
+                const remainingTime = currentDate - empruntDate;
+                const remainingHours = Math.ceil(remainingTime / (1000 * 60 * 60));
+                return remainingHours > 0 ? 'green-text' : 'red-text';
+            }else{
+                return '';
+            }
+           
+        }
+        // Gérez d'autres cas si nécessaire
+        return '';
+    }
+    
 
     const tableauDynamique = (
-        <div className="tableau" style={{ height: "100%", overflowY: "auto", borderRadius: "10px", order: 1, marginTop: "20px" }}>
-
+        <div className="tableau" style={{ height: "100%", overflowY: "auto", borderRadius: "10px" }}>
             <table className="custom-table">
                 <thead>
                     <tr>
@@ -165,12 +214,15 @@ function Profil() {
                 </thead>
                 <tbody>
                     {historicDataRecupere.map((item, index) => (
-                        <tr key={index}>
+                        <tr key={index} className={getTableRowClassName(item)}>
                             <td>  
                                 {getObjectDate(item)}
                             </td>
                             <td className="object">
                                 {getObjectNameAndQuantity(item)}
+                            </td>
+                            <td>
+                                {getObjectTempPret(item)}
                             </td>
 
 
@@ -210,8 +262,8 @@ function Profil() {
                             </div>
                         </div>
                         <div className="prf-back">
-                            <div className="black-Title">Nom : {nom} </div>
-                            <div className="black-Title">Prénom : {prenom} </div>
+                            <div className="black-Title"> Nom : {nom} </div>
+                            <div className="black-Title"> Prénom : {prenom} </div>
                             <div className="bottom-right">
                                 <button className="adminbnt" onClick={GenerateQRCode}>Afficher QRcode</button>
                                 {qr && (
