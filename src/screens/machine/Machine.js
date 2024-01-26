@@ -10,8 +10,11 @@ import Product_Card_Machine from "./Component JS Stock/Product_Card_Machine.js";
 import Add_Compo_Machine from "./Component JS Stock/Add_Compo_Machine.js";
 
 import axios from "axios";
+import Product_Card_Outils from "./Component JS Stock/Product_Card_Outils";
 
-const ProduitList = (admin) => {
+const ProduitList = () => {
+    const admin = (sessionStorage.getItem("admin"));
+
     const [produits2, setProduits2] = useState([]);
     const [produits3, setProduits3] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -55,6 +58,20 @@ const ProduitList = (admin) => {
             ) : (
                 
                 <div className="product-container">
+                    {produits2.map((produit) => (
+                        <Product_Card_Outils key={produit.numberId}
+                                              product={{
+                                                  iD:produit.numberId,
+                                                  name: produit.name,
+                                                  pret: produit.pret,
+                                                  nbJour: produit.nbJour,
+                                                  reserved: produit.reserved,
+                                                  is_late: produit.is_late,
+                                                  image: `https://${config.ipserveur}:${config.portserveur}/uploads/${produit.image1}`,  // Utilisez le préfixe /uploads
+                            }}
+                                             admin={admin}
+                        />
+                    ))}
                     {produits3.map((produit) => (
                         <Product_Card_Machine key={produit.numberId}
                                 product={{
@@ -70,12 +87,12 @@ const ProduitList = (admin) => {
                         />
                     ))}
                     {admin && (
+
                         <Add_Compo_Machine admin={admin}/>
                     )}
                     {admin && (
-                        <Add_Compo_Outils admin={admin}/>
+                            <Add_Compo_Outils admin={admin}/>
                     )}
-                    {console.log(admin)}
                 </div>
             )}
         </div>
@@ -92,7 +109,7 @@ const Machine = () => {
           destination = '/Stockage'
           ></Header>
           <section>
-              <ProduitList admin={!admin}/>
+              <ProduitList admin={admin}/>
           </section>
           <Navigation
               library={true}
