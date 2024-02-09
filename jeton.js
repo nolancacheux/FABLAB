@@ -11,7 +11,7 @@ class Bubbles {
         this.options.spriteSize =
             this.options.sprite.height / this.options.spriteCount;
         new ResizeObserver(this.resizeCanvas.bind(this)).observe(this.canvas);
-    }
+    } 
     setCanvas() {
         this.canvas = document.getElementById(this.options.canvasID);
         this.canvas.width = this.canvas.offsetWidth;

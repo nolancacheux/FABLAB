@@ -12,7 +12,7 @@ function Item({image, nom, adresse, prix, text}) {
       </div>
       <div className="mp-nom">
         <div className="mp-adress">
-          <h1>{nom}</h1>
+          <h1>{nom}</h1> 
           <span>{adresse}</span>
         </div>
         <p>{prix}</p>

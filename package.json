@@ -35,7 +35,7 @@
     "react-simple-star-rating": "^5.1.7",
     "rn-nodeify": "^10.3.0",
     "web-vitals": "^2.1.4"
-  },
+  }, 
   "scripts": {
     "start": "run-script-os",
     "start:win32": "SET HTTPS=true&&react-scripts start",

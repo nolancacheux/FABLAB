@@ -7,5 +7,6 @@ const BeerRech = ({ beer }) => {
     </li>
   );
 };
-
+ 
 export default BeerRech;
+ 

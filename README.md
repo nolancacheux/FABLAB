@@ -8,7 +8,7 @@
 
 The FabLab Management System is a comprehensive solution designed to streamline the operations of fabrication laboratories (FabLabs). This system leverages a modern technology stack including React, Node.js, MongoDB, along with integration of the ChatGPT API for enhanced user support and QR Code functionalities for efficient equipment management. It caters to both users and administrators through separate interfaces, providing a range of features from equipment and subscription management to operation reports and personal user histories.
 
-## Table of Contents
+## Table of Contents 
 
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
