@@ -1,7 +1,6 @@
 # FabLab Management System
 
 ![Photo README3](readme3.png)  
-![Photo README2](readme2.png)  
 ![Photo README1](readme1.png)
 
 
