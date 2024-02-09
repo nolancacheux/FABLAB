@@ -1,5 +1,9 @@
 # FabLab Management System
 
+![Photo README3](readme3.png)  
+![Photo README2](readme2.png)  
+![Photo README1](readme1.png)
+
 
 ## Introduction
 
@@ -109,7 +113,10 @@ The FabLab Management System is a comprehensive solution designed to streamline 
 ## Additional Notes
 
 - **OpenAI Integration:** Install the OpenAI npm package and configure the `.env` file in the `ServeurChatGpt` directory with your API key. Avoid committing your API key to GitHub. Start the `ServeurChatGpt` server with `npm start`.
+
+![Photo README4](readme4.png)
+
 - **Selenium Testing:** Perform automated browser testing using Selenium.
 
 
-By Nolan CACHEUX.
+Nolan CACHEUX.
